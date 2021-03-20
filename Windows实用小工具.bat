@@ -1,5 +1,38 @@
+::[Bat To Exe Converter]
+::
+::YAwzoRdxOk+EWAjk
+::fBw5plQjdCuDJN9FGMvN6idjRQqGM3ypg3vibxwzajpoJ5rY0QfoRIbY1fqHI+9z
+::YAwzuBVtJxjWCl3EqQJgSA==
+::ZR4luwNxJguZRRnk
+::Yhs/ulQjdF+5
+::cxAkpRVqdFKZSDk=
+::cBs/ulQjdF+5
+::ZR41oxFsdFKZSDk=
+::eBoioBt6dFKZSDk=
+::cRo6pxp7LAbNWATEpCI=
+::egkzugNsPRvcWATEpCI=
+::dAsiuh18IRvcCxnZtBJQ
+::cRYluBh/LU+EWAnk
+::YxY4rhs+aU+IeA==
+::cxY6rQJ7JhzQF1fEqQJiZksaHkrTXA==
+::ZQ05rAF9IBncCkqN+0xwdVsGAlTMbiXrZg==
+::ZQ05rAF9IAHYFVzEqQIHIRVQQxORuaVEgUHUbTgUaj1CJ6jKNA==
+::eg0/rx1wNQPfEVWB+kM9LVsJDDOLMm+1EaaZJhZ8GyICcqKYgye6nVi7
+::fBEirQZwNQPfEVWB+kM9LVsJDDOLMm+1EaaZJhZ8GyICcqKYgye6nVi7
+::cRolqwZ3JBvQF1fEqQIHIRVQQxORuaVEgUHUbTgUaj1CJ6jKFOAmON2Lg+LZd7lFuBaE
+::dhA7uBVwLU+EWDk=
+::YQ03rBFzNR3SWATEphJpfkwDFVLQbws=
+::dhAmsQZ3MwfNWATEphJpfkwDFVLQbws=
+::ZQ0/vhVqMQ3MEVWAtB9weksNGlPVZT3oVdU=
+::Zg8zqx1/OA3MEVWAtB9weksNGlPVZT3oVdU=
+::dhA7pRFwIByZRRnk
+::Zh4grVQjdCuDJN9FGMvN6idjRQqGM3ypg3vibxwzajpoJ5rY0QfoNorD39Q=
+::YB416Ek+ZW8=
+::
+::
+::978f952a14a936cc963da21a135fa983
 @echo off
-title Windows实用小工具 Powered by 2096779623
+title Windows实用小工具 By 2096779623
 color 07
 mode con cols=200 lines=50
 :welcome
@@ -15,33 +48,36 @@ echo 已获取管理员权限!
 cls
 goto memu
 :memu
+cls
 echo 当前系统:%OS%
-echo 当前运行目录:%CD%
+echo 程序运行目录:%CD%
 echo 当前时间及日期:%date:~0,4%年%date:~5,2%月%date:~8,2%日%time:~0,2%点%time:~3,2%分
 echo 当前用户名:%username%
 echo 输入"cleartool"即可清除下载的组件
-echo --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+echo 输入next查看下一页
+echo 输入exit退出
+echo -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 echo 想执行什么操作执行对应的数字即可(输入exit退出)  本程序造成的任何后果作者概不负责！
-echo  1.计算器                       21.系统属性                41.在任务栏显示秒数(win10)            61.查看周边WIFI信息           81.更改Win+E弹出程序
-echo  2.屏幕键盘                     22.事件查看器              42.上帝模式                           62.打开系统属性               82.更改密钥和版本号
-echo  3.注册表                       23.Internet选项            43.关闭Windows defender               63.取消定时关机
-echo  4.组策略                       24.性能监视器              44.把当前用户添加到Administrators     64.获取当前桌面背景(win10)   
-echo  5.命令提示符（cmd）            25.资源监视器              45.连接ssh(无端口)                    65.获取当前计算机名          
-echo  6.powershell                   26.磁盘清理                46.网络重置                           66.查看当前CPU核心数量
-echo  7.显示Windows版本信息          27.画图                    47.开热点                             67.查看当前处理器架构                  
-echo  8.关闭UAC                      28.启用或关闭Windows功能   48.改IE浏览器的主页(不一定行)         68.蓝牙
-echo  9.查看系统信息                 29.服务                    49.扫雷(win10不行)                    69.设备管理器
-echo  10.远程连接                    30.滑动关机（win10）       50.星球大战(这是一个彩蛋)             70.设置默认程序  
-echo  11.打开任务管理器              31.打开当前账户的文件夹    51.修改时间及日期                     71.网络和共享中心
-echo  12.显示IP信息                  32.结束进程                52.用messenger(Msg)发送消息           72.微信多开
-echo  13.一键激活Windows(不一定有效) 33.定时关机                53.共享文件夹管理器                   73.下载文件
-echo  14.蓝屏(想作死的就输入14)      34.用IE浏览器打开网页      54.创建一个账户                       74.查看运行权限      
-echo  15.记事本                      35.自定义弹窗              55.清理垃圾                           75.打开当前用户文件夹
-echo  16.放大镜                      36.显示设置                56.查看电脑连接过的WIFI密码           76.获取超级详细的硬件信息     
-echo  17.查看当前用户的用户名        37.打开设置(win10)         57.静默播放背景音乐                   77.管理启动项              
-echo  18.关机                        38.电源选项                58.结束播放背景音乐                   78.自定义定时关机
-echo  19.休眠                        39.控制面板                59.打开启动文件夹                     79.调节系统音量
-echo  20.计算机管理                  40.百度网盘不限速下载器    60.连接已保存的WIFI                   80.最高权限运行程序(64位)        
+echo  1.计算器                       21.系统属性                41.在任务栏显示秒数(win10)            61.查看周边WIFI信息           81.更改Win+E弹出程序             
+echo  2.屏幕键盘                     22.事件查看器              42.上帝模式                           62.打开系统属性               82.更改密钥和版本号              
+echo  3.注册表                       23.Internet选项            43.关闭Windows defender               63.取消定时关机               83.禁用U盘设备                   
+echo  4.组策略                       24.性能监视器              44.把当前用户添加到Administrators     64.获取当前桌面背景(win10)    84.恢复被禁用的U盘设备           
+echo  5.命令提示符（cmd）            25.资源监视器              45.连接ssh(默认22端口)                65.获取当前计算机名           85.创建一个服务
+echo  6.powershell                   26.磁盘清理                46.网络重置                           66.查看当前CPU核心数量        86.删除一个服务
+echo  7.显示Windows版本信息          27.画图                    47.开热点                             67.查看当前处理器架构         87.删除此电脑最上面的文件夹
+echo  8.关闭UAC                      28.启用或关闭Windows功能   48.改IE浏览器的主页(不一定行)         68.蓝牙                       88.恢复此电脑最上面的文件夹
+echo  9.查看系统信息                 29.服务                    49.扫雷(win7)                         69.设备管理器                 89.去除快捷方式小箭头
+echo  10.远程连接                    30.滑动关机（win10）       50.星球大战(这是一个彩蛋)             70.设置默认程序               90.恢复快捷方式小箭头
+echo  11.打开任务管理器              31.打开当前账户的文件夹    51.修改时间及日期                     71.网络和共享中心             91.查看BIOS版本
+echo  12.显示IP信息                  32.结束进程                52.用messenger(Msg)发送消息           72.微信多开                   92.修复linux子系统出现0x8007019e
+echo  13.一键激活Windows(不一定有效) 33.定时关机                53.共享文件夹管理器                   73.下载文件                   93.合并.ts格式的视频
+echo  14.蓝屏(想作死的就输入14)      34.用IE浏览器打开网页      54.创建一个账户                       74.查看运行权限               94.禁止U盘自动运行(AutoRun)
+echo  15.记事本                      35.自定义弹窗              55.清理垃圾                           75.打开当前用户文件夹         95.指定程序开机自启动
+echo  16.放大镜                      36.显示设置                56.查看电脑连接过的WIFI密码           76.获取超级详细的硬件信息     96.修改分辨率
+echo  17.查看当前用户的用户名        37.打开设置(win10)         57.静默播放背景音乐                   77.管理启动项                 97.设置cmd默认为管理员权限运行
+echo  18.关机                        38.电源选项                58.结束播放背景音乐                   78.自定义定时关机             98.关闭Windows防火墙
+echo  19.休眠                        39.控制面板                59.打开启动文件夹                     79.调节系统音量               99.打开电源计划"高性能"
+echo  20.计算机管理                  40.百度网盘不限速下载器    60.连接已保存的WIFI                   80.最高权限运行程序(64位)     100.打开快速启动(Hybrid Boot)
 echo --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 set /p user_input=请输入你要执行的操作：
@@ -53,12 +89,12 @@ if %user_input% equ 4 start gpedit.msc
 if %user_input% equ 5 start cmd
 if %user_input% equ 6 start powershell
 if %user_input% equ 7 start winver
-if %user_input% equ 8 cmd.exe /k %windir%\System32\reg.exe ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f 
+if %user_input% equ 8 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "EnableLUA" /d 0 /t REG_DWORD /f && reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "ConsentPromptBehaviorAdmin" /d 0 /t REG_DWORD /f
 if %user_input% equ 9 start msinfo32
 if %user_input% equ 10 start mstsc
 if %user_input% equ 11 start taskmgr
 if %user_input% equ 12 ipconfig /all
-if %user_input% equ 13 slmgr /skms kms.v0v.bid && slmgr /ato
+if %user_input% equ 13 slmgr /skms kms.03k.org && slmgr /ato
 if %user_input% equ 14 taskkill /f /fi "pid ne 1
 if %user_input% equ 15 start notepad
 if %user_input% equ 16 start Magnify.exe
@@ -128,7 +164,26 @@ if %user_input% equ 79 goto yingliang
 if %user_input% equ 80 goto M2
 if %user_input% equ 81 goto wine
 if %user_input% equ 82 goto my
+if %user_input% equ 83 goto usb
+if %user_input% equ 84 goto hfusb
+if %user_input% equ 85 goto service
+if %user_input% equ 86 goto rmservice
+if %user_input% equ 87 goto rmwjj
+if %user_input% equ 88 goto hfwjj
+if %user_input% equ 89 goto link
+if %user_input% equ 90 goto hflink
+if %user_input% equ 91 goto showBIOS
+if %user_input% equ 92 goto linux
+if %user_input% equ 93 goto ts
+if %user_input% equ 94 goto autorun
+if %user_input% equ 95 goto bootrun
+if %user_input% equ 96 goto jiancescreen
+if %user_input% equ 97 goto UACcmd
+if %user_input% equ 98 goto fhq
+if %user_input% equ 99 goto power
+if %user_input% equ 100 goto fastboot
 if %user_input% equ cleartool goto clean
+if %user_input% equ next goto memu1
 if %user_input% equ exit exit
 set /p input=你还想进行其他操作吗？请输入y/n并选择：
 cls
@@ -136,8 +191,46 @@ if %input%==y goto memu
 if %input%==n exit
 
 
-
-
+:memu1
+cls
+echo 当前系统:%OS%
+echo 程序运行目录:%CD%
+echo 当前时间及日期:%date:~0,4%年%date:~5,2%月%date:~8,2%日%time:~0,2%点%time:~3,2%分
+echo 当前用户名:%username%
+echo 输入"cleartool"即可清除下载的组件
+echo 输入back返回上一页
+echo 输入exit退出
+echo --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+echo 101.启用.NET 3.5
+echo 102.禁止一联网就打开浏览器
+echo 103.启用无GUI引导(开机隐藏winlogo)
+echo 104.关闭SmartScreen应用筛选器
+echo 105.关机时快速强杀后台增加关机速度
+echo 106.直接永久删除文件(不进入回收站)
+echo 107.去除UAC小盾牌图标
+echo 108.启用Administrator账户
+echo 109.打开DHCP
+echo 110.设置静态IP
+echo --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+set /p user_input=请输入你要执行的操作：
+if %user_input% equ 100 goto fastboot
+if %user_input% equ 101 goto .NET3.5
+if %user_input% equ 102 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\NetworkConnectivityStatusIndicator" /v "NoActiveProbe" /d 1 /t REG_DWORD /f
+if %user_input% equ 103 bcdedit /set quietboot on
+if %user_input% equ 104 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v "SmartScreenEnabled" /d off /t REG_SZ /f
+if %user_input% equ 105 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control" /v "WaitToKillServiceTimeout" /d 0 /t REG_SZ /f
+if %user_input% equ 106 goto yjdelete
+if %user_input% equ 107 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons" /v 77 /d "%systemroot%\system32\imageres.dll,197" /t reg_sz /f && del "%userprofile%\AppData\Local\iconcache.db" /f /q && taskkill /im explorer.exe /f && start explorer.exe
+if %user_input% equ 108 net user administrator /active:yes
+if %user_input% equ 109 goto DHCP
+if %user_input% equ 110 goto setip
+if %user_input% equ cleartool goto clean
+if %user_input% equ back goto memu
+if %user_input% equ exit exit
+set /p input=你还想进行其他操作吗？请输入y/n并选择：
+cls
+if %input%==y goto memu1
+if %input%==n exit
 
 
 
@@ -243,7 +336,7 @@ if %user_input% equ 2 goto peizhi
 if %user_input% equ 3 netsh wlan start hostednetwork
 if %user_input% equ 4 netsh wlan stop hostednetwork
 if %user_input% equ 5 netsh wlan set hostednetwork mode=disallow
-if %user_input% equ 主菜单 goto memu
+if %user_input% equ 主菜单 goto redian
 set /p input=执行完成,是否返回主菜单？（y/n）:
 if %input%==y goto memu
 if %input%==n goto redian
@@ -422,10 +515,11 @@ goto memu
 cls
 set ljname=
 set /p ljname=请输入保存路径:
-copy "%userprofile%\AppData\Roaming\Microsoft\Windows\Themes\CachedFiles" "%ljname%\*.jpg" /y
-cd %ljname%
+copy "%userprofile%\AppData\Roaming\Microsoft\Windows\Themes\CachedFiles\CachedImage*.jpg" "%ljname%\*.jpg" /y
+md 桌面壁纸
+cd %ljname%\桌面壁纸
 ren CachedImage_*.jpg 桌面壁纸.jpg
-start %ljname%\桌面壁纸.jpg
+start %ljname%\桌面壁纸\桌面壁纸.jpg
 echo 照片路径为:%ljname%\桌面壁纸.jpg
 pause
 cls
@@ -550,7 +644,7 @@ echo 如果提示"值已存在，要覆盖吗(Yes/No)"请输入Yes!
 set cx=
 set /p cx=请输入要更改的程序的完整路径:
 reg add HKEY_CLASSES_ROOT\Folder\shell\opennewwindow\command  /v DelegateExecute /t REG_SZ /d - /f
-reg add HKEY_CLASSES_ROOT\Folder\shell\opennewwindow\command /t REG_SZ /d %cx%
+reg add HKEY_CLASSES_ROOT\Folder\shell\opennewwindow\command /t REG_SZ /d %cx% /f
 echo 修改成功!
 pause
 cls
@@ -583,3 +677,313 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\"Windows NT"\CurrentVersion" /v R
 pause
 cls
 goto memu
+
+
+
+:usb
+@echo off
+echo 注意：此操作会让你所有的U盘都无法被系统识别，继续吗？
+pause
+reg add HKLM\SYSTEM\CurrentControlSet\services\USBSTOR /v Start /t REG_DWORD /d 4 /f
+pause
+cls
+goto memu
+
+
+
+:hfusb
+@echo off
+echo 注意：此操作会让那些无法被系统识别的U盘恢复，继续吗？
+pause
+reg add HKLM\SYSTEM\CurrentControlSet\services\USBSTOR /v Start /t REG_DWORD /d 3 /f
+pause
+cls
+goto memu
+
+
+
+:service
+@echo off
+set sename=
+set /p sename=请输入服务名称:
+set mc=
+set /p mc=请输入显示名称:
+set selj=
+set /p selj=请输入文件路径:
+sc create %sename% displayname="%mc%" binPath="%selj%" start=auto
+pause
+cls
+goto memu
+
+
+
+:rmservice
+@echo off
+set sename1=
+set /p sename1=请输入要删除的服务名称:
+sc delete %sename1%
+pause
+cls
+goto memu
+
+
+
+:rmwjj
+@echo off
+reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{24ad3ad4-a569-4530-98e1-ab02f9417aa8} /f
+reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f} /f
+reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de} /f
+reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641} /f
+reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{d3162b92-9365-467a-956b-92703aca08af} /f
+reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a} /f
+reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A} /f
+pause
+cls
+goto memu
+:hfwjj
+@echo off
+reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{24ad3ad4-a569-4530-98e1-ab02f9417aa8} /f
+reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f} /f
+reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de} /f
+reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641} /f
+reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{d3162b92-9365-467a-956b-92703aca08af} /f
+reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a} /f
+reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A} /f
+pause
+cls
+goto memu
+
+
+
+:link
+@echo off
+reg delete HKCR\lnkfile /v IsShortcut /f
+reg delete HKCR\piffile /v IsShortcut /f
+reg delete HKCR\InternetShortcut /v IsShortcut /f
+taskkill /im explorer.exe /f
+start explorer.exe
+pause
+cls
+goto memu
+:hflink
+@echo off
+reg add HKCR\lnkfile /v IsShortcut /f
+reg add HKCR\piffile /v IsShortcut /f
+reg add HKCR\InternetShortcut /v IsShortcut /f
+taskkill /im explorer.exe /f
+start explorer.exe
+
+
+:showBIOS
+@echo off
+systeminfo|findstr "BIOS 版本"
+pause
+cls
+goto memu
+
+
+:linux
+@echo off
+echo 请用管理员身份运行此程序！
+echo 请用管理员身份运行此程序！
+echo 请用管理员身份运行此程序！
+echo Y是重启，N是暂时不重启
+pause
+start powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+pause
+cls
+goto memu
+
+
+
+:ts
+@echo off
+set lj=
+set /p lj=请输入ts文件的路径:
+set filename=请输入合并之后的文件名称(*.ts):
+copy /b %lj%*.ts %filename%
+pause
+cls
+goto memu
+
+
+:autorun
+@echo off
+reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoDriveTypeAutoRun /t REG_DWORD /d 00000095 /f
+reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoDriveTypeAutoRun /t REG_DWORD /d 00000095 /f
+reg add HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\cdrom /v Autorun /t REG_DWORD /d 00000001 /f
+reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\cdrom /v Autorun /t REG_DWORD /d 00000001 /f
+pause
+cls
+goto memu
+
+
+:bootrun
+@echo off
+set name=
+set /p name=请输入显示名称:
+set cx=
+set /p cx=请输入程序路径:
+reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\ /v %name% /t REG_SZ /d %cx% /f
+
+:screen
+cls
+echo 1.1920x1080(32位色,59FPS)
+echo 2.1600x900(32位色,59FPS)
+echo 3.1024x768(32位色,59FPS)
+echo 4.800x600(32位色,59FPS)
+echo 5.自定义分辨率
+set /p input=请输入数字:
+if %input% equ 1 goto 1920x1080
+if %input% equ 2 goto 1600x900
+if %input% equ 3 goto 1024x768
+if %input% equ 4 goto 800x600
+if %input% equ 5 goto diyscreen
+
+
+:jiancescreen
+@echo off
+set /p input1=第一次使用/清除了组件之后需要下载组件,是否要下载？(Y/N):
+if %input1% equ Y goto downscreen
+if %input1% equ N goto screen
+
+
+:1920x1080
+@echo off
+%temp%\SETRES.EXE h1920 v1080 b32 f59
+pause
+cls
+goto memu
+
+
+:1600x900
+@echo off
+%temp%\SETRES.EXE h1600 v900 b32 f59
+pause
+cls
+goto memu
+
+:1024x768
+@echo off
+%temp%\SETRES.EXE h1024 v768 b32 f59
+pause
+cls
+goto memu
+
+
+:800x600
+@echo off
+%temp%\SETRES.EXE h800 v600 b32 f59
+pause
+cls
+goto memu
+
+:diyscreen
+@echo off
+set /p h=请输入高(比如1920):
+set /p v=请输入宽(比如1080):
+set /p b=请输入位数(比如32):
+set /p f=请输入刷新率(比如59):
+%temp%\SETRES.EXE h%h% v%v% b%b% f%f%
+pause
+cls
+goto memu
+
+
+:downscreen
+@echo off
+bitsadmin /transfer myDownLoadJob /download /priority normal "http://ys-d.ys168.com/615741458/523838184/g86355U6I5OPI3V4gXjK0b/SETRES.EXE" "%temp%\SETRES.EXE"
+pause
+cls
+goto screen
+
+
+
+:UACcmd
+@echo off
+echo 本操作需要以管理员身份运行此程序！
+pause
+reg add HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers /v c:\windows\system32\cmd.exe /t REG_SZ /d RUNASADMIN /f
+
+
+
+:fhq
+@echo off
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile" /v "EnableFirewall" /d 0 /t REG_DWORD /f
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile" /v "EnableFirewall" /d 0 /t REG_DWORD /f
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile" /v "EnableFirewall" /d 0 /t REG_DWORD /f
+sc stop MpsSvc
+sc config MpsSvc start=disabled
+pause
+cls
+goto memu
+
+
+
+:power
+@echo off
+powercfg.exe -setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
+pause
+cls
+goto memu
+
+
+
+:fastboot
+@echo off
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System" /v "HiberbootEnabled" /d 1 /t REG_DWORD /f
+pause
+cls
+goto memu1
+
+
+
+:.NET3.5
+@echo off
+dism.exe /online /enable-feature /featurename:NetFX3 /Source:%c%:\sources\sxs
+pause
+cls
+goto memu1
+
+
+
+:yjdelete
+@echo off
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "NoRecycleFiles" /d 1 /t REG_dword /f
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" /v "{645FF040-5081-101B-9F08-00AA002F954E}" /d 1 /t REG_dword /f
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "ConfirmFileDelete" /d 1 /t REG_dword /f
+pause
+cls
+goto memu1
+
+
+:DHCP
+@echo off
+set network=
+set /p network=请输入网卡名称:
+netsh interface ip set address %network% dhcp
+netsh interface ip set dns %network% dhcp
+pause
+cls
+goto memu1
+:setip
+@echo off
+echo 如果没有返回任何信息代表设置成功！
+set network=
+set /p network=请输入网卡名称(比如:以太网):
+set ip=
+set /p ip=请输入IP地址:
+set mask=
+set /p mask=请输入子网掩码(默认是255.255.255.0):
+set wg=
+set /p wg=请输入默认网关:
+set dns1=
+set /p dns1=请输入首选DNS地址:
+set dns2=
+set /p dns2=请输入备用DNS地址(可以留空):
+netsh interface ipv4 set address %network% static %ip% %mask% %wg%
+netsh interface ipv4 set dns %network% static %dns1%
+if "%DNS2%"=="" (echo.) else (netsh interface ipv4 add dns %network% %dns2%)
+pause
+cls
+goto memu1
