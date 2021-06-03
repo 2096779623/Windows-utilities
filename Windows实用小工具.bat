@@ -14,8 +14,8 @@
 ::dAsiuh18IRvcCxnZtBJQ
 ::cRYluBh/LU+EWAnk
 ::YxY4rhs+aU+IeA==
-::cxY6rQJ7JhzQF1fEqQJiZksaHkrTags=
-::ZQ05rAF9IBncCkqN+0xwdVsGAlTMbiXrUNU=
+::cxY6rQJ7JhzQF1fEqQJiZksaHkrTZQs=
+::ZQ05rAF9IBncCkqN+0xwdVsGAlTMbiXrX9U=
 ::ZQ05rAF9IAHYFVzEqQIHIRVQQxORuaVEgUHUbTgUaj1CJ6jKNA==
 ::eg0/rx1wNQPfEVWB+kM9LVsJDDOLMm+1EaaZJhZ8GyICcqKYgye6nVi7
 ::fBEirQZwNQPfEVWB+kM9LVsJDDOLMm+1EaaZJhZ8GyICcqKYgye6nVi7
@@ -32,7 +32,7 @@
 ::
 ::978f952a14a936cc963da21a135fa983
 @echo off
-title WindowsÊµÓÃĞ¡¹¤¾ß By 2096779623 v2.0.2.17
+title WindowsÊµÓÃĞ¡¹¤¾ß By 2096779623 v2.0.2.19
 color 07
 ::±àÂëÎªANSI!!!
 mode con cols=200 lines=50
@@ -50,15 +50,17 @@ cls
 goto memu
 :memu
 cls
-for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ProductName"') do echo µ±Ç°ÏµÍ³:%%A %%B %PROCESSOR_ARCHITECTURE%
+@echo off
+for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ReleaseId"') do set winversion=%%A
+for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ProductName"') do echo µ±Ç°ÏµÍ³:%%A %%B °æ±¾:%winversion% %PROCESSOR_ARCHITECTURE%
 echo ³ÌĞòÔËĞĞÄ¿Â¼:%CD%
 echo µ±Ç°Ê±¼ä¼°ÈÕÆÚ:%date:~0,4%Äê%date:~5,2%ÔÂ%date:~8,2%ÈÕ%time:~0,2%µã%time:~3,2%·Ö
-echo µ±Ç°ÓÃ»§Ãû:%username%
+echo µ±Ç°ÓÃ»§Ãû/¼ÆËã»úÃû:%username% %COMPUTERNAME%
 echo ÊäÈë"cleartool"¼´¿ÉÇå³ıÏÂÔØµÄ×é¼ş
 echo ÊäÈëAbout²é¿´¹ØÓÚ½çÃæ
 echo ÊäÈënext²é¿´ÏÂÒ»Ò³
 echo ÊäÈëexitÍË³ö
-echo -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+echo ========================================================================================================================================================================================================
 echo ÏëÖ´ĞĞÊ²Ã´²Ù×÷Ö´ĞĞ¶ÔÓ¦µÄÊı×Ö¼´¿É(ÊäÈëexitÍË³ö)  ±¾³ÌĞòÔì³ÉµÄÈÎºÎºó¹û×÷Õß¸Å²»¸ºÔğ£¡
 echo  1.¼ÆËãÆ÷                       21.ÏµÍ³ÊôĞÔ                41.ÔÚÈÎÎñÀ¸ÏÔÊ¾ÃëÊı(win10)            61.²é¿´ÖÜ±ßWIFIĞÅÏ¢           81.¸ü¸ÄWin+Eµ¯³ö³ÌĞò             
 echo  2.ÆÁÄ»¼üÅÌ                     22.ÊÂ¼ş²é¿´Æ÷              42.ÉÏµÛÄ£Ê½                           62.´ò¿ªÏµÍ³ÊôĞÔ               82.¸ü¸ÄÃÜÔ¿ºÍ°æ±¾ºÅ              
@@ -67,7 +69,7 @@ echo  4.×é²ßÂÔ                       24.ĞÔÄÜ¼àÊÓÆ÷              44.°Ñµ±Ç°ÓÃ»§Ìí¼
 echo  5.ÃüÁîÌáÊ¾·û£¨cmd£©            25.×ÊÔ´¼àÊÓÆ÷              45.Á¬½Óssh(Ä¬ÈÏ22¶Ë¿Ú)                65.»ñÈ¡µ±Ç°¼ÆËã»úÃû           85.´´½¨Ò»¸ö·şÎñ
 echo  6.powershell                   26.´ÅÅÌÇåÀí                46.ÍøÂçÖØÖÃ                           66.²é¿´µ±Ç°CPUºËĞÄÊıÁ¿        86.É¾³ıÒ»¸ö·şÎñ
 echo  7.ÏÔÊ¾Windows°æ±¾ĞÅÏ¢          27.»­Í¼                    47.¿ªÈÈµã                             67.²é¿´µ±Ç°´¦ÀíÆ÷¼Ü¹¹         87.É¾³ı´ËµçÄÔ×îÉÏÃæµÄÎÄ¼ş¼Ğ
-echo  8.¹Ø±ÕUAC                      28.ÆôÓÃ»ò¹Ø±ÕWindows¹¦ÄÜ   48.¸ÄIEä¯ÀÀÆ÷µÄÖ÷Ò³(²»Ò»¶¨ĞĞ)         68.À¶ÑÀ                       88.»Ö¸´´ËµçÄÔ×îÉÏÃæµÄÎÄ¼ş¼Ğ
+echo  8.¹Ø±ÕUAC                      28.ÆôÓÃ»ò¹Ø±ÕWindows¹¦ÄÜ   48.ĞŞ¸ÄIEä¯ÀÀÆ÷µÄÖ÷Ò³                 68.À¶ÑÀ                       88.»Ö¸´´ËµçÄÔ×îÉÏÃæµÄÎÄ¼ş¼Ğ
 echo  9.²é¿´ÏµÍ³ĞÅÏ¢                 29.·şÎñ                    49.É¨À×(win7)                         69.Éè±¸¹ÜÀíÆ÷                 89.È¥³ı¿ì½İ·½Ê½Ğ¡¼ıÍ·
 echo  10.Ô¶³ÌÁ¬½Ó                    30.»¬¶¯¹Ø»ú£¨win10£©       50.ĞÇÇò´óÕ½(ÕâÊÇÒ»¸ö²Êµ°)             70.ÉèÖÃÄ¬ÈÏ³ÌĞò               90.»Ö¸´¿ì½İ·½Ê½Ğ¡¼ıÍ·
 echo  11.´ò¿ªÈÎÎñ¹ÜÀíÆ÷              31.´ò¿ªµ±Ç°ÕË»§µÄÎÄ¼ş¼Ğ    51.ĞŞ¸ÄÊ±¼ä¼°ÈÕÆÚ                     71.ÍøÂçºÍ¹²ÏíÖĞĞÄ             91.²é¿´BIOS°æ±¾
@@ -80,7 +82,7 @@ echo  17.²é¿´µ±Ç°ÓÃ»§µÄÓÃ»§Ãû        37.´ò¿ªÉèÖÃ(win10)         57.¾²Ä¬²¥·Å±³¾°Ò
 echo  18.¹Ø»ú                        38.µçÔ´Ñ¡Ïî                58.½áÊø²¥·Å±³¾°ÒôÀÖ                   78.×Ô¶¨Òå¶¨Ê±¹Ø»ú             98.¹Ø±ÕWindows·À»ğÇ½
 echo  19.ĞİÃß                        39.¿ØÖÆÃæ°å                59.´ò¿ªÆô¶¯ÎÄ¼ş¼Ğ                     79.µ÷½ÚÏµÍ³ÒôÁ¿               99.´ò¿ªµçÔ´¼Æ»®"¸ßĞÔÄÜ"
 echo  20.¼ÆËã»ú¹ÜÀí                  40.¶ÈÅÌ²»ÏŞËÙÏÂÔØÆ÷        60.Á¬½ÓÒÑ±£´æµÄWIFI                   80.×î¸ßÈ¨ÏŞÔËĞĞ³ÌĞò(64Î»)     100.´ò¿ª¿ìËÙÆô¶¯(Hybrid Boot)
-echo --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+echo ========================================================================================================================================================================================================
 set /p user_input=ÇëÊäÈëÄãÒªÖ´ĞĞµÄ²Ù×÷£º
 if %user_input% equ 1 start calc
 if %user_input% equ 2 start osk
@@ -124,7 +126,7 @@ if %user_input% equ 39 control
 if %user_input% equ 40 goto baidupan
 if %user_input% equ 41 goto miao
 if %user_input% equ 42 md GodMode.{ED7BA470-8E54-465E-825C-99712043E01C}
-if %user_input% equ 43 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender" /v "DisableAntiSpyware" /d 1 /t REG_DWORD
+if %user_input% equ 43 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender" /v "DisableAntiSpyware" /d 1 /t REG_DWORD /f
 if %user_input% equ 44 net localgroup administrators %username% /add
 if %user_input% equ 45 goto ssh
 if %user_input% equ 46 goto wangluo
@@ -193,25 +195,36 @@ if %input%==n exit
 
 :memu1
 cls
-for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ProductName"') do echo µ±Ç°ÏµÍ³:%%A %%B %PROCESSOR_ARCHITECTURE%
+for /f "tokens=*" %%a in ('REG QUERY "HKEY_USERS" /s /v USERNAME ^| find /i "Volatile Environment"') do (
+    for /f "tokens=*" %%1 in ('REG QUERY "%%a" /v USERNAME ^| find /i "%username%"') do (
+    ::echo %%1
+    SET "SID=%%a"
+    )
+)
+::È¡³öSID
+for /f "tokens=1-4,* delims=\" %%i in ('echo %SID%') do (
+SET "SID=%%j"
+)
+for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ReleaseId"') do set winversion=%%A
+for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ProductName"') do echo µ±Ç°ÏµÍ³:%%A %%B °æ±¾:%winversion% %PROCESSOR_ARCHITECTURE%
 echo ³ÌĞòÔËĞĞÄ¿Â¼:%CD%
 echo µ±Ç°Ê±¼ä¼°ÈÕÆÚ:%date:~0,4%Äê%date:~5,2%ÔÂ%date:~8,2%ÈÕ%time:~0,2%µã%time:~3,2%·Ö
 echo µ±Ç°ÓÃ»§Ãû:%username%
 echo ÊäÈë"cleartool"¼´¿ÉÇå³ıÏÂÔØµÄ×é¼ş
 echo ÊäÈëback·µ»ØÉÏÒ»Ò³
 echo ÊäÈëexitÍË³ö
-echo --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-echo 101.ÆôÓÃ.NET 3.5                   111.Ë¢ĞÂDNS»º´æ                           121.Ê¹ÓÃpowershell¿ª¹ØÈÈµã                   131.É¾³ıwindows×ÊÔ´¹ÜÀíÆ÷ÉÏ·½µÄ°Ù¶ÈÍøÅÌ
-echo 102.½ûÖ¹Ò»ÁªÍø¾Í´ò¿ªä¯ÀÀÆ÷         112.ÎÄ¼ş/ÎÄ¼ş¼ĞÑ¡Ïî                       122.ĞŞ¸´¼üÅÌÓ³Éä                             132.É¾³ıwindows×ÊÔ´¹ÜÀíÆ÷ÉÏ·½µÄ¿á¹·ÒôÀÖ
-echo 103.ÆôÓÃÎŞGUIÒıµ¼(¿ª»úÒş²Øwinlogo) 113.ĞŞ¸Ä°´ÏÂµçÔ´°´Å¥Ê±"ÎŞ²Ù×÷"            123.ĞŞ¸´QQµÇÂ¼À¶ÆÁ                           133.´ò¿ª/¹Ø±ÕÁÙÊ±IPV6µØÖ·
-echo 104.¹Ø±ÕSmartScreenÓ¦ÓÃÉ¸Ñ¡Æ÷      114.Ìí¼Ó°´×¡Ctrl,ÔÙ°´Á½´ÎScrollLock¼üÀ¶ÆÁ 124.Çå³ıIEÊÕ²Ø¼Ğ                             134.Ô¤·Àautorun²¡¶¾(UÅÌ)
-echo 105.¹Ø»úÊ±¿ìËÙÇ¿É±ºóÌ¨Ôö¼Ó¹Ø»úËÙ¶È 115.ĞŞ¸´¿ªÊ¼²Ëµ¥ÎŞ·¨´ò¿ª                  125.½ûÓÃ´ÅÅÌ×Ô¼ì
-echo 106.Ö±½ÓÓÀ¾ÃÉ¾³ıÎÄ¼ş(²»½øÈë»ØÊÕÕ¾) 116.Ç¿ÖÆ¸üĞÂ×é²ßÂÔ                        126.ÖØ½¨Í¼±ê»º´æ
-echo 107.È¥³ıUACĞ¡¶ÜÅÆÍ¼±ê              117.Ìí¼ÓÒ»¸ö×ÀÃæÓÒ¼ü²Ëµ¥                  127.ÆôÓÃĞŞ¸´Ä£Ê½
-echo 108.ÆôÓÃAdministratorÕË»§          118.¹«Ë¾ÍøÂçºÍ»¥ÁªÍøÍ¬Ê±·ÃÎÊ              128.½â¾öWindows ¿ª»úlogoÄ£ºı»òÕß±»À­ÉìµÄÎÊÌâ
-echo 109.´ò¿ªDHCP                       119.¸øÓÒ¼ü²Ëµ¥Ìí¼ÓÍ¼±ê                    129.¹ÜÀíÔ±È¡µÃËùÓĞÈ¨
-echo 110.ÉèÖÃ¾²Ì¬IP                     120.²åÈëUÅÌ×Ô¶¯´ò¿ªWin×ÊÔ´¹ÜÀíÆ÷(Win10)   130.»ñÈ¡ËùÓĞÉ±¶¾Èí¼şÃû×ÖÒÔ¼°Â·¾¶
-echo --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+echo ========================================================================================================================================================================================================
+echo 101.ÆôÓÃ.NET 3.5                   111.Ë¢ĞÂDNS»º´æ                           121.Ê¹ÓÃpowershell¿ª¹ØÈÈµã                   131.É¾³ıwindows×ÊÔ´¹ÜÀíÆ÷ÉÏ·½µÄ°Ù¶ÈÍøÅÌ 141.Win7Ç¿ÖÆ¿ªÆôAeroĞ§¹û
+echo 102.½ûÖ¹Ò»ÁªÍø¾Í´ò¿ªä¯ÀÀÆ÷         112.ÎÄ¼ş/ÎÄ¼ş¼ĞÑ¡Ïî                       122.ĞŞ¸´¼üÅÌÓ³Éä                             132.É¾³ıwindows×ÊÔ´¹ÜÀíÆ÷ÉÏ·½µÄ¿á¹·ÒôÀÖ 142.ĞŞ¸ÄÏµÍ³Ä¬ÈÏ±àÂë
+echo 103.ÆôÓÃÎŞGUIÒıµ¼(¿ª»úÒş²Øwinlogo) 113.ĞŞ¸Ä°´ÏÂµçÔ´°´Å¥Ê±"ÎŞ²Ù×÷"            123.ĞŞ¸´QQµÇÂ¼À¶ÆÁ                           133.´ò¿ª/¹Ø±ÕÁÙÊ±IPV6µØÖ·               143.ÆôÓÃ/½ûÓÃIPV6
+echo 104.¹Ø±ÕSmartScreenÓ¦ÓÃÉ¸Ñ¡Æ÷      114.Ìí¼Ó°´×¡Ctrl,ÔÙ°´Á½´ÎScrollLock¼üÀ¶ÆÁ 124.Çå³ıIEÊÕ²Ø¼Ğ                             134.Ô¤·Àautorun²¡¶¾(UÅÌ)                144.ÔÊĞí/½ûÖ¹·ÃÎÊÄ³¸ö´ÅÅÌ
+echo 105.¹Ø»úÊ±¿ìËÙÇ¿É±ºóÌ¨Ôö¼Ó¹Ø»úËÙ¶È 115.ĞŞ¸´¿ªÊ¼²Ëµ¥ÎŞ·¨´ò¿ª                  125.½ûÓÃ´ÅÅÌ×Ô¼ì                             135.ĞŞ¸´ÔÚÎÄ¼ş¼ĞÑ¡ÏîÖĞÎŞ·¨ÏÔÊ¾Òş²ØÎÄ¼ş  145.ÏÔÊ¾Çå³şµÄµÇÂ¼±³¾°(win10)
+echo 106.Ö±½ÓÓÀ¾ÃÉ¾³ıÎÄ¼ş(²»½øÈë»ØÊÕÕ¾) 116.Ç¿ÖÆ¸üĞÂ×é²ßÂÔ                        126.ÖØ½¨Í¼±ê»º´æ                             136.ĞŞ¸´win10¼ÒÍ¥°æÃ»ÓĞ×é²ßÂÔ           146.ĞŞ¸´KB4512941¸ßCPUÕ¼ÓÃ(win10)
+echo 107.È¥³ıUACĞ¡¶ÜÅÆÍ¼±ê              117.Ìí¼ÓÒ»¸ö×ÀÃæÓÒ¼ü²Ëµ¥                  127.ÆôÓÃĞŞ¸´Ä£Ê½                             137.ÒÆ³ıSkyDrivePro                     147.ÆôÓÃ/½ûÓÃGuestÕË»§
+echo 108.ÆôÓÃ/½ûÓÃAdministratorÕË»§     118.¹«Ë¾ÍøÂçºÍ»¥ÁªÍøÍ¬Ê±·ÃÎÊ              128.½â¾öWindows ¿ª»úlogoÄ£ºı»òÕß±»À­ÉìµÄÎÊÌâ 138.ÆôÓÃ/½ûÓÃĞİÃß
+echo 109.´ò¿ªDHCP                       119.¸øÓÒ¼ü²Ëµ¥Ìí¼ÓÍ¼±ê                    129.¹ÜÀíÔ±È¡µÃËùÓĞÈ¨                         139.Ğ¶ÔØOneDrive
+echo 110.ÉèÖÃ¾²Ì¬IP                     120.²åÈëUÅÌ×Ô¶¯´ò¿ªWin×ÊÔ´¹ÜÀíÆ÷(Win10)   130.»ñÈ¡ËùÓĞÉ±¶¾Èí¼şÃû×ÖÒÔ¼°Â·¾¶             140.ĞŞ¸ÄµÇÂ¼ÃÜÂë
+echo ========================================================================================================================================================================================================
 set /p user_input=ÇëÊäÈëÄãÒªÖ´ĞĞµÄ²Ù×÷£º
 if %user_input% equ 100 goto fastboot
 if %user_input% equ 101 goto .NET3.5
@@ -221,7 +234,7 @@ if %user_input% equ 104 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\C
 if %user_input% equ 105 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control" /v "WaitToKillServiceTimeout" /d 0 /t REG_SZ /f
 if %user_input% equ 106 goto yjdelete
 if %user_input% equ 107 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons" /v 77 /d "%systemroot%\system32\imageres.dll,197" /t reg_sz /f && del "%userprofile%\AppData\Local\iconcache.db" /f /q && taskkill /im explorer.exe /f && start explorer.exe
-if %user_input% equ 108 net user administrator /active:yes
+if %user_input% equ 108 goto enaordisadmin
 if %user_input% equ 109 goto DHCP
 if %user_input% equ 110 goto setip
 if %user_input% equ 111 ipconfig /flushdns
@@ -233,7 +246,7 @@ if %user_input% equ 116 gpupdate /force
 if %user_input% equ 117 goto mdm
 if %user_input% equ 118 goto clandie
 if %user_input% equ 119 goto yjicon
-if %user_input% equ 120 echo »Ö¸´·½·¨:ÉèÖÃ>Éè±¸>×Ô¶¯²¥·Å>²»Ö´ĞĞ²Ù×÷ && reg add HKEY_USERS\S-1-5-21-*\SOFT/m,WARE\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\UserChosenExecuteHandlers\StorageOnArrival /ve /t REG_SZ /d MSOpenFolder /f && reg add HKEY_USERS\S-1-5-21-*\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\EventHandlersDefaultSelection\StorageOnArrival\ /ve /t REG_SZ /d MSOpenFolder /f
+if %user_input% equ 120 echo »Ö¸´·½·¨:ÉèÖÃ>Éè±¸>×Ô¶¯²¥·Å>²»Ö´ĞĞ²Ù×÷ && reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\EventHandlers\StorageOnArrival" /ve /t REG_SZ /d MSOpenFolder /f && reg add HKEY_USERS\%sid%\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\EventHandlersDefaultSelection\StorageOnArrival\ /ve /t REG_SZ /d MSOpenFolder /f
 if %user_input% equ 121 powershell.exe set-executionpolicy remotesigned && powershell.exe -encodedCommand WwBXAGkAbgBkAG8AdwBzAC4AUwB5AHMAdABlAG0ALgBVAHMAZQByAFAAcgBvAGYAaQBsAGUALgBMAG8AYwBrAFMAYwByAGUAZQBuACwAVwBpAG4AZABvAHcAcwAuAFMAeQBzAHQAZQBtAC4AVQBzAGUAcgBQAHIAbwBmAGkAbABlACwAQwBvAG4AdABlAG4AdABUAHkAcABlAD0AVwBpAG4AZABvAHcAcwBSAHUAbgB0AGkAbQBlAF0AIAB8ACAATwB1AHQALQBOAHUAbABsAA0ACgBBAGQAZAAtAFQAeQBwAGUAIAAtAEEAcwBzAGUAbQBiAGwAeQBOAGEAbQBlACAAUwB5AHMAdABlAG0ALgBSAHUAbgB0AGkAbQBlAC4AVwBpAG4AZABvAHcAcwBSAHUAbgB0AGkAbQBlAA0ACgAkAGEAcwBUAGEAcwBrAEcAZQBuAGUAcgBpAGMAIAA9ACAAKABbAFMAeQBzAHQAZQBtAC4AVwBpAG4AZABvAHcAcwBSAHUAbgB0AGkAbQBlAFMAeQBzAHQAZQBtAEUAeAB0AGUAbgBzAGkAbwBuAHMAXQAuAEcAZQB0AE0AZQB0AGgAbwBkAHMAKAApACAAfAAgAD8AIAB7ACAAJABfAC4ATgBhAG0AZQAgAC0AZQBxACAAJwBBAHMAVABhAHMAawAnACAALQBhAG4AZAAgACQAXwAuAEcAZQB0AFAAYQByAGEAbQBlAHQAZQByAHMAKAApAC4AQwBvAHUAbgB0ACAALQBlAHEAIAAxACAALQBhAG4AZAAgACQAXwAuAEcAZQB0AFAAYQByAGEAbQBlAHQAZQByAHMAKAApAFsAMABdAC4AUABhAHIAYQBtAGUAdABlAHIAVAB5AHAAZQAuAE4AYQBtAGUAIAAtAGUAcQAgACcASQBBAHMAeQBuAGMATwBwAGUAcgBhAHQAaQBvAG4AYAAxACcAIAB9ACkAWwAwAF0ADQAKAEYAdQBuAGMAdABpAG8AbgAgAEEAdwBhAGkAdAAoACQAVwBpAG4AUgB0AFQAYQBzAGsALAAgACQAUgBlAHMAdQBsAHQAVAB5AHAAZQApACAAewANAAoAIAAgACAAIAAkAGEAcwBUAGEAcwBrACAAPQAgACQAYQBzAFQAYQBzAGsARwBlAG4AZQByAGkAYwAuAE0AYQBrAGUARwBlAG4AZQByAGkAYwBNAGUAdABoAG8AZAAoACQAUgBlAHMAdQBsAHQAVAB5AHAAZQApAA0ACgAgACAAIAAgACQAbgBlAHQAVABhAHMAawAgAD0AIAAkAGEAcwBUAGEAcwBrAC4ASQBuAHYAbwBrAGUAKAAkAG4AdQBsAGwALAAgAEAAKAAkAFcAaQBuAFIAdABUAGEAcwBrACkAKQANAAoAIAAgACAAIAAkAG4AZQB0AFQAYQBzAGsALgBXAGEAaQB0ACgALQAxACkAIAB8ACAATwB1AHQALQBOAHUAbABsAA0ACgAgACAAIAAgACQAbgBlAHQAVABhAHMAawAuAFIAZQBzAHUAbAB0AA0ACgB9AA0ACgBGAHUAbgBjAHQAaQBvAG4AIABBAHcAYQBpAHQAQQBjAHQAaQBvAG4AKAAkAFcAaQBuAFIAdABBAGMAdABpAG8AbgApACAAewANAAoAIAAgACAAIAAkAGEAcwBUAGEAcwBrACAAPQAgACgAWwBTAHkAcwB0AGUAbQAuAFcAaQBuAGQAbwB3AHMAUgB1AG4AdABpAG0AZQBTAHkAcwB0AGUAbQBFAHgAdABlAG4AcwBpAG8AbgBzAF0ALgBHAGUAdABNAGUAdABoAG8AZABzACgAKQAgAHwAIAA/ACAAewAgACQAXwAuAE4AYQBtAGUAIAAtAGUAcQAgACcAQQBzAFQAYQBzAGsAJwAgAC0AYQBuAGQAIAAkAF8ALgBHAGUAdABQAGEAcgBhAG0AZQB0AGUAcgBzACgAKQAuAEMAbwB1AG4AdAAgAC0AZQBxACAAMQAgAC0AYQBuAGQAIAAhACQAXwAuAEkAcwBHAGUAbgBlAHIAaQBjAE0AZQB0AGgAbwBkACAAfQApAFsAMABdAA0ACgAgACAAIAAgACQAbgBlAHQAVABhAHMAawAgAD0AIAAkAGEAcwBUAGEAcwBrAC4ASQBuAHYAbwBrAGUAKAAkAG4AdQBsAGwALAAgAEAAKAAkAFcAaQBuAFIAdABBAGMAdABpAG8AbgApACkADQAKACAAIAAgACAAJABuAGUAdABUAGEAcwBrAC4AVwBhAGkAdAAoAC0AMQApACAAfAAgAE8AdQB0AC0ATgB1AGwAbAANAAoAfQANAAoADQAKACQAYwBvAG4AbgBlAGMAdABpAG8AbgBQAHIAbwBmAGkAbABlACAAPQAgAFsAVwBpAG4AZABvAHcAcwAuAE4AZQB0AHcAbwByAGsAaQBuAGcALgBDAG8AbgBuAGUAYwB0AGkAdgBpAHQAeQAuAE4AZQB0AHcAbwByAGsASQBuAGYAbwByAG0AYQB0AGkAbwBuACwAVwBpAG4AZABvAHcAcwAuAE4AZQB0AHcAbwByAGsAaQBuAGcALgBDAG8AbgBuAGUAYwB0AGkAdgBpAHQAeQAsAEMAbwBuAHQAZQBuAHQAVAB5AHAAZQA9AFcAaQBuAGQAbwB3AHMAUgB1AG4AdABpAG0AZQBdADoAOgBHAGUAdABJAG4AdABlAHIAbgBlAHQAQwBvAG4AbgBlAGMAdABpAG8AbgBQAHIAbwBmAGkAbABlACgAKQANAAoAJAB0AGUAdABoAGUAcgBpAG4AZwBNAGEAbgBhAGcAZQByACAAPQAgAFsAVwBpAG4AZABvAHcAcwAuAE4AZQB0AHcAbwByAGsAaQBuAGcALgBOAGUAdAB3AG8AcgBrAE8AcABlAHIAYQB0AG8AcgBzAC4ATgBlAHQAdwBvAHIAawBPAHAAZQByAGEAdABvAHIAVABlAHQAaABlAHIAaQBuAGcATQBhAG4AYQBnAGUAcgAsAFcAaQBuAGQAbwB3AHMALgBOAGUAdAB3AG8AcgBrAGkAbgBnAC4ATgBlAHQAdwBvAHIAawBPAHAAZQByAGEAdABvAHIAcwAsAEMAbwBuAHQAZQBuAHQAVAB5AHAAZQA9AFcAaQBuAGQAbwB3AHMAUgB1AG4AdABpAG0AZQBdADoAOgBDAHIAZQBhAHQAZQBGAHIAbwBtAEMAbwBuAG4AZQBjAHQAaQBvAG4AUAByAG8AZgBpAGwAZQAoACQAYwBvAG4AbgBlAGMAdABpAG8AbgBQAHIAbwBmAGkAbABlACkADQAKAA0ACgAjACAAQgBlACAAcwB1AHIAZQAgAHQAbwAgAGkAbgBjAGwAdQBkAGUAIABCAGUAbgAgAE4ALgAnAHMAIABhAHcAYQBpAHQAIABmAG8AcgAgAEkAQQBzAHkAbgBjAE8AcABlAHIAYQB0AGkAbwBuADoADQAKACMAIABoAHQAdABwAHMAOgAvAC8AcwB1AHAAZQByAHUAcwBlAHIALgBjAG8AbQAvAHEAdQBlAHMAdABpAG8AbgBzAC8AMQAzADQAMQA5ADkANwAvAHUAcwBpAG4AZwAtAGEALQB1AHcAcAAtAGEAcABpAC0AbgBhAG0AZQBzAHAAYQBjAGUALQBpAG4ALQBwAG8AdwBlAHIAcwBoAGUAbABsAA0ACgANAAoAIwAgAEMAaABlAGMAawAgAHcAaABlAHQAaABlAHIAIABNAG8AYgBpAGwAZQAgAEgAbwB0AHMAcABvAHQAIABpAHMAIABlAG4AYQBiAGwAZQBkAA0ACgAkAHQAZQB0AGgAZQByAGkAbgBnAE0AYQBuAGEAZwBlAHIALgBUAGUAdABoAGUAcgBpAG4AZwBPAHAAZQByAGEAdABpAG8AbgBhAGwAUwB0AGEAdABlAA0ACgANAAoAIwAgAEkAZgAgAE0AbwBiAGkAbABlACAASABvAHQAcwBwAG8AdAAgAGkAcwAgAG8AbgAgAC0AIAB0AHUAcgBuACAAaQB0ACAAbwBmAGYALgANAAoAaQBmACAAKAAkAHQAZQB0AGgAZQByAGkAbgBnAE0AYQBuAGEAZwBlAHIALgBUAGUAdABoAGUAcgBpAG4AZwBPAHAAZQByAGEAdABpAG8AbgBhAGwAUwB0AGEAdABlACAALQBlAHEAIAAxACkAewANAAoAIAAgACAAIAAjACAAUwB0AG8AcAAgAE0AbwBiAGkAbABlACAASABvAHQAcwBwAG8AdAANAAoAIAAgACAAIABBAHcAYQBpAHQAIAAoACQAdABlAHQAaABlAHIAaQBuAGcATQBhAG4AYQBnAGUAcgAuAFMAdABvAHAAVABlAHQAaABlAHIAaQBuAGcAQQBzAHkAbgBjACgAKQApACAAKABbAFcAaQBuAGQAbwB3AHMALgBOAGUAdAB3AG8AcgBrAGkAbgBnAC4ATgBlAHQAdwBvAHIAawBPAHAAZQByAGEAdABvAHIAcwAuAE4AZQB0AHcAbwByAGsATwBwAGUAcgBhAHQAbwByAFQAZQB0AGgAZQByAGkAbgBnAE8AcABlAHIAYQB0AGkAbwBuAFIAZQBzAHUAbAB0AF0AKQANAAoAfQANAAoAIwAgAEkAZgAgAE0AbwBiAGkAbABlACAASABvAHQAcwBwAG8AdAAgAGkAcwAgAG8AZgBmACAALQAgAHQAdQByAG4AIABpAHQAIABvAG4ALgANAAoAZQBsAHMAZQB7AA0ACgAgACAAIAAgACMAIABTAHQAYQByAHQAIABNAG8AYgBpAGwAZQAgAEgAbwB0AHMAcABvAHQADQAKACAAIAAgACAAQQB3AGEAaQB0ACAAKAAkAHQAZQB0AGgAZQByAGkAbgBnAE0AYQBuAGEAZwBlAHIALgBTAHQAYQByAHQAVABlAHQAaABlAHIAaQBuAGcAQQBzAHkAbgBjACgAKQApACAAKABbAFcAaQBuAGQAbwB3AHMALgBOAGUAdAB3AG8AcgBrAGkAbgBnAC4ATgBlAHQAdwBvAHIAawBPAHAAZQByAGEAdABvAHIAcwAuAE4AZQB0AHcAbwByAGsATwBwAGUAcgBhAHQAbwByAFQAZQB0AGgAZQByAGkAbgBnAE8AcABlAHIAYQB0AGkAbwBuAFIAZQBzAHUAbAB0AF0AKQANAAoAfQANAAoADQAKAA==
 ::¿ª¹ØÈÈµãµÄ½Å±¾À´Ô´ÓÚ:https://stackoverflow.com/questions/45833873/enable-windows-10-built-in-hotspot-by-cmd-batch-powershellºÍhttps://www.52pojie.cn/forum.php?mod=viewthread&tid=1129624
 if %user_input% equ 122 reg delete "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout" /v "Scancode Map" /f
@@ -249,6 +262,19 @@ if %user_input% equ 131 goto deletebaiduwp
 if %user_input% equ 132 goto deletekugoumusic
 if %user_input% equ 133 goto ocipv6
 if %user_input% equ 134 goto deautorun
+if %user_input% equ 135 goto fixycwj
+if %user_input% equ 136 goto fixjtbzcl
+if %user_input% equ 137 reg delete "HKEY_CLASSES_ROOT\AllFilesystemObjects\shell\SPFS.ContextMenu" /f && taskkill /im explorer.exe /f && start %SystemRoot%\explorer.exe
+if %user_input% equ 138 goto sleep
+if %user_input% equ 139 goto uninstallonedrive
+if %user_input% equ 140 goto chagepasswd
+if %user_input% equ 141 goto enawin7aero
+if %user_input% equ 142 goto chbm
+if %user_input% equ 143 goto disableipv6
+if %user_input% equ 144 goto jzfwcp
+if %user_input% equ 145 reg add HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System\ /v DisableAcrylicBackgroundOnLogon /t REG_DWORD /d 1 /f
+if %user_input% equ 146 reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Search\ /v BingSearchEnabled /t REG_DWORD /d 1 /f
+if %user_input% equ 147 goto enaordisguest
 if %user_input% equ cleartool goto clean
 if %user_input% equ back goto memu
 if %user_input% equ exit exit
@@ -317,7 +343,6 @@ if %input%==n exit
 @echo off
 cls
 start https://kinhdown.kinh.cc/
-https://ubaq.lanzous.com/s/KinhDown
 goto memu
 
 
@@ -650,8 +675,9 @@ goto memu
 
 :yingjian
 @echo off
-start http://test666.ys168.com/
-mshta vbscript:msgbox("ÇëÊÖ¶¯´ò¿ª¸Õ¸ÕÏÂÔØµÄÎÄ¼ş(*.bat)!",64,"ÎÂÜ°ÌáÊ¾")(window.close)
+certutil.exe -urlcache -split -f http://ys-i.ys168.com/615741449/520437166/TLR5kMn8542445JHOP5T44/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF.bat
+start %temp%\Ó²¼şĞÅÏ¢.bat
+cls
 goto memu
 
 
@@ -682,17 +708,24 @@ shutdown -s -t %miaoshu1% -c "%nr%"
 :yingliang
 @echo off
 cls
-echo ÕıÔÚÏÂÔØ±ØÒª×é¼ş.....
-certutil.exe -urlcache -split -f https://down.test686.cf/blueVolume.exe %temp%\blueVolume.exe
-cls
+if not exist %temp%\blueVolume.exe goto yingliang1
 set yl=
 set /p yl=ÇëÊäÈëÒôÁ¿(Êı×Ö):
 start %temp%\blueVolume.exe %yl% 
+pause
+cls
+goto memu1
 
-
+:yingliang1
+@echo off
+cls
+echo ÕıÔÚÏÂÔØ±ØÒª×é¼ş.....
+certutil.exe -urlcache -split -f https://down.test686.cf/blueVolume.exe %temp%\blueVolume.exe
+goto yingliang
 
 :M2
 @echo off
+cls
 echo ÕıÔÚÏÂÔØÈí¼ş.......
 certutil.exe -urlcache -split -f "https://down.test686.cf/M2 Team NSudo X64Î».zip" %temp%\M2TeamSudo.zip
 explorer %temp%\M2TeamSudo.zip
@@ -1269,21 +1302,14 @@ reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager" /v
 pause
 cls
 goto memu1
-echo ÊäÈë A Ìøµ½ A ±êÇ©
-echo ÊäÈë B Ìøµ½ B ±êÇ©
-echo;
-set "input="
-set /p input=ÇëÊäÈëÄúµÄÑ¡Ôñ:
-if "%input%"=="A" goto A
-if "%input%"=="B" goto B
-echo ÊäÈëµÄÊÇ%input%
 
 :cleanicon
 @echo off
 cls
 CD /d %userprofile%\AppData\Local
 DEL IconCache.db /a
-echo ÇëÊÖ¶¯ÖØÆôwindows×ÊÔ´¹ÜÀíÆ÷»òÕßÖØÆôµçÄÔÉúĞ§£¡
+taskkill /im explorer.exe
+start explorer.exe
 pause
 cls
 goto memu1
@@ -1293,14 +1319,24 @@ goto memu1
 :adminsyq
 @echo off
 cls
-echo ÕıÔÚÏÂÔØ×¢²á±íÎÄ¼ş(.reg)...
-certutil.exe -urlcache -split -f https://down.test686.cf/%E7%AE%A1%E7%90%86%E5%91%98%E5%8F%96%E5%BE%97%E6%89%80%E6%9C%89%E6%9D%83.reg %Temp%\¹ÜÀíÔ±È¡µÃËùÓĞÈ¨.reg
+if not exist %temp%\¹ÜÀíÔ±È¡µÃËùÓĞÈ¨.reg goto adminsyq1
 echo Çë¹Ø±ÕÉ±¶¾Èí¼şÔÙ½øĞĞ²Ù×÷£¡
 pause
 start %Temp%\¹ÜÀíÔ±È¡µÃËùÓĞÈ¨.reg
 pause
 cls
 goto memu1
+
+
+:adminsyq1
+@echo off
+cls
+echo ÕıÔÚÏÂÔØ×¢²á±íÎÄ¼ş(.reg)...
+certutil.exe -urlcache -split -f https://down.test686.cf/%E7%AE%A1%E7%90%86%E5%91%98%E5%8F%96%E5%BE%97%E6%89%80%E6%9C%89%E6%9D%83.reg %Temp%\¹ÜÀíÔ±È¡µÃËùÓĞÈ¨.reg
+cls
+goto adminsyq
+
+
 :deletebaiduwp
 @echo off
 cls
@@ -1343,6 +1379,241 @@ echo.>autorun.inf
 attrib +S +H autorun.inf
 dir /a|findstr autorun.inf
 echo OK
+pause
+cls
+goto memu1
+
+
+:fixycwj
+@echo off
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v Hidden /t reg_dword /d 1 /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v HideFileExt /t reg_dword /d 0 /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowSuperHidden /t reg_dword /d 1 /f
+pause
+cls
+goto memu1
+
+
+:fixjtbzcl
+@echo off
+pushd "%~dp0"
+dir /b C:\Windows\servicing\Packages\Microsoft-Windows-GroupPolicy-ClientExtensions-Package~3*.mum >List.txt
+dir /b C:\Windows\servicing\Packages\Microsoft-Windows-GroupPolicy-ClientTools-Package~3*.mum >>List.txt
+for /f %%i in ('findstr /i . List.txt 2^>nul') do dism /online /norestart /add-package:"C:\Windows\servicing\Packages\%%i"
+pause
+cls
+goto memu1
+
+
+:sleep
+@echo off
+cls
+echo 1.ÆôÓÃĞİÃß
+echo 2.½ûÓÃĞİÃß
+set /p input=ÇëÊäÈëÄãÒªÖ´ĞĞµÄ²Ù×÷:
+if %input% equ 1 goto sleep1
+if %input% equ 2 goto sleep2
+
+
+:sleep1
+@echo off
+cls
+powercfg -h on && echo OK£¡
+pause
+cls
+goto memu1
+
+:sleep2
+@echo off
+cls
+powercfg -h off && echo OK!
+pause
+cls
+goto memu1
+
+
+:uninstallonedrive
+@echo off
+echo ¼´½«½áÊøexplorer,Çë²»Òª¹Ø±Õ´Ë³ÌĞò£¡£¡£¡
+pause
+taskkill /f /im OneDrive.exe    
+taskkill /f /im explorer.exe    
+if exist %SYSTEMROOT%\SysWOW64\OneDriveSetup.exe (   
+%SYSTEMROOT%\SysWOW64\OneDriveSetup.exe /uninstall    
+) else (    
+%SYSTEMROOT%\System32\OneDriveSetup.exe /uninstall   
+)
+rd  /s /q "%USERPROFILE%\OneDrive" || echo Ã»ÓĞÕÒµ½ÎÄ¼ş¼Ğ,¿ÉÄÜÒÑ±»É¾³ı£¡
+rd  /s /q "%LOCALAPPDATA%\Microsoft\OneDrive" || echo Ã»ÓĞÕÒµ½ÎÄ¼ş¼Ğ,¿ÉÄÜÒÑ±»É¾³ı£¡  
+rd  /s /q "%PROGRAMDATA%\Microsoft OneDrive" || echo Ã»ÓĞÕÒµ½ÎÄ¼ş¼Ğ,¿ÉÄÜÒÑ±»É¾³ı£¡
+reg delete "HKEY_CLASSES_ROOT\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" /f || echo Ã»ÓĞÕÒµ½×¢²á±íÏî,¿ÉÄÜÒÑ±»É¾³ı£¡
+reg delete "HKEY_CLASSES_ROOT\Wow6432Node\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" /f | echo Ã»ÓĞÕÒµ½×¢²á±íÏî,¿ÉÄÜÒÑ±»É¾³ı£¡
+start %SystemRoot%\explorer.exe
+pause
+cls
+goto memu1
+
+
+:chagepasswd
+@echo off
+cls
+set /p user=ÇëÊäÈëÓÃ»§Ãû(Ö±½Ó»Ø³µÎªÄ¬ÈÏÕË»§)£º
+if "%user%"=="" (set user=%username%) else (set user=%user%)
+set /p passwd=ÇëÊäÈëÃÜÂë(Ö±½Ó»Ø³µÎªÉèÖÃ¿ÕÃÜÂë):
+echo "" > passwd
+if "%passwd%"=="" (for /f %%a in (passwd) do net user %user% %%a) else (net user %user% %passwd%)
+echo ÕıÔÚÉ¾³ıÁÙÊ±ÎÄ¼ş,ÇëÉÔºó.....
+del %cd%\passwd /f /s /q
+echo OK!
+pause
+cls
+goto memu1
+
+
+:enawin7aero
+@echo off
+cls
+::code for https://social.technet.microsoft.com/Forums/windowsserver/zh-CN/eca5bc82-321c-4600-84c8-8cc1c196ba80/windows7229142030924378210462517124320aero3687926126200273906465311
+reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\DWM\ /v UseMachineCheck /t REG_DWORD /d 0 /f
+reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\DWM\ /v Blur /t REG_DWORD /d 0 /f
+reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\DWM\ /v Animations /t REG_DWORD /d 0 /f
+reg add "HKCU\Software\Microsoft\Windows\DWM\" /v Composition /t reg_dword /d 00000001 /f
+reg add "HKCU\Software\Microsoft\Windows\DWM\" /v CompositionPolicy /t reg_dword /d 00000002 /f
+net stop uxsms
+net start uxsms
+pause
+cls
+goto memu1
+
+
+:chbm
+@echo off
+cls
+chcp
+echo ³£¼û±àÂë£º936(¼òÌåÖĞÎÄGBK)  65001(UTF8´úÂëÒ³) 950(·±ÌåÖĞÎÄGBK)
+set /p bmnum=ÇëÊäÈë±àÂëÊı×Ö:
+chcp %bmnum%
+pause
+cls
+goto memu1
+
+
+
+:disableipv6
+@echo off
+cls
+echo 1.ÆôÓÃ
+echo 2.½ûÓÃ
+set /p cz=ÇëÊäÈëÄãÒªÖ´ĞĞµÄ²Ù×÷:
+if %cz%==1 (netsh interface IPV6 set global randomizeidentifier=enabled && echo OK!) else (netsh interface IPV6 set global randomizeidentifier=disable && echo OK!)
+pause
+cls
+goto memu1
+
+:jzfwcp
+@echo off
+cls
+echo 1.½ûÖ¹·ÃÎÊÄ³¸ö´ÅÅÌ
+echo 2.ÔÊĞí·ÃÎÊ´ÅÅÌ
+set /p input=ÇëÊäÈëÄãÒªÖ´ĞĞµÄ²Ù×÷¶ÔÓ¦µÄÃüÁî:
+if %input% equ 1 goto jzfwcp1
+if %input% equ 2 goto jzfwcp2
+pause
+cls
+goto memu1
+
+
+:jzfwcp1
+@echo off
+cls
+echo 1.CÅÌ
+echo 2.DÅÌ
+echo 3.EÅÌ
+echo 4.FÅÌ
+echo 5.GÅÌ
+echo 6.HÅÌ
+echo 7.IÅÌ
+echo 8.JÅÌ
+echo 9.KÅÌ
+echo 10.LÅÌ
+echo 11.MÅÌ
+echo 12.NÅÌ
+echo 13.OÅÌ
+echo 14.PÅÌ
+echo 15.QÅÌ
+echo 16.RÅÌ
+echo 17.SÅÌ
+echo 18.TÅÌ
+echo 19.UÅÌ
+echo 20 VÅÌ
+echo 21.WÅÌ
+echo 22.XÅÌ
+echo 23.YÅÌ
+echo 24.ZÅÌ
+echo 25.ËùÓĞ(²»Ò»¶¨³É¹¦)
+set /p input=ÇëÊäÈëÄãÒª½ûÓÃµÄÅÌ·û¶ÔÓ¦µÄÊı×Ö:
+if %input% equ 1 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 4 /f
+if %input% equ 2 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 8 /f
+if %input% equ 3 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 16 /f
+if %input% equ 4 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 32 /f
+if %input% equ 5 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 64 /f
+if %input% equ 6 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 128 /f
+if %input% equ 7 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 256/f
+if %input% equ 8 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 512 /f
+if %input% equ 9 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 1024 /f
+if %input% equ 10 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 2048 /f
+if %input% equ 11 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 4096 /f
+if %input% equ 12 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 8192 /f
+if %input% equ 13 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 16384 /f
+if %input% equ 14 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 32768 /f
+if %input% equ 15 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 65536 /f
+if %input% equ 16 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 131072 /f
+if %input% equ 17 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 262144 /f
+if %input% equ 18 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 524288 /f
+if %input% equ 19 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 1048576 /f
+if %input% equ 20 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 2097152 /f
+if %input% equ 21 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 4194304 /f
+if %input% equ 22 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 8388608 /f
+if %input% equ 23 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 16777216 /f
+if %input% equ 24 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 33554432 /f
+if %input% equ 25 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /t REG_DWORD /d 67108863 /f
+pause
+cls
+goto memu1
+
+
+:jzfwcp2
+@echo off
+cls
+reg delete HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies/Explorer/ /v NoViewOnDrive /f
+echo OK!&pause>NUL
+cls
+goto memu1
+
+
+:enaordisadmin
+@echo off
+cls
+echo ´Ë²Ù×÷ĞèÒª¹ÜÀíÔ±È¨ÏŞ£¡
+echo 1.ÆôÓÃ
+echo 2.½ûÓÃ
+set /p %input%=ÇëÊäÈëÄãÒªÖ´ĞĞµÄ²Ù×÷:
+if %input% equ 1 net user Administrator /active:yes
+if %input% equ 2 net user Administrator /active:no
+pause
+cls
+goto memu1
+
+
+:enaordisguest
+@echo off
+cls
+echo ´Ë²Ù×÷ĞèÒª¹ÜÀíÔ±È¨ÏŞ£¡
+echo 1.ÆôÓÃ
+echo 2.½ûÓÃ
+set /p %input%=ÇëÊäÈëÄãÒªÖ´ĞĞµÄ²Ù×÷:
+if %input% equ 1 net user Guest /active:yes || echo ÕË»§²»´æÔÚ»òÕßÆäËû´íÎó!
+if %input% equ 2 net user Guest /active:no  || echo ÕË»§²»´æÔÚ»òÕßÆäËû´íÎó!
 pause
 cls
 goto memu1
