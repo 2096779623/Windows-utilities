@@ -14,8 +14,8 @@
 ::dAsiuh18IRvcCxnZtBJQ
 ::cRYluBh/LU+EWAnk
 ::YxY4rhs+aU+IeA==
-::cxY6rQJ7JhzQF1fEqQJiZksaHkrTZQs=
-::ZQ05rAF9IBncCkqN+0xwdVsGAlTMbiXrX9U=
+::cxY6rQJ7JhzQF1fEqQJiZksaHkrQbQs=
+::ZQ05rAF9IBncCkqN+0xwdVsGAlTMbiXoV9U=
 ::ZQ05rAF9IAHYFVzEqQIHIRVQQxORuaVEgUHUbTgUaj1CJ6jKNA==
 ::eg0/rx1wNQPfEVWB+kM9LVsJDDOLMm+1EaaZJhZ8GyICcqKYgye6nVi7
 ::fBEirQZwNQPfEVWB+kM9LVsJDDOLMm+1EaaZJhZ8GyICcqKYgye6nVi7
@@ -32,11 +32,15 @@
 ::
 ::978f952a14a936cc963da21a135fa983
 @echo off
-title WindowsÊµÓÃĞ¡¹¤¾ß By 2096779623 v2.0.2.19
+title WindowsÊµÓÃĞ¡¹¤¾ß By 2096779623 v2.0.2.21
 color 07
 ::±àÂëÎªANSI!!!
 mode con cols=200 lines=50
 :welcome
+IF EXIST "%Temp%\WindowsÊµÓÃĞ¡¹¤¾ß\" (echo .) ELSE (md %Temp%\WindowsÊµÓÃĞ¡¹¤¾ß\)
+IF EXIST "%Temp%\WindowsÊµÓÃĞ¡¹¤¾ßsettings\" (echo .) ELSE (md %Temp%\WindowsÊµÓÃĞ¡¹¤¾ßsettings\)
+for /f %%a in (%Temp%\WindowsÊµÓÃĞ¡¹¤¾ßsettings\deupage) do (if %%a==1 (goto memu) else (goto memu1))
+IF EXIST "%temp%\WindowsÊµÓÃĞ¡¹¤¾ß\EchoX.exe" (cls) ELSE (goto downloadechox)
 if exist "%SystemRoot%\SysWOW64" path %path%;%windir%\SysNative;%SystemRoot%\SysWOW64;%~dp0
 bcdedit >nul
 if '%errorlevel%' NEQ '0' (goto UACPrompt) else (goto UACAdmin)
@@ -57,8 +61,9 @@ echo ³ÌĞòÔËĞĞÄ¿Â¼:%CD%
 echo µ±Ç°Ê±¼ä¼°ÈÕÆÚ:%date:~0,4%Äê%date:~5,2%ÔÂ%date:~8,2%ÈÕ%time:~0,2%µã%time:~3,2%·Ö
 echo µ±Ç°ÓÃ»§Ãû/¼ÆËã»úÃû:%username% %COMPUTERNAME%
 echo ÊäÈë"cleartool"¼´¿ÉÇå³ıÏÂÔØµÄ×é¼ş
-echo ÊäÈëAbout²é¿´¹ØÓÚ½çÃæ
-echo ÊäÈënext²é¿´ÏÂÒ»Ò³
+%Temp%\WindowsÊµÓÃĞ¡¹¤¾ß\EchoX.exe -c 04 ÊäÈëabout²é¿´¹ØÓÚ½çÃæ
+%Temp%\WindowsÊµÓÃĞ¡¹¤¾ß\EchoX.exe -c 04 ÊäÈënext²é¿´ÏÂÒ»Ò³
+%Temp%\WindowsÊµÓÃĞ¡¹¤¾ß\EchoX.exe -c 04 ÊäÈësetting½øÈëÉèÖÃÒ³Ãæ
 echo ÊäÈëexitÍË³ö
 echo ========================================================================================================================================================================================================
 echo ÏëÖ´ĞĞÊ²Ã´²Ù×÷Ö´ĞĞ¶ÔÓ¦µÄÊı×Ö¼´¿É(ÊäÈëexitÍË³ö)  ±¾³ÌĞòÔì³ÉµÄÈÎºÎºó¹û×÷Õß¸Å²»¸ºÔğ£¡
@@ -184,6 +189,8 @@ if %user_input% equ 97 goto UACcmd
 if %user_input% equ 98 goto fhq
 if %user_input% equ 99 goto power
 if %user_input% equ 100 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System" /v "HiberbootEnabled" /d 1 /t REG_DWORD /f
+if %user_input% equ about goto about
+if %user_input% equ setting goto setting
 if %user_input% equ cleartool goto clean
 if %user_input% equ next goto memu1
 if %user_input% equ exit exit
@@ -211,7 +218,9 @@ echo ³ÌĞòÔËĞĞÄ¿Â¼:%CD%
 echo µ±Ç°Ê±¼ä¼°ÈÕÆÚ:%date:~0,4%Äê%date:~5,2%ÔÂ%date:~8,2%ÈÕ%time:~0,2%µã%time:~3,2%·Ö
 echo µ±Ç°ÓÃ»§Ãû:%username%
 echo ÊäÈë"cleartool"¼´¿ÉÇå³ıÏÂÔØµÄ×é¼ş
-echo ÊäÈëback·µ»ØÉÏÒ»Ò³
+%Temp%\WindowsÊµÓÃĞ¡¹¤¾ß\EchoX.exe -c 04 ÊäÈëabout½øÈë¹ØÓÚ½çÃæ
+%Temp%\WindowsÊµÓÃĞ¡¹¤¾ß\EchoX.exe -c 04 ÊäÈësetting½øÈëÉèÖÃÒ³Ãæ
+%Temp%\WindowsÊµÓÃĞ¡¹¤¾ß\EchoX.exe -c 04 ÊäÈëback·µ»ØÉÏÒ»Ò³
 echo ÊäÈëexitÍË³ö
 echo ========================================================================================================================================================================================================
 echo 101.ÆôÓÃ.NET 3.5                   111.Ë¢ĞÂDNS»º´æ                           121.Ê¹ÓÃpowershell¿ª¹ØÈÈµã                   131.É¾³ıwindows×ÊÔ´¹ÜÀíÆ÷ÉÏ·½µÄ°Ù¶ÈÍøÅÌ 141.Win7Ç¿ÖÆ¿ªÆôAeroĞ§¹û
@@ -221,7 +230,7 @@ echo 104.¹Ø±ÕSmartScreenÓ¦ÓÃÉ¸Ñ¡Æ÷      114.Ìí¼Ó°´×¡Ctrl,ÔÙ°´Á½´ÎScrollLock¼üÀ¶Æ
 echo 105.¹Ø»úÊ±¿ìËÙÇ¿É±ºóÌ¨Ôö¼Ó¹Ø»úËÙ¶È 115.ĞŞ¸´¿ªÊ¼²Ëµ¥ÎŞ·¨´ò¿ª                  125.½ûÓÃ´ÅÅÌ×Ô¼ì                             135.ĞŞ¸´ÔÚÎÄ¼ş¼ĞÑ¡ÏîÖĞÎŞ·¨ÏÔÊ¾Òş²ØÎÄ¼ş  145.ÏÔÊ¾Çå³şµÄµÇÂ¼±³¾°(win10)
 echo 106.Ö±½ÓÓÀ¾ÃÉ¾³ıÎÄ¼ş(²»½øÈë»ØÊÕÕ¾) 116.Ç¿ÖÆ¸üĞÂ×é²ßÂÔ                        126.ÖØ½¨Í¼±ê»º´æ                             136.ĞŞ¸´win10¼ÒÍ¥°æÃ»ÓĞ×é²ßÂÔ           146.ĞŞ¸´KB4512941¸ßCPUÕ¼ÓÃ(win10)
 echo 107.È¥³ıUACĞ¡¶ÜÅÆÍ¼±ê              117.Ìí¼ÓÒ»¸ö×ÀÃæÓÒ¼ü²Ëµ¥                  127.ÆôÓÃĞŞ¸´Ä£Ê½                             137.ÒÆ³ıSkyDrivePro                     147.ÆôÓÃ/½ûÓÃGuestÕË»§
-echo 108.ÆôÓÃ/½ûÓÃAdministratorÕË»§     118.¹«Ë¾ÍøÂçºÍ»¥ÁªÍøÍ¬Ê±·ÃÎÊ              128.½â¾öWindows ¿ª»úlogoÄ£ºı»òÕß±»À­ÉìµÄÎÊÌâ 138.ÆôÓÃ/½ûÓÃĞİÃß
+echo 108.ÆôÓÃ/½ûÓÃAdministratorÕË»§     118.¹«Ë¾ÍøÂçºÍ»¥ÁªÍøÍ¬Ê±·ÃÎÊ              128.½â¾öWindows ¿ª»úlogoÄ£ºı»òÕß±»À­ÉìµÄÎÊÌâ 138.ÆôÓÃ/½ûÓÃĞİÃß                       148.winget×¨Çø(win8»ò10)
 echo 109.´ò¿ªDHCP                       119.¸øÓÒ¼ü²Ëµ¥Ìí¼ÓÍ¼±ê                    129.¹ÜÀíÔ±È¡µÃËùÓĞÈ¨                         139.Ğ¶ÔØOneDrive
 echo 110.ÉèÖÃ¾²Ì¬IP                     120.²åÈëUÅÌ×Ô¶¯´ò¿ªWin×ÊÔ´¹ÜÀíÆ÷(Win10)   130.»ñÈ¡ËùÓĞÉ±¶¾Èí¼şÃû×ÖÒÔ¼°Â·¾¶             140.ĞŞ¸ÄµÇÂ¼ÃÜÂë
 echo ========================================================================================================================================================================================================
@@ -275,8 +284,11 @@ if %user_input% equ 144 goto jzfwcp
 if %user_input% equ 145 reg add HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System\ /v DisableAcrylicBackgroundOnLogon /t REG_DWORD /d 1 /f
 if %user_input% equ 146 reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Search\ /v BingSearchEnabled /t REG_DWORD /d 1 /f
 if %user_input% equ 147 goto enaordisguest
+if %user_input% equ 148 goto winget
+if %user_input% equ about goto about
 if %user_input% equ cleartool goto clean
 if %user_input% equ back goto memu
+if %user_input% equ setting goto setting
 if %user_input% equ exit exit
 set /p input=Äã»¹Ïë½øĞĞÆäËû²Ù×÷Âğ£¿ÇëÊäÈëy/n²¢Ñ¡Ôñ£º
 cls
@@ -284,7 +296,37 @@ if %input%==y goto memu1
 if %input%==n exit
 
 
+:setting
+@echo off
+cls
+title WindowsÊµÓÃĞ¡¹¤¾ß By 2096779623 ÉèÖÃÑéÖ¤Ò³Ãæ ±¾Ò³ÃæÎªÊµÑéĞÔ¹¦ÄÜ£¡
+set /p settingpasswd=ÇëÊäÈë°²È«ÃÜÂë½øÈëÉèÖÃÒ³Ãæ:
+IF /I "%settingpasswd%" EQU "2096779623" (echo ÕıÔÚ½øÈëÉèÖÃÒ³Ãæ... && goto settings) ELSE (echo ÃÜÂë´íÎó£¡ && pause && goto setting)
 
+:settings
+@echo off
+title WindowsÊµÓÃĞ¡¹¤¾ß By 2096779623 ÉèÖÃÒ³Ãæ ±¾Ò³ÃæÎªÊµÑéĞÔ¹¦ÄÜ£¡
+cls
+echo 1.ÉèÖÃÄ¬ÈÏÖ÷Ò³
+echo ÊäÈëreset»Ö¸´Ä¬ÈÏÉèÖÃ
+echo ºóĞø»á¿ª·Å¸ü¶à¹¦ÄÜ£¡
+set /p num=ÇëÊäÈëÄãÒªÖ´ĞĞµÄ²Ù×÷¶ÔÓ¦µÄÊı×Ö:
+if %num% equ 1 goto settingdeupage
+if %num% equ reset start cmd /c del /f /s /q %Temp%\WindowsÊµÓÃĞ¡¹¤¾ßsettings\* && echo OK! && cls
+
+:settingdeupage
+@echo off
+title WindowsÊµÓÃĞ¡¹¤¾ß By 2096779623 ÉèÖÃÄ¬ÈÏÖ÷Ò³ ±¾Ò³ÃæÎªÊµÑéĞÔ¹¦ÄÜ£¡
+cls
+echo 1.²Ëµ¥1
+echo 2.²Ëµ¥2
+set /p num1=ÇëÊäÈëÄãÒªÉèÖÃµÄÄ¬ÈÏÖ÷Ò³:
+if %num1% equ 1 echo ÕıÔÚÉèÖÃ... && echo 1 > %Temp%\WindowsÊµÓÃĞ¡¹¤¾ßsettings\deupage
+if %num1% equ 2 echo ÕıÔÚÉèÖÃ... && echo 2 > %Temp%\WindowsÊµÓÃĞ¡¹¤¾ßsettings\deupage
+echo OK!
+pause
+cls
+goto settings
 :jincheng
 @echo off&setlocal enabledelayedexpansion
 cls
@@ -315,7 +357,29 @@ if %input%==y goto memu
 if %input%==n exit
 
 
-
+:about
+@echo off
+cls
+title WindowsÊµÓÃĞ¡¹¤¾ß By 2096779623
+echo ¨€¨€¨[    ¨€¨€¨[¨€¨€¨[¨€¨€¨€¨[   ¨€¨€¨[¨€¨€¨€¨€¨€¨€¨[  ¨€¨€¨€¨€¨€¨€¨[ ¨€¨€¨[    ¨€¨€¨[¨€¨€¨€¨€¨€¨€¨€¨[      ¨€¨€¨[   ¨€¨€¨[¨€¨€¨€¨€¨€¨€¨€¨€¨[¨€¨€¨[¨€¨€¨[     ¨€¨€¨[¨€¨€¨€¨€¨€¨€¨€¨€¨[¨€¨€¨[¨€¨€¨€¨€¨€¨€¨€¨[¨€¨€¨€¨€¨€¨€¨€¨[
+echo ¨€¨€¨U    ¨€¨€¨U¨€¨€¨U¨€¨€¨€¨€¨[  ¨€¨€¨U¨€¨€¨X¨T¨T¨€¨€¨[¨€¨€¨X¨T¨T¨T¨€¨€¨[¨€¨€¨U    ¨€¨€¨U¨€¨€¨X¨T¨T¨T¨T¨a      ¨€¨€¨U   ¨€¨€¨U¨^¨T¨T¨€¨€¨X¨T¨T¨a¨€¨€¨U¨€¨€¨U     ¨€¨€¨U¨^¨T¨T¨€¨€¨X¨T¨T¨a¨€¨€¨U¨€¨€¨X¨T¨T¨T¨T¨a¨€¨€¨X¨T¨T¨T¨T¨a
+echo ¨€¨€¨U ¨€¨[ ¨€¨€¨U¨€¨€¨U¨€¨€¨X¨€¨€¨[ ¨€¨€¨U¨€¨€¨U  ¨€¨€¨U¨€¨€¨U   ¨€¨€¨U¨€¨€¨U ¨€¨[ ¨€¨€¨U¨€¨€¨€¨€¨€¨€¨€¨[¨€¨€¨€¨€¨€¨[¨€¨€¨U   ¨€¨€¨U   ¨€¨€¨U   ¨€¨€¨U¨€¨€¨U     ¨€¨€¨U   ¨€¨€¨U   ¨€¨€¨U¨€¨€¨€¨€¨€¨[  ¨€¨€¨€¨€¨€¨€¨€¨[
+echo ¨€¨€¨U¨€¨€¨€¨[¨€¨€¨U¨€¨€¨U¨€¨€¨U¨^¨€¨€¨[¨€¨€¨U¨€¨€¨U  ¨€¨€¨U¨€¨€¨U   ¨€¨€¨U¨€¨€¨U¨€¨€¨€¨[¨€¨€¨U¨^¨T¨T¨T¨T¨€¨€¨U¨^¨T¨T¨T¨T¨a¨€¨€¨U   ¨€¨€¨U   ¨€¨€¨U   ¨€¨€¨U¨€¨€¨U     ¨€¨€¨U   ¨€¨€¨U   ¨€¨€¨U¨€¨€¨X¨T¨T¨a  ¨^¨T¨T¨T¨T¨€¨€¨U
+echo ¨^¨€¨€¨€¨X¨€¨€¨€¨X¨a¨€¨€¨U¨€¨€¨U ¨^¨€¨€¨€¨€¨U¨€¨€¨€¨€¨€¨€¨X¨a¨^¨€¨€¨€¨€¨€¨€¨X¨a¨^¨€¨€¨€¨X¨€¨€¨€¨X¨a¨€¨€¨€¨€¨€¨€¨€¨U      ¨^¨€¨€¨€¨€¨€¨€¨X¨a   ¨€¨€¨U   ¨€¨€¨U¨€¨€¨€¨€¨€¨€¨€¨[¨€¨€¨U   ¨€¨€¨U   ¨€¨€¨U¨€¨€¨€¨€¨€¨€¨€¨[¨€¨€¨€¨€¨€¨€¨€¨U
+echo ¨^¨T¨T¨a¨^¨T¨T¨a ¨^¨T¨a¨^¨T¨a  ¨^¨T¨T¨T¨a¨^¨T¨T¨T¨T¨T¨a  ¨^¨T¨T¨T¨T¨T¨a  ¨^¨T¨T¨a¨^¨T¨T¨a ¨^¨T¨T¨T¨T¨T¨T¨a       ¨^¨T¨T¨T¨T¨T¨a    ¨^¨T¨a   ¨^¨T¨a¨^¨T¨T¨T¨T¨T¨T¨a¨^¨T¨a   ¨^¨T¨a   ¨^¨T¨a¨^¨T¨T¨T¨T¨T¨T¨a¨^¨T¨T¨T¨T¨T¨T¨a
+echo.
+echo ¨€¨€¨€¨€¨€¨€¨[ ¨€¨€¨[   ¨€¨€¨[    ¨€¨€¨€¨€¨€¨€¨[  ¨€¨€¨€¨€¨€¨€¨[  ¨€¨€¨€¨€¨€¨[  ¨€¨€¨€¨€¨€¨€¨[¨€¨€¨€¨€¨€¨€¨€¨[¨€¨€¨€¨€¨€¨€¨€¨[ ¨€¨€¨€¨€¨€¨[  ¨€¨€¨€¨€¨€¨€¨[ ¨€¨€¨€¨€¨€¨€¨[ ¨€¨€¨€¨€¨€¨€¨[ 
+echo ¨€¨€¨X¨T¨T¨€¨€¨[¨^¨€¨€¨[ ¨€¨€¨X¨a    ¨^¨T¨T¨T¨T¨€¨€¨[¨€¨€¨X¨T¨€¨€¨€¨€¨[¨€¨€¨X¨T¨T¨€¨€¨[¨€¨€¨X¨T¨T¨T¨T¨a¨^¨T¨T¨T¨T¨€¨€¨U¨^¨T¨T¨T¨T¨€¨€¨U¨€¨€¨X¨T¨T¨€¨€¨[¨€¨€¨X¨T¨T¨T¨T¨a ¨^¨T¨T¨T¨T¨€¨€¨[¨^¨T¨T¨T¨T¨€¨€¨[
+echo ¨€¨€¨€¨€¨€¨€¨X¨a ¨^¨€¨€¨€¨€¨X¨a      ¨€¨€¨€¨€¨€¨X¨a¨€¨€¨U¨€¨€¨X¨€¨€¨U¨^¨€¨€¨€¨€¨€¨€¨U¨€¨€¨€¨€¨€¨€¨€¨[    ¨€¨€¨X¨a    ¨€¨€¨X¨a¨^¨€¨€¨€¨€¨€¨€¨U¨€¨€¨€¨€¨€¨€¨€¨[  ¨€¨€¨€¨€¨€¨X¨a ¨€¨€¨€¨€¨€¨X¨a
+echo ¨€¨€¨X¨T¨T¨€¨€¨[  ¨^¨€¨€¨X¨a      ¨€¨€¨X¨T¨T¨T¨a ¨€¨€¨€¨€¨X¨a¨€¨€¨U ¨^¨T¨T¨T¨€¨€¨U¨€¨€¨X¨T¨T¨T¨€¨€¨[  ¨€¨€¨X¨a    ¨€¨€¨X¨a  ¨^¨T¨T¨T¨€¨€¨U¨€¨€¨X¨T¨T¨T¨€¨€¨[¨€¨€¨X¨T¨T¨T¨a  ¨^¨T¨T¨T¨€¨€¨[
+echo ¨€¨€¨€¨€¨€¨€¨X¨a   ¨€¨€¨U       ¨€¨€¨€¨€¨€¨€¨€¨[¨^¨€¨€¨€¨€¨€¨€¨X¨a ¨€¨€¨€¨€¨€¨X¨a¨^¨€¨€¨€¨€¨€¨€¨X¨a  ¨€¨€¨U     ¨€¨€¨U   ¨€¨€¨€¨€¨€¨X¨a¨^¨€¨€¨€¨€¨€¨€¨X¨a¨€¨€¨€¨€¨€¨€¨€¨[¨€¨€¨€¨€¨€¨€¨X¨a
+echo ¨^¨T¨T¨T¨T¨T¨a    ¨^¨T¨a       ¨^¨T¨T¨T¨T¨T¨T¨a ¨^¨T¨T¨T¨T¨T¨a  ¨^¨T¨T¨T¨T¨a  ¨^¨T¨T¨T¨T¨T¨a   ¨^¨T¨a     ¨^¨T¨a   ¨^¨T¨T¨T¨T¨a  ¨^¨T¨T¨T¨T¨T¨a ¨^¨T¨T¨T¨T¨T¨T¨a¨^¨T¨T¨T¨T¨T¨a 
+%temp%\WindowsÊµÓÃĞ¡¹¤¾ß\EchoX.exe -c 04 ±¾½Å±¾ÊÜApache2.0Ğ­ÒéµÄ±£»¤£¡ÏêÇéÇë¿´https://www.apache.org/licenses/LICENSE-2.0
+echo githubÔ´´úÂë:github.com/2096779623/Windows-Utilities/
+echo QQ£º2096779623
+pause                                                             
+cls
+goto memu                                                                                  
 :wangye
 cls
 @echo off
@@ -675,8 +739,8 @@ goto memu
 
 :yingjian
 @echo off
-certutil.exe -urlcache -split -f http://ys-i.ys168.com/615741449/520437166/TLR5kMn8542445JHOP5T44/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF.bat
-start %temp%\Ó²¼şĞÅÏ¢.bat
+certutil.exe -urlcache -split -f http://ys-i.ys168.com/615741449/520437166/TLR5kMn8542445JHOP5T44/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF.bat %Temp%\WindowsÊµÓÃĞ¡¹¤¾ß\Ó²¼şĞÅÏ¢.bat
+start %temp%\WindowsÊµÓÃĞ¡¹¤¾ß\Ó²¼şĞÅÏ¢.bat
 cls
 goto memu
 
@@ -708,10 +772,10 @@ shutdown -s -t %miaoshu1% -c "%nr%"
 :yingliang
 @echo off
 cls
-if not exist %temp%\blueVolume.exe goto yingliang1
+if not exist %temp%\WindowsÊµÓÃĞ¡¹¤¾ß\blueVolume.exe goto yingliang1
 set yl=
 set /p yl=ÇëÊäÈëÒôÁ¿(Êı×Ö):
-start %temp%\blueVolume.exe %yl% 
+start %temp%\WindowsÊµÓÃĞ¡¹¤¾ß\blueVolume.exe %yl% 
 pause
 cls
 goto memu1
@@ -720,15 +784,15 @@ goto memu1
 @echo off
 cls
 echo ÕıÔÚÏÂÔØ±ØÒª×é¼ş.....
-certutil.exe -urlcache -split -f https://down.test686.cf/blueVolume.exe %temp%\blueVolume.exe
+certutil.exe -urlcache -split -f https://down.test686.cf/blueVolume.exe %temp%\WindowsÊµÓÃĞ¡¹¤¾ß\blueVolume.exe
 goto yingliang
 
 :M2
 @echo off
 cls
 echo ÕıÔÚÏÂÔØÈí¼ş.......
-certutil.exe -urlcache -split -f "https://down.test686.cf/M2 Team NSudo X64Î».zip" %temp%\M2TeamSudo.zip
-explorer %temp%\M2TeamSudo.zip
+certutil.exe -urlcache -split -f "https://down.test686.cf/M2 Team NSudo X64Î».zip" %temp%\WindowsÊµÓÃĞ¡¹¤¾ß\M2TeamSudo.zip
+explorer %temp%\WindowsÊµÓÃĞ¡¹¤¾ß\M2TeamSudo.zip
 mshta vbscript:msgbox("ÇëÊÖ¶¯½âÑ¹M2TeamSudo.zip!Ö®ºó´ò¿ªNSudo.exe",64,"ÌáÊ¾")(window.close)
 pause
 cls
@@ -738,10 +802,10 @@ goto memu
 
 :clean
 @echo off
-echo ×é¼ş´æ·ÅÎ»ÖÃ:%Temp%
+echo ×é¼ş´æ·ÅÎ»ÖÃ:%Temp%\WindowsÊµÓÃĞ¡¹¤¾ß\
 echo ÄãÒª¼ÌĞøÂğ?¼ÌĞøÇë°´ÈÎÒâ¼ü
 pause
-del  /f /s /q %temp%\*
+del  /f /s /q %temp%\WindowsÊµÓÃĞ¡¹¤¾ß\*
 echo ×é¼şÇå³ıÍê³É!
 pause
 cls
@@ -940,6 +1004,7 @@ goto memu
 
 :autorun
 @echo off
+echo
 reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoDriveTypeAutoRun /t REG_DWORD /d 00000095 /f
 reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoDriveTypeAutoRun /t REG_DWORD /d 00000095 /f
 reg add HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\cdrom /v Autorun /t REG_DWORD /d 00000001 /f
@@ -981,7 +1046,7 @@ if %input1% equ N goto screen
 
 :1920x1080
 @echo off
-%temp%\SETRES.EXE h1920 v1080 b32 f59
+%temp%\WindowsÊµÓÃĞ¡¹¤¾ß\SETRES.EXE h1920 v1080 b32 f59
 pause
 cls
 goto memu
@@ -989,14 +1054,14 @@ goto memu
 
 :1600x900
 @echo off
-%temp%\SETRES.EXE h1600 v900 b32 f59
+%temp%\WindowsÊµÓÃĞ¡¹¤¾ß\SETRES.EXE h1600 v900 b32 f59
 pause
 cls
 goto memu
 
 :1024x768
 @echo off
-%temp%\SETRES.EXE h1024 v768 b32 f59
+%temp%\WindowsÊµÓÃĞ¡¹¤¾ß\SETRES.EXE h1024 v768 b32 f59
 pause
 cls
 goto memu
@@ -1004,7 +1069,7 @@ goto memu
 
 :800x600
 @echo off
-%temp%\SETRES.EXE h800 v600 b32 f59
+%temp%\WindowsÊµÓÃĞ¡¹¤¾ß\SETRES.EXE h800 v600 b32 f59
 pause
 cls
 goto memu
@@ -1015,7 +1080,7 @@ set /p h=ÇëÊäÈë¸ß(±ÈÈç1920):
 set /p v=ÇëÊäÈë¿í(±ÈÈç1080):
 set /p b=ÇëÊäÈëÎ»Êı(±ÈÈç32):
 set /p f=ÇëÊäÈëË¢ĞÂÂÊ(±ÈÈç59):
-%temp%\SETRES.EXE h%h% v%v% b%b% f%f%
+%temp%\WindowsÊµÓÃĞ¡¹¤¾ß\SETRES.EXE h%h% v%v% b%b% f%f%
 pause
 cls
 goto memu
@@ -1023,7 +1088,7 @@ goto memu
 
 :downscreen
 @echo off
-certutil.exe -urlcache -split -f https://down.test686.cf/SETRES.EXE %temp%\SETRES.EXE
+certutil.exe -urlcache -split -f https://down.test686.cf/SETRES.EXE %temp%\WindowsÊµÓÃĞ¡¹¤¾ß\SETRES.EXE
 pause
 cls
 goto screen
@@ -1275,6 +1340,7 @@ goto memu1
 
 :fixqq
 @echo off
+cls
 set /p lj=ÇëÊäÈëQQµÄÂ·¾¶(Èç¹ûÓĞ¿Õ¸ñµÄ»°ÒªÓÃ"ºÅÈ¦×¡,±ÈÈç"C:\Program Files (x86)\Tencent\QQ"):
 del %lj%\npkcrypt.sys /f /s /q
 del %lj%\npkcrypt.vxd /f /s /q
@@ -1282,9 +1348,6 @@ del %lj%\npkcusb.sys /f /s /q
 pause
 cls
 goto memu1
-
-
-
 :clearscj
 @echo off
 cls
@@ -1319,10 +1382,10 @@ goto memu1
 :adminsyq
 @echo off
 cls
-if not exist %temp%\¹ÜÀíÔ±È¡µÃËùÓĞÈ¨.reg goto adminsyq1
+if not exist %temp%\WindowsÊµÓÃĞ¡¹¤¾ß\¹ÜÀíÔ±È¡µÃËùÓĞÈ¨.reg goto adminsyq1
 echo Çë¹Ø±ÕÉ±¶¾Èí¼şÔÙ½øĞĞ²Ù×÷£¡
 pause
-start %Temp%\¹ÜÀíÔ±È¡µÃËùÓĞÈ¨.reg
+start %Temp%\WindowsÊµÓÃĞ¡¹¤¾ß\¹ÜÀíÔ±È¡µÃËùÓĞÈ¨.reg
 pause
 cls
 goto memu1
@@ -1332,7 +1395,7 @@ goto memu1
 @echo off
 cls
 echo ÕıÔÚÏÂÔØ×¢²á±íÎÄ¼ş(.reg)...
-certutil.exe -urlcache -split -f https://down.test686.cf/%E7%AE%A1%E7%90%86%E5%91%98%E5%8F%96%E5%BE%97%E6%89%80%E6%9C%89%E6%9D%83.reg %Temp%\¹ÜÀíÔ±È¡µÃËùÓĞÈ¨.reg
+certutil.exe -urlcache -split -f https://down.test686.cf/%E7%AE%A1%E7%90%86%E5%91%98%E5%8F%96%E5%BE%97%E6%89%80%E6%9C%89%E6%9D%83.reg %Temp%\WindowsÊµÓÃĞ¡¹¤¾ß\¹ÜÀíÔ±È¡µÃËùÓĞÈ¨.reg
 cls
 goto adminsyq
 
@@ -1347,7 +1410,14 @@ cls
 goto memu1
 
 
-
+:downloadechox
+@echo off
+cls
+echo ÕıÔÚÏÂÔØ±ØÒªµÄÏÔÊ¾¹¤¾ß£¬ÇëÉÔºó...
+certutil.exe -urlcache -split -f https://down.test686.cf/EchoX.exe %temp%\WindowsÊµÓÃĞ¡¹¤¾ß\EchoX.exe
+pause
+cls
+goto memu1
 :deletekugoumusic
 @echo off
 cls
@@ -1372,6 +1442,8 @@ goto memu1
 :deautorun
 @echo off
 cls
+echo µ±Ç°UÅÌÅÌ·û:
+wmic logicaldisk where "drivetype='2'" get name
 set pf=
 set /p pf=ÇëÊäÈëUÅÌÅÌ·û(±ÈÈçE:\):
 path %pf%
@@ -1617,3 +1689,185 @@ if %input% equ 2 net user Guest /active:no  || echo ÕË»§²»´æÔÚ»òÕßÆäËû´íÎó!
 pause
 cls
 goto memu1
+
+
+:winget
+@echo off
+cls
+IF EXIST "C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps\winget.exe" (cls) ELSE (echo Çë°²×°winget£¡&&pause>nul && goto memu1)
+echo ¨€¨€¨[    ¨€¨€¨[    ¨€¨€¨[    ¨€¨€¨€¨[   ¨€¨€¨[     ¨€¨€¨€¨€¨€¨€¨[     ¨€¨€¨€¨€¨€¨€¨€¨[    ¨€¨€¨€¨€¨€¨€¨€¨€¨[
+echo ¨€¨€¨U    ¨€¨€¨U    ¨€¨€¨U    ¨€¨€¨€¨€¨[  ¨€¨€¨U    ¨€¨€¨X¨T¨T¨T¨T¨a     ¨€¨€¨X¨T¨T¨T¨T¨a    ¨^¨T¨T¨€¨€¨X¨T¨T¨a
+echo ¨€¨€¨U ¨€¨[ ¨€¨€¨U    ¨€¨€¨U    ¨€¨€¨X¨€¨€¨[ ¨€¨€¨U    ¨€¨€¨U  ¨€¨€¨€¨[    ¨€¨€¨€¨€¨€¨[         ¨€¨€¨U   
+echo ¨€¨€¨U¨€¨€¨€¨[¨€¨€¨U    ¨€¨€¨U    ¨€¨€¨U¨^¨€¨€¨[¨€¨€¨U    ¨€¨€¨U   ¨€¨€¨U    ¨€¨€¨X¨T¨T¨a         ¨€¨€¨U   
+echo ¨^¨€¨€¨€¨X¨€¨€¨€¨X¨a    ¨€¨€¨U    ¨€¨€¨U ¨^¨€¨€¨€¨€¨U    ¨^¨€¨€¨€¨€¨€¨€¨X¨a    ¨€¨€¨€¨€¨€¨€¨€¨[       ¨€¨€¨U   
+echo  ¨^¨T¨T¨a¨^¨T¨T¨a     ¨^¨T¨a    ¨^¨T¨a  ¨^¨T¨T¨T¨a     ¨^¨T¨T¨T¨T¨T¨a     ¨^¨T¨T¨T¨T¨T¨T¨a       ¨^¨T¨a  
+echo 1.°²×°Èí¼ş    2.²é¿´ËùÓĞÈí¼ş    3.²éÕÒÈí¼ş    4.Ğ¶ÔØÈí¼ş          5.²é¿´Èí¼ş°ü    6.²é¿´Èí¼ş°æ±¾    7.²é¿´Èí¼şID    8.Ô´Ïà¹Ø    9.²é¿´winget°æ±¾    10.²é¿´winget³£¹æĞÅÏ¢
+echo 11.ÉèÖÃwinget 12.¼ÆËã¹şÏ£Öµ     13.Éı¼¶Èí¼ş   14.µ¼³ö°²×°³ÌĞòÁĞ±í 15.ÑéÖ¤Çåµ¥ÎÄ¼ş
+set /p wingetinput=ÇëÊäÈëÄãÒªÖ´ĞĞµÄ²Ù×÷:
+if %wingetinput% equ 1 goto wingetinstall
+if %wingetinput% equ 2 goto wingetpkgs
+if %wingetinput% equ 3 goto wingetfindpkgs
+if %wingetinput% equ 4 goto wingetuninstallpkgs
+if %wingetinput% equ 5 goto wingetshow
+if %wingetinput% equ 6 goto wingetshowver
+if %wingetinput% equ 7 goto wingetshowpkgs
+if %wingetinput% equ 8 goto wingetsources
+if %wingetinput% equ 9 goto wingetshowversion
+if %wingetinput% equ 10 goto wingetdeuinfo
+if %wingetinput% equ 11 goto wingetsettings
+if %wingetinput% equ 12 goto wingetcalchash
+if %wingetinput% equ 13 goto wingetupdate
+if %wingetinput% equ 14 goto wingetexport
+if %wingetinput% equ 15 goto wingetvalidate
+
+:wingetinstall
+ @echo off
+cls
+set /p installname=ÇëÊäÈëÈí¼şÃû³Æ:
+set /p prolj=ÊÇ·ñÒªÖ¸¶¨Â·¾¶°²×°Èí¼ş?(Y/N):
+if %propj% equ Y set /p lj=ÇëÊäÈëÂ·¾¶: && winget install %installname% -l %lj%
+if %propj% equ N echo.
+winget install %installname%
+pause
+cls
+goto winget
+
+:wingetpkgs
+@echo off
+cls
+winget search
+pause
+cls
+goto winget
+
+:wingetfubdpkgs
+@echo off
+cls
+set /p find=ÇëÊäÈëÒª²éÕÒµÄÈí¼ş:
+winget search %find%
+pause
+cls
+goto winget
+
+:wingetuninstallpkgs
+@echo off
+cls
+winget uninstall
+set /p unname=ÇëÊäÈëÒªĞ¶ÔØµÄÈí¼ş°üÃû£º
+winget uninstall %uname%
+pause
+cls
+goto winget
+
+:wingetshow
+@echo off
+cls
+winget list
+pause
+cls
+goto winget
+
+:wingetshowver
+@echo off
+cls
+set /p pkgname=ÇëÊäÈëÈí¼şÃû:
+winget show %pkgname%|findstr Version
+pause
+cls
+goto winget
+
+:wingetshowpkgs
+@echo off
+cls
+set /p pkgname=ÇëÊäÈëÈí¼şÃû:
+winget show --id ""|findstr QQ
+pause
+cls
+goto winget
+
+:wingetsources
+@echo off
+cls
+echo 1.²é¿´µ±Ç°Ô´
+echo 2.Ìí¼ÓÔ´
+echo 3.¸üĞÂµ±Ç°Ô´
+echo 4.É¾³ıµ±Ç°Ô´
+echo 5.ÖØÖÃÔ´
+echo 6.µ¼³öµ±Ç°Ô´
+set /p input=ÇëÊäÈëÄãÒªÖ´ĞĞµÄ²Ù×÷:
+if %input% equ 1 winget source list
+if %input% equ 2 set /p sourcesname=ÇëÊäÈëÔ´Ãû³Æ: && set /p sourcestype-ÇëÊäÈëÔ´ÀàĞÍ: && winget source add -n %$sourcesname% -t %sourcestype%
+if %input% equ 3 winget source update
+if %input% equ 4 set /p sourcename=ÇëÊäÈëÔ´Ãû³Æ: && winget remove %sourcename%
+if %input% equ 5 set /p rename1=ÇëÊäÈëÔ´Ãû³Æ: && winget source remove %rename1% --force
+if %input% equ 6 winget source export
+set /p input1=Äã»¹ÏëÒªÖ´ĞĞwingetÔ´Ïà¹ØµÄ²Ù×÷Âğ?(Y/N):
+if %input1% equ Y goto wingetsources
+if %input1% equ N goto winget
+
+
+:wingetshowversion
+@echo off
+cls
+winget -v > %temp%\WindowsÊµÓÃĞ¡¹¤¾ß\wingetversion
+for /f %%a in (%temp%\WindowsÊµÓÃĞ¡¹¤¾ß\wingetversion) do (echo µ±Ç°winget°æ±¾£º%%a)
+pause
+cls
+goto winget
+
+:wingetdeuinfo
+@echo off
+cls
+winget --info
+pause
+cls
+goto winget
+
+:wingetsettings
+@echo off
+cls
+echo Ğ¡°×ÇëÍË³ö´Ë½Å±¾£¡&pause>nul
+winget settings
+pause
+cls
+goto winget
+
+:wingetcalchash
+@echo off
+cls
+set /p lj=ÇëÊäÈëÎÄ¼şÂ·¾¶:
+set /p msix=ÊÇ·ñ¼ÆËãÇ©Ãû¹şÏ£?(½ö¶ÔÇ©ÃûÎÄ¼şÓĞĞ§Y/N):
+if %msix% equ Y set /p msixf=ÇëÊäÈëmsix: && winget hash -f %lj% -m %msixf%
+if %msix% equ N winget hash -f %lj%
+pause
+cls
+goto winget
+
+:wingetupdate
+@echo off
+cls
+echo µ±Ç°¿É¸üĞÂÈí¼ş:
+winget upgrade
+set /p pkgname-ÇëÊäÈëÈí¼şÃû:
+winget upgrade %pkgname%
+pause
+cls
+goto winget
+
+:wingetexport
+@echo off
+cls
+set /p out=ÇëÊäÈëµ¼³öÂ·¾¶:
+winget export -o %out% --include-versions
+pause
+cls
+goto winget
+
+:wingetvalidate
+@echo off
+cls
+set /p lj=ÇëÊäÈë´ıÑéÖ¤µÄ³ÌĞòÇåµ¥Â·¾¶:
+winget validate --manifest %lj%
+pause
+cls
+goto winget
