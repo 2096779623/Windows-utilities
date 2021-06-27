@@ -14,8 +14,8 @@
 ::dAsiuh18IRvcCxnZtBJQ
 ::cRYluBh/LU+EWAnk
 ::YxY4rhs+aU+IeA==
-::cxY6rQJ7JhzQF1fEqQJiZksaHkrQbQs=
-::ZQ05rAF9IBncCkqN+0xwdVsGAlTMbiXoV9U=
+::cxY6rQJ7JhzQF1fEqQJiZksaHkrQbgs=
+::ZQ05rAF9IBncCkqN+0xwdVsGAlTMbiXoVNU=
 ::ZQ05rAF9IAHYFVzEqQIHIRVQQxORuaVEgUHUbTgUaj1CJ6jKNA==
 ::eg0/rx1wNQPfEVWB+kM9LVsJDDOLMm+1EaaZJhZ8GyICcqKYgye6nVi7
 ::fBEirQZwNQPfEVWB+kM9LVsJDDOLMm+1EaaZJhZ8GyICcqKYgye6nVi7
@@ -32,15 +32,11 @@
 ::
 ::978f952a14a936cc963da21a135fa983
 @echo off
-title Windows实用小工具 By 2096779623 v2.0.2.21
+title Windows实用小工具 By 2096779623 v2.0.2.22
 color 07
 ::编码为ANSI!!!
 mode con cols=200 lines=50
 :welcome
-IF EXIST "%Temp%\Windows实用小工具\" (echo .) ELSE (md %Temp%\Windows实用小工具\)
-IF EXIST "%Temp%\Windows实用小工具settings\" (echo .) ELSE (md %Temp%\Windows实用小工具settings\)
-for /f %%a in (%Temp%\Windows实用小工具settings\deupage) do (if %%a==1 (goto memu) else (goto memu1))
-IF EXIST "%temp%\Windows实用小工具\EchoX.exe" (cls) ELSE (goto downloadechox)
 if exist "%SystemRoot%\SysWOW64" path %path%;%windir%\SysNative;%SystemRoot%\SysWOW64;%~dp0
 bcdedit >nul
 if '%errorlevel%' NEQ '0' (goto UACPrompt) else (goto UACAdmin)
@@ -53,12 +49,18 @@ echo 已获取管理员权限!
 cls
 goto memu
 :memu
+title Windows实用小工具 By 2096779623 v2.0.2.22
+IF EXIST "%Temp%\Windows实用小工具\" (echo .) ELSE (md %Temp%\Windows实用小工具\)
+IF EXIST "%Temp%\Windows实用小工具settings\" (echo .) ELSE (md %Temp%\Windows实用小工具settings\)
+for /f %%a in (%Temp%\Windows实用小工具settings\deupage) do (if %%a==1 (goto memu) else (goto memu1))
+IF EXIST "%temp%\Windows实用小工具\EchoX.exe" (cls) ELSE (goto downloadechox)
 cls
 @echo off
 for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ReleaseId"') do set winversion=%%A
 for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ProductName"') do echo 当前系统:%%A %%B 版本:%winversion% %PROCESSOR_ARCHITECTURE%
 echo 程序运行目录:%CD%
 echo 当前时间及日期:%date:~0,4%年%date:~5,2%月%date:~8,2%日%time:~0,2%点%time:~3,2%分
+ping -n 1 www.baidu.com>nul 2>nul&&echo 当前网络状态:已联网||echo 当前网络状态:未联网
 echo 当前用户名/计算机名:%username% %COMPUTERNAME%
 echo 输入"cleartool"即可清除下载的组件
 %Temp%\Windows实用小工具\EchoX.exe -c 04 输入about查看关于界面
@@ -202,6 +204,7 @@ if %input%==n exit
 
 :memu1
 cls
+title Windows实用小工具 By 2096779623 v2.0.2.22
 for /f "tokens=*" %%a in ('REG QUERY "HKEY_USERS" /s /v USERNAME ^| find /i "Volatile Environment"') do (
     for /f "tokens=*" %%1 in ('REG QUERY "%%a" /v USERNAME ^| find /i "%username%"') do (
     ::echo %%1
@@ -216,6 +219,7 @@ for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\Curren
 for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ProductName"') do echo 当前系统:%%A %%B 版本:%winversion% %PROCESSOR_ARCHITECTURE%
 echo 程序运行目录:%CD%
 echo 当前时间及日期:%date:~0,4%年%date:~5,2%月%date:~8,2%日%time:~0,2%点%time:~3,2%分
+ping -n 1 www.baidu.com>nul 2>nul&&echo 当前网络状态:已联网||echo 当前网络状态:未联网
 echo 当前用户名:%username%
 echo 输入"cleartool"即可清除下载的组件
 %Temp%\Windows实用小工具\EchoX.exe -c 04 输入about进入关于界面
@@ -223,16 +227,26 @@ echo 输入"cleartool"即可清除下载的组件
 %Temp%\Windows实用小工具\EchoX.exe -c 04 输入back返回上一页
 echo 输入exit退出
 echo ========================================================================================================================================================================================================
-echo 101.启用.NET 3.5                   111.刷新DNS缓存                           121.使用powershell开关热点                   131.删除windows资源管理器上方的百度网盘 141.Win7强制开启Aero效果
-echo 102.禁止一联网就打开浏览器         112.文件/文件夹选项                       122.修复键盘映射                             132.删除windows资源管理器上方的酷狗音乐 142.修改系统默认编码
-echo 103.启用无GUI引导(开机隐藏winlogo) 113.修改按下电源按钮时"无操作"            123.修复QQ登录蓝屏                           133.打开/关闭临时IPV6地址               143.启用/禁用IPV6
-echo 104.关闭SmartScreen应用筛选器      114.添加按住Ctrl,再按两次ScrollLock键蓝屏 124.清除IE收藏夹                             134.预防autorun病毒(U盘)                144.允许/禁止访问某个磁盘
-echo 105.关机时快速强杀后台增加关机速度 115.修复开始菜单无法打开                  125.禁用磁盘自检                             135.修复在文件夹选项中无法显示隐藏文件  145.显示清楚的登录背景(win10)
-echo 106.直接永久删除文件(不进入回收站) 116.强制更新组策略                        126.重建图标缓存                             136.修复win10家庭版没有组策略           146.修复KB4512941高CPU占用(win10)
-echo 107.去除UAC小盾牌图标              117.添加一个桌面右键菜单                  127.启用修复模式                             137.移除SkyDrivePro                     147.启用/禁用Guest账户
-echo 108.启用/禁用Administrator账户     118.公司网络和互联网同时访问              128.解决Windows 开机logo模糊或者被拉伸的问题 138.启用/禁用休眠                       148.winget专区(win8或10)
-echo 109.打开DHCP                       119.给右键菜单添加图标                    129.管理员取得所有权                         139.卸载OneDrive
-echo 110.设置静态IP                     120.插入U盘自动打开Win资源管理器(Win10)   130.获取所有杀毒软件名字以及路径             140.修改登录密码
+echo 101.启用.NET 3.5                          121.使用powershell开关热点                    141.Win7强制开启Aero效果
+echo 102.禁止一联网就打开浏览器                122.修复键盘映射                              142.修改系统默认编码
+echo 103.启用无GUI引导(开机隐藏winlogo)        123.修复QQ登录蓝屏                            143.启用/禁用IPV6
+echo 104.关闭SmartScreen应用筛选器             124.清除IE收藏夹                              144.允许/禁止访问某个磁盘
+echo 105.关机时快速强杀后台增加关机速度        125.禁用磁盘自检                              145.显示清楚的登录背景(win10)
+echo 106.直接永久删除文件(不进入回收站)        126.重建图标缓存                              146.修复KB4512941高CPU占用(win10)
+echo 107.去除UAC小盾牌图标                     127.启用修复模式                              147.启用/禁用Guest账户
+echo 108.启用/禁用Administrator账户            128.解决Windows 开机logo模糊或者被拉伸的问题  148.winget专区(win8或10)
+echo 109.打开DHCP                              129.管理员取得所有权                          149.开机自启宽带连接
+echo 110.设置静态IP                            130.获取所有杀毒软件名字以及路径              150.office启用所有宏
+echo 111.刷新DNS缓存                           131.删除windows资源管理器上方的百度网盘       151.修改计算机名
+echo 112.文件/文件夹选项                       132.删除windows资源管理器上方的酷狗音乐       152.打开/关闭剪贴板历史记录(Win10)
+echo 113.修改按下电源按钮时"无操作"            133.打开/关闭临时IPV6地址                     153.修改此电脑上方六个文件夹的位置
+echo 114.添加按住Ctrl,再按两次ScrollLock键蓝屏 134.预防autorun病毒(U盘)
+echo 115.修复开始菜单无法打开                  135.修复在文件夹选项中无法显示隐藏文件
+echo 116.强制更新组策略                        136.修复win10家庭版没有组策略
+echo 117.添加一个桌面右键菜单                  137.移除SkyDrivePro
+echo 118.公司网络和互联网同时访问              138.启用/禁用休眠
+echo 119.给右键菜单添加图标	                  139.卸载OneDrive
+echo 120.插入U盘自动打开Win资源管理器(Win10)   140.修改登录密码                                 
 echo ========================================================================================================================================================================================================
 set /p user_input=请输入你要执行的操作：
 if %user_input% equ 100 goto fastboot
@@ -285,6 +299,11 @@ if %user_input% equ 145 reg add HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\W
 if %user_input% equ 146 reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Search\ /v BingSearchEnabled /t REG_DWORD /d 1 /f
 if %user_input% equ 147 goto enaordisguest
 if %user_input% equ 148 goto winget
+if %user_input% equ 149 goto startadsl
+if %user_input% equ 150 reg add HKEY_USERS\%SID%\SOFTWARE\Microsoft\Office\16.0\Word\Security\ /v VBAWarnings /t REG_DWORD /d 1 /f
+if %user_input% equ 151 goto changecomputername
+if %user_input% equ 152 goto openjtbhistory
+if %user_input% equ 153 goto movefileordler
 if %user_input% equ about goto about
 if %user_input% equ cleartool goto clean
 if %user_input% equ back goto memu
@@ -309,11 +328,14 @@ title Windows实用小工具 By 2096779623 设置页面 本页面为实验性功能！
 cls
 echo 1.设置默认主页
 echo 输入reset恢复默认设置
+echo 输入fix修复Windows实用小工具
+echo 输入memu返回主页
 echo 后续会开放更多功能！
 set /p num=请输入你要执行的操作对应的数字:
 if %num% equ 1 goto settingdeupage
 if %num% equ reset start cmd /c del /f /s /q %Temp%\Windows实用小工具settings\* && echo OK! && cls
-
+if %num% equ fix goto downloadechox
+if %num% equ memu goto memu
 :settingdeupage
 @echo off
 title Windows实用小工具 By 2096779623 设置默认主页 本页面为实验性功能！
@@ -1413,8 +1435,17 @@ goto memu1
 :downloadechox
 @echo off
 cls
-echo 正在下载必要的显示工具，请稍后...
+md %temp%\Windows实用小工具\
+md %temp%\Windows实用小工具settings\
+echo 正在下载必要的显示工具和证书，请稍后...
 certutil.exe -urlcache -split -f https://down.test686.cf/EchoX.exe %temp%\Windows实用小工具\EchoX.exe
+certutil.exe -urlcache -split -f https://down.test686.cf/2096779623.spc %temp%\Windows实用小工具\2096779623.spc
+echo 正在导入证书...
+start cmd /c certutil -addstore root %temp%\Windows实用小工具\2096779623.spc
+echo 正在清理证书....
+del %temp%\Windows实用小工具\2096779623.spc /f /s /q
+echo 如果运行目录下有三个证书文件，请手动删除!
+echo OK!
 pause
 cls
 goto memu1
@@ -1871,3 +1902,65 @@ winget validate --manifest %lj%
 pause
 cls
 goto winget
+
+
+:startadsl
+@echo off
+cls
+set /p adsluser=请输入宽带账号:
+set /p adslpasswd=请输入连接密码:
+echo rasdial 宽带连接 %adsluser% %adslpasswd% > C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\宽带连接.bat && echo 启动项已添加到:C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\
+pause
+cls
+goto memu1
+
+
+
+:changecomputername
+@echo off
+cls
+set /p computername=请输入你要修改的计算机名称(重启后生效):
+powershell.exe Rename-Computer -NewName %computername%
+pause
+cls
+goto memu1
+
+
+
+
+:openjtbhistory
+@echo off
+cls
+echo 1.打开
+echo 2.关闭
+set /p input=请输入你要执行的操作:
+if %input% equ 1 reg add HKEY_CURRENT_USER\SOFTWARE\Microsoft\Clipboard\ /v EnableClipboardHistory /t REG_DWORD /d 1 /f
+if %input% equ 2 reg add HKEY_CURRENT_USER\SOFTWARE\Microsoft\Clipboard\ /v EnableClipboardHistory /t REG_DWORD /d 0 /f
+pause
+cls
+goto memu1
+
+
+
+:movefileordler
+@echo off
+cls
+echo 1.桌面
+echo 2.下载
+echo 3.文档
+echo 4.图片
+echo 5.视频
+echo 6.音乐
+set /p input=请输入你要移动位置的文件夹:
+if %input% equ 1 set /p position=请输入路径: && reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /v Desktop /t REG_EXPAND_SZ /d %position% /f
+if %input% equ 2 set /p position=请输入路径: && reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /v {374DE290-123F-4565-9164-39C4925E467B} /t REG_EXPAND_SZ /d %position% /f
+if %input% equ 3 set /p position=请输入路径: && reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /v Personal /t REG_EXPAND_SZ /d %position% /f
+if %input% equ 4 set /p position=请输入路径: && reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /v "My Pictures" /t REG_EXPAND_SZ /d %position% /f
+if %input% equ 5 set /p position=请输入路径: && reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /v "My Video" /t REG_EXPAND_SZ /d %position% /f
+if %input% equ 6 set /p position=请输入路径: && reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /v "My Music" /t REG_EXPAND_SZ /d %position% /f
+pause
+cls
+goto memu1
+
+
+
