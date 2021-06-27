@@ -47,13 +47,13 @@ exit /B
 cd /d "%~dp0"
 echo 已获取管理员权限!
 cls
-goto memu
-:memu
-title Windows实用小工具 By 2096779623 v2.0.2.22
 IF EXIST "%Temp%\Windows实用小工具\" (echo .) ELSE (md %Temp%\Windows实用小工具\)
 IF EXIST "%Temp%\Windows实用小工具settings\" (echo .) ELSE (md %Temp%\Windows实用小工具settings\)
 for /f %%a in (%Temp%\Windows实用小工具settings\deupage) do (if %%a==1 (goto memu) else (goto memu1))
 IF EXIST "%temp%\Windows实用小工具\EchoX.exe" (cls) ELSE (goto downloadechox)
+goto memu
+:memu
+title Windows实用小工具 By 2096779623 v2.0.2.22
 cls
 @echo off
 for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ReleaseId"') do set winversion=%%A
