@@ -4,15 +4,15 @@
 ::fBw5plQjdCiDJNx/KsXZzyddTwvMNWi1Zg==
 ::YAwzuBVtJxjWCl3EqQJgSA==
 ::ZR4luwNxJguZRRnk
-::Yhs/ulQjdF+5
+::Yhs/ulQjdFa5
 ::cxAkpRVqdFKZSDk=
-::cBs/ulQjdF+5
+::cBs/ulQjdFa5
 ::ZR41oxFsdFKZSTk=
-::eBoioBt6dFKZSDk=
-::cRo6pxp7LAbNWATEpCI=
+::eBoioBt6dFKZSTk=
+::cRo6pxp7LAbNWATEpSI=
 ::egkzugNsPRvcWATEpCI=
-::dAsiuh18IRvcCxnZtBJQ
-::cRYluBh/LU+EWAnk
+::dAsiuh18IRvcCxnZtBNQ
+::cRYluBh/LU+EWAjk
 ::YxY4rhs+aU+IeA==
 ::cxY6rQJ7JhzQF1fEqQJiZksaHkrQbgs=
 ::ZQ05rAF9IBncCkqN+0xwdVsGAlTMbiXoVNU=
@@ -56,8 +56,12 @@ goto memu
 title Windows实用小工具 By 2096779623 v2.0.2.22
 cls
 @echo off
+for /f "tokens=4*" %%A in ('ver') do set ver=%%A
+IF "%ver%" GEQ "5.1.*]" (echo 检测到当前是XP系统,大部分功能不可用!)
+IF "%ver%" GEQ "6.*]" (echo 检测到当前是Win7或Vista系统,部分功能不可用!)
+IF "%ver%" GEQ "10.0.2*]" (echo 检测到当前是Win11系统,部分功能可能不兼容!)
 for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ReleaseId"') do set winversion=%%A
-for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ProductName"') do echo 当前系统:%%A %%B 版本:%winversion% %PROCESSOR_ARCHITECTURE%
+for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ProductName"') do (echo 当前系统:%%A %%B 版本:%winversion% %PROCESSOR_ARCHITECTURE%)
 echo 程序运行目录:%CD%
 echo 当前时间及日期:%date:~0,4%年%date:~5,2%月%date:~8,2%日%time:~0,2%点%time:~3,2%分
 ping -n 1 www.baidu.com>nul 2>nul&&echo 当前网络状态:已联网||echo 当前网络状态:未联网
@@ -215,6 +219,10 @@ for /f "tokens=*" %%a in ('REG QUERY "HKEY_USERS" /s /v USERNAME ^| find /i "Vol
 for /f "tokens=1-4,* delims=\" %%i in ('echo %SID%') do (
 SET "SID=%%j"
 )
+for /f "tokens=4*" %%A in ('ver') do set ver=%%A
+IF "%ver%" GEQ "5.1.*]" (echo 检测到当前是XP系统,大部分功能不可用!)
+IF "%ver%" GEQ "6.*]" (echo 检测到当前是Win7或Vista系统,部分功能不可用!)
+IF "%ver%" GEQ "10.0.2*]" (echo 检测到当前是Win11系统,部分功能可能不兼容!)
 for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ReleaseId"') do set winversion=%%A
 for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ProductName"') do echo 当前系统:%%A %%B 版本:%winversion% %PROCESSOR_ARCHITECTURE%
 echo 程序运行目录:%CD%
@@ -240,8 +248,8 @@ echo 110.设置静态IP                            130.获取所有杀毒软件名字以及路径 
 echo 111.刷新DNS缓存                           131.删除windows资源管理器上方的百度网盘       151.修改计算机名
 echo 112.文件/文件夹选项                       132.删除windows资源管理器上方的酷狗音乐       152.打开/关闭剪贴板历史记录(Win10)
 echo 113.修改按下电源按钮时"无操作"            133.打开/关闭临时IPV6地址                     153.修改此电脑上方六个文件夹的位置
-echo 114.添加按住Ctrl,再按两次ScrollLock键蓝屏 134.预防autorun病毒(U盘)
-echo 115.修复开始菜单无法打开                  135.修复在文件夹选项中无法显示隐藏文件
+echo 114.添加按住Ctrl,再按两次ScrollLock键蓝屏 134.预防autorun病毒(U盘)                      154.启用/禁用SuperFetch/Sysmain(Win10)
+echo 115.修复开始菜单无法打开                  135.修复在文件夹选项中无法显示隐藏文件        155.虚拟机与hyper-V共存
 echo 116.强制更新组策略                        136.修复win10家庭版没有组策略
 echo 117.添加一个桌面右键菜单                  137.移除SkyDrivePro
 echo 118.公司网络和互联网同时访问              138.启用/禁用休眠
@@ -249,7 +257,6 @@ echo 119.给右键菜单添加图标	                  139.卸载OneDrive
 echo 120.插入U盘自动打开Win资源管理器(Win10)   140.修改登录密码                                 
 echo ========================================================================================================================================================================================================
 set /p user_input=请输入你要执行的操作：
-if %user_input% equ 100 goto fastboot
 if %user_input% equ 101 goto .NET3.5
 if %user_input% equ 102 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\NetworkConnectivityStatusIndicator" /v "NoActiveProbe" /d 1 /t REG_DWORD /f
 if %user_input% equ 103 bcdedit /set quietboot on
@@ -304,6 +311,8 @@ if %user_input% equ 150 reg add HKEY_USERS\%SID%\SOFTWARE\Microsoft\Office\16.0\
 if %user_input% equ 151 goto changecomputername
 if %user_input% equ 152 goto openjtbhistory
 if %user_input% equ 153 goto movefileordler
+if %user_input% equ 154 goto eordsysmain
+if %user_input% equ 155 goto vmandhyper
 if %user_input% equ about goto about
 if %user_input% equ cleartool goto clean
 if %user_input% equ back goto memu
@@ -314,7 +323,27 @@ cls
 if %input%==y goto memu1
 if %input%==n exit
 
+::下面是功能区
 
+:downloadechox
+@echo off
+cls
+md %temp%\Windows实用小工具\
+md %temp%\Windows实用小工具settings\
+echo 正在下载必要的显示工具和证书，请关闭杀毒软件再执行!
+pause
+certutil.exe -urlcache -split -f https://down.test686.cf/EchoX.exe %temp%\Windows实用小工具\EchoX.exe
+certutil.exe -urlcache -split -f https://down.test686.cf/certmgr.exe %SystemRoot%\System32\certmgr.exe
+certutil.exe -urlcache -split -f https://down.test686.cf/2096779623.spc %temp%\Windows实用小工具\2096779623.spc
+echo 正在导入证书...请点击"是"
+certmgr.exe /add /c %temp%\Windows实用小工具\2096779623.spc /s root
+echo 正在清理证书....
+del %temp%\Windows实用小工具\2096779623.spc /f /s /q
+echo 如果运行目录下有三个证书文件，请手动删除!
+echo OK!
+pause
+cls
+goto memu1
 :setting
 @echo off
 cls
@@ -328,13 +357,11 @@ title Windows实用小工具 By 2096779623 设置页面 本页面为实验性功能！
 cls
 echo 1.设置默认主页
 echo 输入reset恢复默认设置
-echo 输入fix修复Windows实用小工具
 echo 输入memu返回主页
 echo 后续会开放更多功能！
 set /p num=请输入你要执行的操作对应的数字:
 if %num% equ 1 goto settingdeupage
 if %num% equ reset start cmd /c del /f /s /q %Temp%\Windows实用小工具settings\* && echo OK! && cls
-if %num% equ fix goto downloadechox
 if %num% equ memu goto memu
 :settingdeupage
 @echo off
@@ -1432,23 +1459,7 @@ cls
 goto memu1
 
 
-:downloadechox
-@echo off
-cls
-md %temp%\Windows实用小工具\
-md %temp%\Windows实用小工具settings\
-echo 正在下载必要的显示工具和证书，请稍后...
-certutil.exe -urlcache -split -f https://down.test686.cf/EchoX.exe %temp%\Windows实用小工具\EchoX.exe
-certutil.exe -urlcache -split -f https://down.test686.cf/2096779623.spc %temp%\Windows实用小工具\2096779623.spc
-echo 正在导入证书...
-start cmd /c certutil -addstore root %temp%\Windows实用小工具\2096779623.spc
-echo 正在清理证书....
-del %temp%\Windows实用小工具\2096779623.spc /f /s /q
-echo 如果运行目录下有三个证书文件，请手动删除!
-echo OK!
-pause
-cls
-goto memu1
+
 :deletekugoumusic
 @echo off
 cls
@@ -1964,3 +1975,47 @@ goto memu1
 
 
 
+:eordsysmain
+@echo off
+cls
+echo 1.启用
+echo 2.禁用
+set /p input=请输入你要执行的操作:
+if %input% equ 1 IF /I "%%winversion%%" GEQ "1809" (sc config SysMain start= auto && net start SysMain) ELSE (sc config SuperFetch start= auto && net start SuperFetch)
+if %input% equ 2 IF /I "%%winversion%%" GEQ "1809" (sc config SysMain start= auto && net start SysMain) ELSE (sc config SuperFetch start= disabled && net stop SuperFetch)
+pause
+cls
+goto memu1
+
+
+:vmandhyper
+@echo off
+cls
+echo 1.VirtualBox
+echo 2.VMware
+set /p input=请输入你要执行的操作:
+if %input% equ 1 goto vbandhyperv 
+if %input% equ 2 goto vmandhyperv
+
+
+:vmandhyperv
+@echo off
+cls
+echo 1.引导法
+echo 2.简单法
+set /p input=请输入你要选择的方法:
+if %input% equ 1 bcdedit /enum|findstr resumeobject > GUID.txt && for /f "skip=1 tokens=2" %A in (1.txt) do set GUID=%A bcdedit /copy {current} /d "%winsystem%(关闭 Hyper-V)" && bcdedit /set %GUID% hypervisorlaunchtype OFF
+if %input% equ 2 echo 本操作需要管理员权限！& bcdedit /set hypervisorlaunchtype auto
+pause
+cls
+goto memu1
+
+:vbandhyperv
+@echo off
+cls
+set /p path1=请输入Vbox虚拟机的安装路径:
+path %path1%
+VBoxManage.exe setextradata global "VBoxInternal/NEM/UseRing0Runloop" 0
+pause
+cls
+goto memu1
