@@ -4,15 +4,15 @@
 ::fBw5plQjdCiDJNx/KsXZzyddTwvMNWi1Zg==
 ::YAwzuBVtJxjWCl3EqQJgSA==
 ::ZR4luwNxJguZRRnk
-::Yhs/ulQjdF+5
+::Yhs/ulQjdFa5
 ::cxAkpRVqdFKZSDk=
-::cBs/ulQjdF+5
+::cBs/ulQjdF25
 ::ZR41oxFsdFKZSTk=
-::eBoioBt6dFKZSDk=
-::cRo6pxp7LAbNWATEpCI=
+::eBoioBt6dFKZSTk=
+::cRo6pxp7LAbNWATEpSI=
 ::egkzugNsPRvcWATEpCI=
-::dAsiuh18IRvcCxnZtBJQ
-::cRYluBh/LU+EWAnk
+::dAsiuh18IRvcCxnZtBNQ
+::cRYluBh/LU+EWAjk
 ::YxY4rhs+aU+IeA==
 ::cxY6rQJ7JhzQF1fEqQJiZksaHkrQbgs=
 ::ZQ05rAF9IBncCkqN+0xwdVsGAlTMbiXoVNU=
@@ -31,11 +31,40 @@
 ::
 ::
 ::978f952a14a936cc963da21a135fa983
+PROMPT Windows实用小工具$SVer$S2.0.22$BAGPL-3.0$SLICENSE$G
+::
+:: _ooOoo_
+:: o8888888o
+:: 88" . "88
+:: (| -_- |)
+::  O\ = /O
+:: ___/`---'\____
+:: .   ' \\| |// `.
+:: / \\||| : |||// \
+:: / _||||| -:- |||||- \
+:: | | \\\ - /// | |
+:: | \_| ''\---/'' | |
+:: \ .-\__ `-` ___/-. /
+:: ___`. .' /--.--\ `. . __
+:: ."" '< `.___\_<|>_/___.' >'"".
+:: | | : `- \`.;`\ _ /`;.`/ - ` : | |
+:: \ \ `-. \_ __\ /__ _/ .-` / /
+:: ======`-.____`-.___\_____/___.-`____.-'======
+:: `=---='
+::          .............................................
+::           佛曰：bug泛滥，我已瘫痪！
+::
+
+
+
 @echo off
-title Windows实用小工具 By 2096779623 v2.0.2.22
+title Windows实用小工具 By 2096779623 v2.0.2.22 本程序造成的一切后果由使用者承担，作者概不负责！Protected By AGPL-3.0 Open Source Agreement！
 color 07
+for /f "tokens=1* delims=:" %%i in ('ipconfig^|find "IPv6"^|find /v "::"') do set ipv6=%%j
+for /f "tokens=1* delims=: skip=1" %%i in ('ipconfig^|find "IPv6"^|find /v "::"') do set ipv6=%%j
 ::编码为ANSI!!!
 mode con cols=200 lines=50
+
 :welcome
 if exist "%SystemRoot%\SysWOW64" path %path%;%windir%\SysNative;%SystemRoot%\SysWOW64;%~dp0
 bcdedit >nul
@@ -45,22 +74,27 @@ if '%errorlevel%' NEQ '0' (goto UACPrompt) else (goto UACAdmin)
 exit /B
 :UACAdmin
 cd /d "%~dp0"
-echo 已获取管理员权限!
 cls
+
 IF EXIST "%Temp%\Windows实用小工具\" (echo .) ELSE (md %Temp%\Windows实用小工具\)
 IF EXIST "%Temp%\Windows实用小工具settings\" (echo .) ELSE (md %Temp%\Windows实用小工具settings\)
+IF EXIST "%temp%\Windows实用小工具\EchoX.exe" (set down=0) ELSE (set down=1)
 for /f %%a in (%Temp%\Windows实用小工具settings\deupage) do (if %%a==1 (goto memu) else (goto memu1))
-IF EXIST "%temp%\Windows实用小工具\EchoX.exe" (cls) ELSE (goto downloadechox)
-goto memu
+IF "%down%" EQU "0" (cls) ELSE (goto pdown)
+
 :memu
-title Windows实用小工具 By 2096779623 v2.0.2.22
 cls
 @echo off
+title Windows实用小工具 By 2096779623 v2.0.2.22 本程序造成的一切后果由使用者承担，作者概不负责！Protected By AGPL-3.0 Open Source Agreement！
+for /f "tokens=4*" %%A in ('ver') do set ver=%%A
+IF "%ver%" GEQ "5.1.*]" (echo 检测到当前是XP系统,大部分功能不可用!)
+IF "%ver%" GEQ "6.*]" (echo 检测到当前是Win7或Vista系统,部分功能不可用!)
+IF "%ver%" GEQ "10.0.2*]" (echo 检测到当前是Win11系统,部分功能可能不兼容!)
 for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ReleaseId"') do set winversion=%%A
-for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ProductName"') do echo 当前系统:%%A %%B 版本:%winversion% %PROCESSOR_ARCHITECTURE%
+for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ProductName"') do (echo 当前系统:%%A %%B 版本:%winversion% %PROCESSOR_ARCHITECTURE%)
 echo 程序运行目录:%CD%
 echo 当前时间及日期:%date:~0,4%年%date:~5,2%月%date:~8,2%日%time:~0,2%点%time:~3,2%分
-ping -n 1 www.baidu.com>nul 2>nul&&echo 当前网络状态:已联网||echo 当前网络状态:未联网
+ping -n 1 www.baidu.com>nul 2>nul&&echo 当前网络状态:已联网 && set network=1||echo 当前网络状态:未联网 && set network=0
 echo 当前用户名/计算机名:%username% %COMPUTERNAME%
 echo 输入"cleartool"即可清除下载的组件
 %Temp%\Windows实用小工具\EchoX.exe -c 04 输入about查看关于界面
@@ -189,9 +223,9 @@ if %user_input% equ 95 goto bootrun
 if %user_input% equ 96 goto jiancescreen
 if %user_input% equ 97 goto UACcmd
 if %user_input% equ 98 goto fhq
-if %user_input% equ 99 goto power
+if %user_input% equ 99 powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
 if %user_input% equ 100 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System" /v "HiberbootEnabled" /d 1 /t REG_DWORD /f
-if %user_input% equ about goto about
+if %user_input% equ about goto github
 if %user_input% equ setting goto setting
 if %user_input% equ cleartool goto clean
 if %user_input% equ next goto memu1
@@ -204,21 +238,32 @@ if %input%==n exit
 
 :memu1
 cls
-title Windows实用小工具 By 2096779623 v2.0.2.22
+::获取用户SID
 for /f "tokens=*" %%a in ('REG QUERY "HKEY_USERS" /s /v USERNAME ^| find /i "Volatile Environment"') do (
     for /f "tokens=*" %%1 in ('REG QUERY "%%a" /v USERNAME ^| find /i "%username%"') do (
     ::echo %%1
     SET "SID=%%a"
     )
 )
-::取出SID
 for /f "tokens=1-4,* delims=\" %%i in ('echo %SID%') do (
 SET "SID=%%j"
 )
+::获取GUID
+bcdedit /enum|findstr resumeobject > GUID.txt && for /f "skip=1 tokens=2" %%A in (GUID.txt) do set GUID=%%A 
+::删除临时文件
+del /f /s /q GUID.txt
+cls
+title Windows实用小工具 By 2096779623 v2.0.2.22 本程序造成的一切后果由使用者承担，作者概不负责！Protected By AGPL-3.0 Open Source Agreement！
+::获取版本号
+for /f "tokens=4*" %%A in ('ver') do set ver=%%A
+IF "%ver%" GEQ "5.1.*]" (echo 检测到当前是XP系统,大部分功能不可用!)
+IF "%ver%" GEQ "6.*]" (echo 检测到当前是Win7或Vista系统,部分功能不可用!)
+IF "%ver%" GEQ "10.0.2*]" (echo 检测到当前是Win11系统,部分功能可能不兼容!)
 for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ReleaseId"') do set winversion=%%A
-for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ProductName"') do echo 当前系统:%%A %%B 版本:%winversion% %PROCESSOR_ARCHITECTURE%
+for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ProductName"') do echo 当前系统:%%A %%B 版本:%winversion%   架构：%PROCESSOR_ARCHITECTURE%
 echo 程序运行目录:%CD%
 echo 当前时间及日期:%date:~0,4%年%date:~5,2%月%date:~8,2%日%time:~0,2%点%time:~3,2%分
+::判断网络状态
 ping -n 1 www.baidu.com>nul 2>nul&&echo 当前网络状态:已联网||echo 当前网络状态:未联网
 echo 当前用户名:%username%
 echo 输入"cleartool"即可清除下载的组件
@@ -227,29 +272,28 @@ echo 输入"cleartool"即可清除下载的组件
 %Temp%\Windows实用小工具\EchoX.exe -c 04 输入back返回上一页
 echo 输入exit退出
 echo ========================================================================================================================================================================================================
-echo 101.启用.NET 3.5                          121.使用powershell开关热点                    141.Win7强制开启Aero效果
-echo 102.禁止一联网就打开浏览器                122.修复键盘映射                              142.修改系统默认编码
-echo 103.启用无GUI引导(开机隐藏winlogo)        123.修复QQ登录蓝屏                            143.启用/禁用IPV6
-echo 104.关闭SmartScreen应用筛选器             124.清除IE收藏夹                              144.允许/禁止访问某个磁盘
-echo 105.关机时快速强杀后台增加关机速度        125.禁用磁盘自检                              145.显示清楚的登录背景(win10)
-echo 106.直接永久删除文件(不进入回收站)        126.重建图标缓存                              146.修复KB4512941高CPU占用(win10)
-echo 107.去除UAC小盾牌图标                     127.启用修复模式                              147.启用/禁用Guest账户
-echo 108.启用/禁用Administrator账户            128.解决Windows 开机logo模糊或者被拉伸的问题  148.winget专区(win8或10)
-echo 109.打开DHCP                              129.管理员取得所有权                          149.开机自启宽带连接
-echo 110.设置静态IP                            130.获取所有杀毒软件名字以及路径              150.office启用所有宏
+echo 101.启用.NET 3.5                          121.使用powershell开关热点                    141.Win7强制开启Aero效果              161.安装telnet客户端
+echo 102.禁止一联网就打开浏览器                122.修复键盘映射                              142.修改系统默认编码                  162.创建符号链接
+echo 103.启用无GUI引导(开机隐藏winlogo)        123.修复QQ登录蓝屏                            143.启用/禁用IPV6                     163.启用/禁用RemoteRegistry
+echo 104.关闭SmartScreen应用筛选器             124.清除IE收藏夹                              144.允许/禁止访问某个磁盘             164.启用/禁用U盘写保护
+echo 105.关机时快速强杀后台增加关机速度        125.禁用磁盘自检                              145.显示清楚的登录背景(win10)         165.开启TRIM
+echo 106.直接永久删除文件(不进入回收站)        126.重建图标缓存                              146.修复KB4512941高CPU占用(win10)     166.打开/关闭自动更新(win10)
+echo 107.去除UAC小盾牌图标                     127.启用修复模式                              147.启用/禁用Guest账户                167.修复"可选诊断数据"无法选择(win10)
+echo 108.启用/禁用Administrator账户            128.解决Windows 开机logo模糊或者被拉伸的问题  148.winget专区(win8或10)              168.毛玻璃任务栏(win10)
+echo 109.打开DHCP                              129.管理员取得所有权                          149.开机自启宽带连接                  169.修改开机动画为Vista样式
+echo 110.设置静态IP                            130.获取所有杀毒软件名字以及路径              150.office启用所有宏                  170.自定义系统属性信息
 echo 111.刷新DNS缓存                           131.删除windows资源管理器上方的百度网盘       151.修改计算机名
 echo 112.文件/文件夹选项                       132.删除windows资源管理器上方的酷狗音乐       152.打开/关闭剪贴板历史记录(Win10)
 echo 113.修改按下电源按钮时"无操作"            133.打开/关闭临时IPV6地址                     153.修改此电脑上方六个文件夹的位置
-echo 114.添加按住Ctrl,再按两次ScrollLock键蓝屏 134.预防autorun病毒(U盘)
-echo 115.修复开始菜单无法打开                  135.修复在文件夹选项中无法显示隐藏文件
-echo 116.强制更新组策略                        136.修复win10家庭版没有组策略
-echo 117.添加一个桌面右键菜单                  137.移除SkyDrivePro
-echo 118.公司网络和互联网同时访问              138.启用/禁用休眠
-echo 119.给右键菜单添加图标	                  139.卸载OneDrive
-echo 120.插入U盘自动打开Win资源管理器(Win10)   140.修改登录密码                                 
+echo 114.添加按住Ctrl,再按两次ScrollLock键蓝屏 134.预防autorun病毒(U盘)                      154.启用/禁用SuperFetch/Sysmain(Win10)
+echo 115.修复开始菜单无法打开                  135.修复在文件夹选项中无法显示隐藏文件        155.虚拟机与hyper-V共存
+echo 116.强制更新组策略                        136.修复win10家庭版没有组策略                 156.打开/关闭自动修复(win10)
+echo 117.添加一个桌面右键菜单                  137.移除SkyDrivePro                           157.禁用遥测和数据收集(win10)
+echo 118.公司网络和互联网同时访问              138.启用/禁用休眠                             158.修复预览体验计划
+echo 119.给右键菜单添加图标	                  139.卸载OneDrive                              159.启用/禁用网络发现(win7)
+echo 120.插入U盘自动打开Win资源管理器(Win10)   140.修改登录密码                              160.启用或禁用系统的内核调试
 echo ========================================================================================================================================================================================================
 set /p user_input=请输入你要执行的操作：
-if %user_input% equ 100 goto fastboot
 if %user_input% equ 101 goto .NET3.5
 if %user_input% equ 102 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\NetworkConnectivityStatusIndicator" /v "NoActiveProbe" /d 1 /t REG_DWORD /f
 if %user_input% equ 103 bcdedit /set quietboot on
@@ -270,7 +314,7 @@ if %user_input% equ 117 goto mdm
 if %user_input% equ 118 goto clandie
 if %user_input% equ 119 goto yjicon
 if %user_input% equ 120 echo 恢复方法:设置>设备>自动播放>不执行操作 && reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\EventHandlers\StorageOnArrival" /ve /t REG_SZ /d MSOpenFolder /f && reg add HKEY_USERS\%sid%\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\EventHandlersDefaultSelection\StorageOnArrival\ /ve /t REG_SZ /d MSOpenFolder /f
-if %user_input% equ 121 powershell.exe set-executionpolicy remotesigned && powershell.exe -encodedCommand WwBXAGkAbgBkAG8AdwBzAC4AUwB5AHMAdABlAG0ALgBVAHMAZQByAFAAcgBvAGYAaQBsAGUALgBMAG8AYwBrAFMAYwByAGUAZQBuACwAVwBpAG4AZABvAHcAcwAuAFMAeQBzAHQAZQBtAC4AVQBzAGUAcgBQAHIAbwBmAGkAbABlACwAQwBvAG4AdABlAG4AdABUAHkAcABlAD0AVwBpAG4AZABvAHcAcwBSAHUAbgB0AGkAbQBlAF0AIAB8ACAATwB1AHQALQBOAHUAbABsAA0ACgBBAGQAZAAtAFQAeQBwAGUAIAAtAEEAcwBzAGUAbQBiAGwAeQBOAGEAbQBlACAAUwB5AHMAdABlAG0ALgBSAHUAbgB0AGkAbQBlAC4AVwBpAG4AZABvAHcAcwBSAHUAbgB0AGkAbQBlAA0ACgAkAGEAcwBUAGEAcwBrAEcAZQBuAGUAcgBpAGMAIAA9ACAAKABbAFMAeQBzAHQAZQBtAC4AVwBpAG4AZABvAHcAcwBSAHUAbgB0AGkAbQBlAFMAeQBzAHQAZQBtAEUAeAB0AGUAbgBzAGkAbwBuAHMAXQAuAEcAZQB0AE0AZQB0AGgAbwBkAHMAKAApACAAfAAgAD8AIAB7ACAAJABfAC4ATgBhAG0AZQAgAC0AZQBxACAAJwBBAHMAVABhAHMAawAnACAALQBhAG4AZAAgACQAXwAuAEcAZQB0AFAAYQByAGEAbQBlAHQAZQByAHMAKAApAC4AQwBvAHUAbgB0ACAALQBlAHEAIAAxACAALQBhAG4AZAAgACQAXwAuAEcAZQB0AFAAYQByAGEAbQBlAHQAZQByAHMAKAApAFsAMABdAC4AUABhAHIAYQBtAGUAdABlAHIAVAB5AHAAZQAuAE4AYQBtAGUAIAAtAGUAcQAgACcASQBBAHMAeQBuAGMATwBwAGUAcgBhAHQAaQBvAG4AYAAxACcAIAB9ACkAWwAwAF0ADQAKAEYAdQBuAGMAdABpAG8AbgAgAEEAdwBhAGkAdAAoACQAVwBpAG4AUgB0AFQAYQBzAGsALAAgACQAUgBlAHMAdQBsAHQAVAB5AHAAZQApACAAewANAAoAIAAgACAAIAAkAGEAcwBUAGEAcwBrACAAPQAgACQAYQBzAFQAYQBzAGsARwBlAG4AZQByAGkAYwAuAE0AYQBrAGUARwBlAG4AZQByAGkAYwBNAGUAdABoAG8AZAAoACQAUgBlAHMAdQBsAHQAVAB5AHAAZQApAA0ACgAgACAAIAAgACQAbgBlAHQAVABhAHMAawAgAD0AIAAkAGEAcwBUAGEAcwBrAC4ASQBuAHYAbwBrAGUAKAAkAG4AdQBsAGwALAAgAEAAKAAkAFcAaQBuAFIAdABUAGEAcwBrACkAKQANAAoAIAAgACAAIAAkAG4AZQB0AFQAYQBzAGsALgBXAGEAaQB0ACgALQAxACkAIAB8ACAATwB1AHQALQBOAHUAbABsAA0ACgAgACAAIAAgACQAbgBlAHQAVABhAHMAawAuAFIAZQBzAHUAbAB0AA0ACgB9AA0ACgBGAHUAbgBjAHQAaQBvAG4AIABBAHcAYQBpAHQAQQBjAHQAaQBvAG4AKAAkAFcAaQBuAFIAdABBAGMAdABpAG8AbgApACAAewANAAoAIAAgACAAIAAkAGEAcwBUAGEAcwBrACAAPQAgACgAWwBTAHkAcwB0AGUAbQAuAFcAaQBuAGQAbwB3AHMAUgB1AG4AdABpAG0AZQBTAHkAcwB0AGUAbQBFAHgAdABlAG4AcwBpAG8AbgBzAF0ALgBHAGUAdABNAGUAdABoAG8AZABzACgAKQAgAHwAIAA/ACAAewAgACQAXwAuAE4AYQBtAGUAIAAtAGUAcQAgACcAQQBzAFQAYQBzAGsAJwAgAC0AYQBuAGQAIAAkAF8ALgBHAGUAdABQAGEAcgBhAG0AZQB0AGUAcgBzACgAKQAuAEMAbwB1AG4AdAAgAC0AZQBxACAAMQAgAC0AYQBuAGQAIAAhACQAXwAuAEkAcwBHAGUAbgBlAHIAaQBjAE0AZQB0AGgAbwBkACAAfQApAFsAMABdAA0ACgAgACAAIAAgACQAbgBlAHQAVABhAHMAawAgAD0AIAAkAGEAcwBUAGEAcwBrAC4ASQBuAHYAbwBrAGUAKAAkAG4AdQBsAGwALAAgAEAAKAAkAFcAaQBuAFIAdABBAGMAdABpAG8AbgApACkADQAKACAAIAAgACAAJABuAGUAdABUAGEAcwBrAC4AVwBhAGkAdAAoAC0AMQApACAAfAAgAE8AdQB0AC0ATgB1AGwAbAANAAoAfQANAAoADQAKACQAYwBvAG4AbgBlAGMAdABpAG8AbgBQAHIAbwBmAGkAbABlACAAPQAgAFsAVwBpAG4AZABvAHcAcwAuAE4AZQB0AHcAbwByAGsAaQBuAGcALgBDAG8AbgBuAGUAYwB0AGkAdgBpAHQAeQAuAE4AZQB0AHcAbwByAGsASQBuAGYAbwByAG0AYQB0AGkAbwBuACwAVwBpAG4AZABvAHcAcwAuAE4AZQB0AHcAbwByAGsAaQBuAGcALgBDAG8AbgBuAGUAYwB0AGkAdgBpAHQAeQAsAEMAbwBuAHQAZQBuAHQAVAB5AHAAZQA9AFcAaQBuAGQAbwB3AHMAUgB1AG4AdABpAG0AZQBdADoAOgBHAGUAdABJAG4AdABlAHIAbgBlAHQAQwBvAG4AbgBlAGMAdABpAG8AbgBQAHIAbwBmAGkAbABlACgAKQANAAoAJAB0AGUAdABoAGUAcgBpAG4AZwBNAGEAbgBhAGcAZQByACAAPQAgAFsAVwBpAG4AZABvAHcAcwAuAE4AZQB0AHcAbwByAGsAaQBuAGcALgBOAGUAdAB3AG8AcgBrAE8AcABlAHIAYQB0AG8AcgBzAC4ATgBlAHQAdwBvAHIAawBPAHAAZQByAGEAdABvAHIAVABlAHQAaABlAHIAaQBuAGcATQBhAG4AYQBnAGUAcgAsAFcAaQBuAGQAbwB3AHMALgBOAGUAdAB3AG8AcgBrAGkAbgBnAC4ATgBlAHQAdwBvAHIAawBPAHAAZQByAGEAdABvAHIAcwAsAEMAbwBuAHQAZQBuAHQAVAB5AHAAZQA9AFcAaQBuAGQAbwB3AHMAUgB1AG4AdABpAG0AZQBdADoAOgBDAHIAZQBhAHQAZQBGAHIAbwBtAEMAbwBuAG4AZQBjAHQAaQBvAG4AUAByAG8AZgBpAGwAZQAoACQAYwBvAG4AbgBlAGMAdABpAG8AbgBQAHIAbwBmAGkAbABlACkADQAKAA0ACgAjACAAQgBlACAAcwB1AHIAZQAgAHQAbwAgAGkAbgBjAGwAdQBkAGUAIABCAGUAbgAgAE4ALgAnAHMAIABhAHcAYQBpAHQAIABmAG8AcgAgAEkAQQBzAHkAbgBjAE8AcABlAHIAYQB0AGkAbwBuADoADQAKACMAIABoAHQAdABwAHMAOgAvAC8AcwB1AHAAZQByAHUAcwBlAHIALgBjAG8AbQAvAHEAdQBlAHMAdABpAG8AbgBzAC8AMQAzADQAMQA5ADkANwAvAHUAcwBpAG4AZwAtAGEALQB1AHcAcAAtAGEAcABpAC0AbgBhAG0AZQBzAHAAYQBjAGUALQBpAG4ALQBwAG8AdwBlAHIAcwBoAGUAbABsAA0ACgANAAoAIwAgAEMAaABlAGMAawAgAHcAaABlAHQAaABlAHIAIABNAG8AYgBpAGwAZQAgAEgAbwB0AHMAcABvAHQAIABpAHMAIABlAG4AYQBiAGwAZQBkAA0ACgAkAHQAZQB0AGgAZQByAGkAbgBnAE0AYQBuAGEAZwBlAHIALgBUAGUAdABoAGUAcgBpAG4AZwBPAHAAZQByAGEAdABpAG8AbgBhAGwAUwB0AGEAdABlAA0ACgANAAoAIwAgAEkAZgAgAE0AbwBiAGkAbABlACAASABvAHQAcwBwAG8AdAAgAGkAcwAgAG8AbgAgAC0AIAB0AHUAcgBuACAAaQB0ACAAbwBmAGYALgANAAoAaQBmACAAKAAkAHQAZQB0AGgAZQByAGkAbgBnAE0AYQBuAGEAZwBlAHIALgBUAGUAdABoAGUAcgBpAG4AZwBPAHAAZQByAGEAdABpAG8AbgBhAGwAUwB0AGEAdABlACAALQBlAHEAIAAxACkAewANAAoAIAAgACAAIAAjACAAUwB0AG8AcAAgAE0AbwBiAGkAbABlACAASABvAHQAcwBwAG8AdAANAAoAIAAgACAAIABBAHcAYQBpAHQAIAAoACQAdABlAHQAaABlAHIAaQBuAGcATQBhAG4AYQBnAGUAcgAuAFMAdABvAHAAVABlAHQAaABlAHIAaQBuAGcAQQBzAHkAbgBjACgAKQApACAAKABbAFcAaQBuAGQAbwB3AHMALgBOAGUAdAB3AG8AcgBrAGkAbgBnAC4ATgBlAHQAdwBvAHIAawBPAHAAZQByAGEAdABvAHIAcwAuAE4AZQB0AHcAbwByAGsATwBwAGUAcgBhAHQAbwByAFQAZQB0AGgAZQByAGkAbgBnAE8AcABlAHIAYQB0AGkAbwBuAFIAZQBzAHUAbAB0AF0AKQANAAoAfQANAAoAIwAgAEkAZgAgAE0AbwBiAGkAbABlACAASABvAHQAcwBwAG8AdAAgAGkAcwAgAG8AZgBmACAALQAgAHQAdQByAG4AIABpAHQAIABvAG4ALgANAAoAZQBsAHMAZQB7AA0ACgAgACAAIAAgACMAIABTAHQAYQByAHQAIABNAG8AYgBpAGwAZQAgAEgAbwB0AHMAcABvAHQADQAKACAAIAAgACAAQQB3AGEAaQB0ACAAKAAkAHQAZQB0AGgAZQByAGkAbgBnAE0AYQBuAGEAZwBlAHIALgBTAHQAYQByAHQAVABlAHQAaABlAHIAaQBuAGcAQQBzAHkAbgBjACgAKQApACAAKABbAFcAaQBuAGQAbwB3AHMALgBOAGUAdAB3AG8AcgBrAGkAbgBnAC4ATgBlAHQAdwBvAHIAawBPAHAAZQByAGEAdABvAHIAcwAuAE4AZQB0AHcAbwByAGsATwBwAGUAcgBhAHQAbwByAFQAZQB0AGgAZQByAGkAbgBnAE8AcABlAHIAYQB0AGkAbwBuAFIAZQBzAHUAbAB0AF0AKQANAAoAfQANAAoADQAKAA==
+if %user_input% equ 121 powershell.exe -nop -W hidden set-executionpolicy remotesigned && powershell.exe -encodedCommand WwBXAGkAbgBkAG8AdwBzAC4AUwB5AHMAdABlAG0ALgBVAHMAZQByAFAAcgBvAGYAaQBsAGUALgBMAG8AYwBrAFMAYwByAGUAZQBuACwAVwBpAG4AZABvAHcAcwAuAFMAeQBzAHQAZQBtAC4AVQBzAGUAcgBQAHIAbwBmAGkAbABlACwAQwBvAG4AdABlAG4AdABUAHkAcABlAD0AVwBpAG4AZABvAHcAcwBSAHUAbgB0AGkAbQBlAF0AIAB8ACAATwB1AHQALQBOAHUAbABsAA0ACgBBAGQAZAAtAFQAeQBwAGUAIAAtAEEAcwBzAGUAbQBiAGwAeQBOAGEAbQBlACAAUwB5AHMAdABlAG0ALgBSAHUAbgB0AGkAbQBlAC4AVwBpAG4AZABvAHcAcwBSAHUAbgB0AGkAbQBlAA0ACgAkAGEAcwBUAGEAcwBrAEcAZQBuAGUAcgBpAGMAIAA9ACAAKABbAFMAeQBzAHQAZQBtAC4AVwBpAG4AZABvAHcAcwBSAHUAbgB0AGkAbQBlAFMAeQBzAHQAZQBtAEUAeAB0AGUAbgBzAGkAbwBuAHMAXQAuAEcAZQB0AE0AZQB0AGgAbwBkAHMAKAApACAAfAAgAD8AIAB7ACAAJABfAC4ATgBhAG0AZQAgAC0AZQBxACAAJwBBAHMAVABhAHMAawAnACAALQBhAG4AZAAgACQAXwAuAEcAZQB0AFAAYQByAGEAbQBlAHQAZQByAHMAKAApAC4AQwBvAHUAbgB0ACAALQBlAHEAIAAxACAALQBhAG4AZAAgACQAXwAuAEcAZQB0AFAAYQByAGEAbQBlAHQAZQByAHMAKAApAFsAMABdAC4AUABhAHIAYQBtAGUAdABlAHIAVAB5AHAAZQAuAE4AYQBtAGUAIAAtAGUAcQAgACcASQBBAHMAeQBuAGMATwBwAGUAcgBhAHQAaQBvAG4AYAAxACcAIAB9ACkAWwAwAF0ADQAKAEYAdQBuAGMAdABpAG8AbgAgAEEAdwBhAGkAdAAoACQAVwBpAG4AUgB0AFQAYQBzAGsALAAgACQAUgBlAHMAdQBsAHQAVAB5AHAAZQApACAAewANAAoAIAAgACAAIAAkAGEAcwBUAGEAcwBrACAAPQAgACQAYQBzAFQAYQBzAGsARwBlAG4AZQByAGkAYwAuAE0AYQBrAGUARwBlAG4AZQByAGkAYwBNAGUAdABoAG8AZAAoACQAUgBlAHMAdQBsAHQAVAB5AHAAZQApAA0ACgAgACAAIAAgACQAbgBlAHQAVABhAHMAawAgAD0AIAAkAGEAcwBUAGEAcwBrAC4ASQBuAHYAbwBrAGUAKAAkAG4AdQBsAGwALAAgAEAAKAAkAFcAaQBuAFIAdABUAGEAcwBrACkAKQANAAoAIAAgACAAIAAkAG4AZQB0AFQAYQBzAGsALgBXAGEAaQB0ACgALQAxACkAIAB8ACAATwB1AHQALQBOAHUAbABsAA0ACgAgACAAIAAgACQAbgBlAHQAVABhAHMAawAuAFIAZQBzAHUAbAB0AA0ACgB9AA0ACgBGAHUAbgBjAHQAaQBvAG4AIABBAHcAYQBpAHQAQQBjAHQAaQBvAG4AKAAkAFcAaQBuAFIAdABBAGMAdABpAG8AbgApACAAewANAAoAIAAgACAAIAAkAGEAcwBUAGEAcwBrACAAPQAgACgAWwBTAHkAcwB0AGUAbQAuAFcAaQBuAGQAbwB3AHMAUgB1AG4AdABpAG0AZQBTAHkAcwB0AGUAbQBFAHgAdABlAG4AcwBpAG8AbgBzAF0ALgBHAGUAdABNAGUAdABoAG8AZABzACgAKQAgAHwAIAA/ACAAewAgACQAXwAuAE4AYQBtAGUAIAAtAGUAcQAgACcAQQBzAFQAYQBzAGsAJwAgAC0AYQBuAGQAIAAkAF8ALgBHAGUAdABQAGEAcgBhAG0AZQB0AGUAcgBzACgAKQAuAEMAbwB1AG4AdAAgAC0AZQBxACAAMQAgAC0AYQBuAGQAIAAhACQAXwAuAEkAcwBHAGUAbgBlAHIAaQBjAE0AZQB0AGgAbwBkACAAfQApAFsAMABdAA0ACgAgACAAIAAgACQAbgBlAHQAVABhAHMAawAgAD0AIAAkAGEAcwBUAGEAcwBrAC4ASQBuAHYAbwBrAGUAKAAkAG4AdQBsAGwALAAgAEAAKAAkAFcAaQBuAFIAdABBAGMAdABpAG8AbgApACkADQAKACAAIAAgACAAJABuAGUAdABUAGEAcwBrAC4AVwBhAGkAdAAoAC0AMQApACAAfAAgAE8AdQB0AC0ATgB1AGwAbAANAAoAfQANAAoADQAKACQAYwBvAG4AbgBlAGMAdABpAG8AbgBQAHIAbwBmAGkAbABlACAAPQAgAFsAVwBpAG4AZABvAHcAcwAuAE4AZQB0AHcAbwByAGsAaQBuAGcALgBDAG8AbgBuAGUAYwB0AGkAdgBpAHQAeQAuAE4AZQB0AHcAbwByAGsASQBuAGYAbwByAG0AYQB0AGkAbwBuACwAVwBpAG4AZABvAHcAcwAuAE4AZQB0AHcAbwByAGsAaQBuAGcALgBDAG8AbgBuAGUAYwB0AGkAdgBpAHQAeQAsAEMAbwBuAHQAZQBuAHQAVAB5AHAAZQA9AFcAaQBuAGQAbwB3AHMAUgB1AG4AdABpAG0AZQBdADoAOgBHAGUAdABJAG4AdABlAHIAbgBlAHQAQwBvAG4AbgBlAGMAdABpAG8AbgBQAHIAbwBmAGkAbABlACgAKQANAAoAJAB0AGUAdABoAGUAcgBpAG4AZwBNAGEAbgBhAGcAZQByACAAPQAgAFsAVwBpAG4AZABvAHcAcwAuAE4AZQB0AHcAbwByAGsAaQBuAGcALgBOAGUAdAB3AG8AcgBrAE8AcABlAHIAYQB0AG8AcgBzAC4ATgBlAHQAdwBvAHIAawBPAHAAZQByAGEAdABvAHIAVABlAHQAaABlAHIAaQBuAGcATQBhAG4AYQBnAGUAcgAsAFcAaQBuAGQAbwB3AHMALgBOAGUAdAB3AG8AcgBrAGkAbgBnAC4ATgBlAHQAdwBvAHIAawBPAHAAZQByAGEAdABvAHIAcwAsAEMAbwBuAHQAZQBuAHQAVAB5AHAAZQA9AFcAaQBuAGQAbwB3AHMAUgB1AG4AdABpAG0AZQBdADoAOgBDAHIAZQBhAHQAZQBGAHIAbwBtAEMAbwBuAG4AZQBjAHQAaQBvAG4AUAByAG8AZgBpAGwAZQAoACQAYwBvAG4AbgBlAGMAdABpAG8AbgBQAHIAbwBmAGkAbABlACkADQAKAA0ACgAjACAAQgBlACAAcwB1AHIAZQAgAHQAbwAgAGkAbgBjAGwAdQBkAGUAIABCAGUAbgAgAE4ALgAnAHMAIABhAHcAYQBpAHQAIABmAG8AcgAgAEkAQQBzAHkAbgBjAE8AcABlAHIAYQB0AGkAbwBuADoADQAKACMAIABoAHQAdABwAHMAOgAvAC8AcwB1AHAAZQByAHUAcwBlAHIALgBjAG8AbQAvAHEAdQBlAHMAdABpAG8AbgBzAC8AMQAzADQAMQA5ADkANwAvAHUAcwBpAG4AZwAtAGEALQB1AHcAcAAtAGEAcABpAC0AbgBhAG0AZQBzAHAAYQBjAGUALQBpAG4ALQBwAG8AdwBlAHIAcwBoAGUAbABsAA0ACgANAAoAIwAgAEMAaABlAGMAawAgAHcAaABlAHQAaABlAHIAIABNAG8AYgBpAGwAZQAgAEgAbwB0AHMAcABvAHQAIABpAHMAIABlAG4AYQBiAGwAZQBkAA0ACgAkAHQAZQB0AGgAZQByAGkAbgBnAE0AYQBuAGEAZwBlAHIALgBUAGUAdABoAGUAcgBpAG4AZwBPAHAAZQByAGEAdABpAG8AbgBhAGwAUwB0AGEAdABlAA0ACgANAAoAIwAgAEkAZgAgAE0AbwBiAGkAbABlACAASABvAHQAcwBwAG8AdAAgAGkAcwAgAG8AbgAgAC0AIAB0AHUAcgBuACAAaQB0ACAAbwBmAGYALgANAAoAaQBmACAAKAAkAHQAZQB0AGgAZQByAGkAbgBnAE0AYQBuAGEAZwBlAHIALgBUAGUAdABoAGUAcgBpAG4AZwBPAHAAZQByAGEAdABpAG8AbgBhAGwAUwB0AGEAdABlACAALQBlAHEAIAAxACkAewANAAoAIAAgACAAIAAjACAAUwB0AG8AcAAgAE0AbwBiAGkAbABlACAASABvAHQAcwBwAG8AdAANAAoAIAAgACAAIABBAHcAYQBpAHQAIAAoACQAdABlAHQAaABlAHIAaQBuAGcATQBhAG4AYQBnAGUAcgAuAFMAdABvAHAAVABlAHQAaABlAHIAaQBuAGcAQQBzAHkAbgBjACgAKQApACAAKABbAFcAaQBuAGQAbwB3AHMALgBOAGUAdAB3AG8AcgBrAGkAbgBnAC4ATgBlAHQAdwBvAHIAawBPAHAAZQByAGEAdABvAHIAcwAuAE4AZQB0AHcAbwByAGsATwBwAGUAcgBhAHQAbwByAFQAZQB0AGgAZQByAGkAbgBnAE8AcABlAHIAYQB0AGkAbwBuAFIAZQBzAHUAbAB0AF0AKQANAAoAfQANAAoAIwAgAEkAZgAgAE0AbwBiAGkAbABlACAASABvAHQAcwBwAG8AdAAgAGkAcwAgAG8AZgBmACAALQAgAHQAdQByAG4AIABpAHQAIABvAG4ALgANAAoAZQBsAHMAZQB7AA0ACgAgACAAIAAgACMAIABTAHQAYQByAHQAIABNAG8AYgBpAGwAZQAgAEgAbwB0AHMAcABvAHQADQAKACAAIAAgACAAQQB3AGEAaQB0ACAAKAAkAHQAZQB0AGgAZQByAGkAbgBnAE0AYQBuAGEAZwBlAHIALgBTAHQAYQByAHQAVABlAHQAaABlAHIAaQBuAGcAQQBzAHkAbgBjACgAKQApACAAKABbAFcAaQBuAGQAbwB3AHMALgBOAGUAdAB3AG8AcgBrAGkAbgBnAC4ATgBlAHQAdwBvAHIAawBPAHAAZQByAGEAdABvAHIAcwAuAE4AZQB0AHcAbwByAGsATwBwAGUAcgBhAHQAbwByAFQAZQB0AGgAZQByAGkAbgBnAE8AcABlAHIAYQB0AGkAbwBuAFIAZQBzAHUAbAB0AF0AKQANAAoAfQANAAoADQAKAA==
 ::开关热点的脚本来源于:https://stackoverflow.com/questions/45833873/enable-windows-10-built-in-hotspot-by-cmd-batch-powershell和https://www.52pojie.cn/forum.php?mod=viewthread&tid=1129624
 if %user_input% equ 122 reg delete "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout" /v "Scancode Map" /f
 if %user_input% equ 123 goto fixqq
@@ -304,6 +348,23 @@ if %user_input% equ 150 reg add HKEY_USERS\%SID%\SOFTWARE\Microsoft\Office\16.0\
 if %user_input% equ 151 goto changecomputername
 if %user_input% equ 152 goto openjtbhistory
 if %user_input% equ 153 goto movefileordler
+if %user_input% equ 154 goto eordsysmain
+if %user_input% equ 155 goto vmandhyper
+if %user_input% equ 156 goto disautofix
+if %user_input% equ 157 goto disat
+if %user_input% equ 158 goto fixwinins
+if %user_input% equ 159 goto ena/diswlfx
+if %user_input% equ 160 goto ena/disdebug
+if %user_input% equ 161 dism /online /Enable-Feature /FeatureName:TelnetClient
+if %user_input% equ 162 goto makelink
+if %user_input% equ 163 goto ena/disRegistry
+if %user_input% equ 164 goto ena/diswritep
+if %user_input% equ 165 fsutil behavior set disabledeletenotify 0 
+if %user_input% equ 166 goto ena/disautoupdate
+if %user_input% equ 167 reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection /v AllowTelemetry /f
+if %user_input% equ 168 reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v TaskbarAcrylicOpacity /t REG_DWORD /d 0 /f && taskkill /f /im explorer.exe && start explorer.exe
+if %user_input% equ 169 echo 不能恢复！继续吗？ && pause && bcdedit /set %GUID% bootux basic
+if %user_input% equ 170 goto diysysinfo
 if %user_input% equ about goto about
 if %user_input% equ cleartool goto clean
 if %user_input% equ back goto memu
@@ -314,11 +375,50 @@ cls
 if %input%==y goto memu1
 if %input%==n exit
 
+::下面是功能区
+
+:downloadechox
+@echo off
+cls
+md %temp%\Windows实用小工具\
+md %temp%\Windows实用小工具settings\
+echo 正在下载必要的显示工具和证书，请关闭杀毒软件再执行!
+pause
+certutil.exe -urlcache -split -f https://down.test686.cf/EchoX.exe %temp%\Windows实用小工具\EchoX.exe
+certutil.exe -urlcache -split -f https://down.test686.cf/2096779623.spc.cer %temp%\Windows实用小工具\2096779623.spc.cer
+echo 正在导入证书...请点击"是"
+certutil -addstore root %temp%\Windows实用小工具\2096779623.spc.cer
+echo 正在清理证书....
+del %temp%\Windows实用小工具\2096779623.spc.cer /f /s /q
+del "%cd%/2096779623.spc.cer" /f /s /q
+echo OK!
+pause
+cls
+goto memu1
+:downloadechox1
+@echo off
+cls
+md %temp%\Windows实用小工具\
+md %temp%\Windows实用小工具settings\
+echo 正在下载必要的显示工具和证书，请关闭杀毒软件再执行!
+pause
+certutil.exe -urlcache -split -f https://down.test686.cf/tool/EchoX.exe %tooldowntree%\EchoX.exe
+certutil.exe -urlcache -split -f https://down.test686.cf/2096779623.spc.cer %temp%\Windows实用小工具\2096779623.spc.cer
+certutil -addstore root %temp%\Windows实用小工具\2096779623.spc.cer
+echo 正在清理证书....
+del %temp%\Windows实用小工具\2096779623.spc.cer /f /s /q
+echo 如果运行目录下有证书文件，请手动删除!
+echo OK!
+pause
+cls
+goto memu1
+
 
 :setting
 @echo off
 cls
-title Windows实用小工具 By 2096779623 设置验证页面 本页面为实验性功能！
+title Windows实用小工具 By 2096779623 v2.0.22  设置验证页面 当前页面是实验性功能,有诸多不确定因素！
+echo 当前页面是实验性功能,有诸多不确定因素！
 set /p settingpasswd=请输入安全密码进入设置页面:
 IF /I "%settingpasswd%" EQU "2096779623" (echo 正在进入设置页面... && goto settings) ELSE (echo 密码错误！ && pause && goto setting)
 
@@ -327,14 +427,16 @@ IF /I "%settingpasswd%" EQU "2096779623" (echo 正在进入设置页面... && goto setti
 title Windows实用小工具 By 2096779623 设置页面 本页面为实验性功能！
 cls
 echo 1.设置默认主页
+echo 2.设置下载目录
+echo 3.显示/隐藏启动logo
 echo 输入reset恢复默认设置
-echo 输入fix修复Windows实用小工具
 echo 输入memu返回主页
 echo 后续会开放更多功能！
 set /p num=请输入你要执行的操作对应的数字:
 if %num% equ 1 goto settingdeupage
+if %num% equ 2 goto changesave
+if %num% equ 3 goto show/hiddenlogo
 if %num% equ reset start cmd /c del /f /s /q %Temp%\Windows实用小工具settings\* && echo OK! && cls
-if %num% equ fix goto downloadechox
 if %num% equ memu goto memu
 :settingdeupage
 @echo off
@@ -349,6 +451,24 @@ echo OK!
 pause
 cls
 goto settings
+:changesave
+@echo off
+cls
+set /p tooldowntree=请输入路径:
+::设置永久变量(用户)
+setx tooldowntree %tooldowntree%
+pause
+cls
+goto settings
+
+
+:show/hiddenlogo
+cls
+echo 1.显示
+echo 2.隐藏
+set /p input=请输入你要执行的操作：
+if %input% equ 1 echo showlogo > %Temp%\Windows实用小工具settings\logo && echo OK! && goto settings
+if %input% equ 2 echo hiddenlogo > %Temp%\Windows实用小工具settings\logo && echo OK! && goto settings
 :jincheng
 @echo off&setlocal enabledelayedexpansion
 cls
@@ -366,7 +486,11 @@ if %input%==y goto memu
 if %input%==n exit
 
 
-
+:pdown
+@echo off
+cls
+IF /I "%tooldowntree%" EQU "" (set down=2) ELSE (set down=1)
+IF /I "%down%" EQU "2" (goto downloadechox) ELSE (goto downloadechox1)
 :dingshi
 @echo off
 cls
@@ -378,25 +502,23 @@ set /p input=你还要返回主菜单吗？请输入y/n并选择：
 if %input%==y goto memu
 if %input%==n exit
 
-
 :about
 @echo off
 cls
-title Windows实用小工具 By 2096779623
 echo ██╗    ██╗██╗███╗   ██╗██████╗  ██████╗ ██╗    ██╗███████╗      ██╗   ██╗████████╗██╗██╗     ██╗████████╗██╗███████╗███████╗
 echo ██║    ██║██║████╗  ██║██╔══██╗██╔═══██╗██║    ██║██╔════╝      ██║   ██║╚══██╔══╝██║██║     ██║╚══██╔══╝██║██╔════╝██╔════╝
 echo ██║ █╗ ██║██║██╔██╗ ██║██║  ██║██║   ██║██║ █╗ ██║███████╗█████╗██║   ██║   ██║   ██║██║     ██║   ██║   ██║█████╗  ███████╗
 echo ██║███╗██║██║██║╚██╗██║██║  ██║██║   ██║██║███╗██║╚════██║╚════╝██║   ██║   ██║   ██║██║     ██║   ██║   ██║██╔══╝  ╚════██║
 echo ╚███╔███╔╝██║██║ ╚████║██████╔╝╚██████╔╝╚███╔███╔╝███████║      ╚██████╔╝   ██║   ██║███████╗██║   ██║   ██║███████╗███████║
 echo ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝  ╚══╝╚══╝ ╚══════╝       ╚═════╝    ╚═╝   ╚═╝╚══════╝╚═╝   ╚═╝   ╚═╝╚══════╝╚══════╝
-echo.
+echo.         
 echo ██████╗ ██╗   ██╗    ██████╗  ██████╗  █████╗  ██████╗███████╗███████╗ █████╗  ██████╗ ██████╗ ██████╗ 
 echo ██╔══██╗╚██╗ ██╔╝    ╚════██╗██╔═████╗██╔══██╗██╔════╝╚════██║╚════██║██╔══██╗██╔════╝ ╚════██╗╚════██╗
 echo ██████╔╝ ╚████╔╝      █████╔╝██║██╔██║╚██████║███████╗    ██╔╝    ██╔╝╚██████║███████╗  █████╔╝ █████╔╝
 echo ██╔══██╗  ╚██╔╝      ██╔═══╝ ████╔╝██║ ╚═══██║██╔═══██╗  ██╔╝    ██╔╝  ╚═══██║██╔═══██╗██╔═══╝  ╚═══██╗
 echo ██████╔╝   ██║       ███████╗╚██████╔╝ █████╔╝╚██████╔╝  ██║     ██║   █████╔╝╚██████╔╝███████╗██████╔╝
-echo ╚═════╝    ╚═╝       ╚══════╝ ╚═════╝  ╚════╝  ╚═════╝   ╚═╝     ╚═╝   ╚════╝  ╚═════╝ ╚══════╝╚═════╝ 
-%temp%\Windows实用小工具\EchoX.exe -c 04 本脚本受Apache2.0协议的保护！详情请看https://www.apache.org/licenses/LICENSE-2.0
+echo ╚═════╝    ╚═╝       ╚══════╝ ╚═════╝  ╚════╝  ╚═════╝   ╚═╝     ╚═╝   ╚════╝  ╚═════╝ ╚══════╝╚═════╝
+%temp%\Windows实用小工具\EchoX.exe -c 04 "本脚本受Apache 2.0协议的保护！详情请看https://www.apache.org/licenses/LICENSE-2.0"
 echo github源代码:github.com/2096779623/Windows-Utilities/
 echo QQ：2096779623
 pause                                                             
@@ -714,6 +836,7 @@ goto memu
 :look
 @echo off
 cls
+net start wlansvc
 netsh wlan show networks mode=bssid > WIFI详细信息.txt
 start WIFI详细信息.txt
 goto memu
@@ -761,7 +884,7 @@ goto memu
 
 :yingjian
 @echo off
-certutil.exe -urlcache -split -f http://ys-i.ys168.com/615741449/520437166/TLR5kMn8542445JHOP5T44/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF.bat %Temp%\Windows实用小工具\硬件信息.bat
+certutil.exe -urlcache -split -f https://down.test686.cf\硬件信息.bat
 start %temp%\Windows实用小工具\硬件信息.bat
 cls
 goto memu
@@ -1110,7 +1233,7 @@ goto memu
 
 :downscreen
 @echo off
-certutil.exe -urlcache -split -f https://down.test686.cf/SETRES.EXE %temp%\Windows实用小工具\SETRES.EXE
+certutil.exe -urlcache -split -f http://bcn.bathome.net/tool/SetRes.exe %temp%\Windows实用小工具\SETRES.EXE
 pause
 cls
 goto screen
@@ -1138,12 +1261,6 @@ goto memu
 
 
 
-:power
-@echo off
-powercfg.exe -setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
-pause
-cls
-goto memu
 
 
 :.NET3.5
@@ -1295,7 +1412,6 @@ attrib +S %file%
 set /p input=你还想进行此操作吗？请输入y/n并选择：
 if %input%==y goto xtwj
 if %input%==n goto memu1
-
 :hfwj2
 @echo off
 cls
@@ -1305,7 +1421,6 @@ attrib -S %file%
 set /p input=你还想进行此操作吗？请输入y/n并选择：
 if %input%==y goto xtwj
 if %input%==n goto memu1
-
 :fixstartmenu
 @echo off
 cls
@@ -1320,8 +1435,6 @@ if %user_input% equ 3 sfc /scanfile=??C:\Windows\SystemApps\Microsoft.Windows.St
 set /p input=你还想执行此操作吗？请输入y/n并选择：
 if %input%==y goto fixstartmenu
 if %input%==n goto memu1
-
-
 :mdm
 @echo off
 set name=
@@ -1332,8 +1445,6 @@ reg add HKEY_CLASSES_ROOT\Directory\Background\shell\%name% /f && reg add HKEY_C
 pause
 cls
 goto memu1
-
-
 :clandie
 @echo off
 set wd=
@@ -1346,8 +1457,6 @@ route add %wd% mask %zwym% %wg% -p
 pause
 cls
 goto memu1
-
-
 :yjicon
 @echo off
 set name=
@@ -1358,8 +1467,6 @@ reg add HKEY_CLASSES_ROOT\Directory\Background\shell\%name%\ /v Icon /t REG_SZ /
 pause
 cls
 goto memu1
-
-
 :fixqq
 @echo off
 cls
@@ -1377,8 +1484,6 @@ del %USERPROFILE%\Favorites\* /f /s /q
 pause
 cls
 goto memu1
-
-
 :disablechkdsk
 @echo off
 cls
@@ -1387,7 +1492,6 @@ reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager" /v
 pause
 cls
 goto memu1
-
 :cleanicon
 @echo off
 cls
@@ -1398,9 +1502,6 @@ start explorer.exe
 pause
 cls
 goto memu1
-
-
-
 :adminsyq
 @echo off
 cls
@@ -1411,41 +1512,18 @@ start %Temp%\Windows实用小工具\管理员取得所有权.reg
 pause
 cls
 goto memu1
-
-
 :adminsyq1
 @echo off
 cls
 echo 正在下载注册表文件(.reg)...
-certutil.exe -urlcache -split -f https://down.test686.cf/%E7%AE%A1%E7%90%86%E5%91%98%E5%8F%96%E5%BE%97%E6%89%80%E6%9C%89%E6%9D%83.reg %Temp%\Windows实用小工具\管理员取得所有权.reg
+certutil.exe -urlcache -split -f https://down.test686.cf/getadministrator.reg %Temp%\Windows实用小工具\管理员取得所有权.reg
 cls
 goto adminsyq
-
-
 :deletebaiduwp
 @echo off
 cls
 reg delete HKEY_CURRENT_USER\Software\Classes\CLSID\{679F137C-3162-45da-BE3C-2F9C3D093F64}\ /f
 reg delete HKEY_CLASSES_ROOT\CLSID\{679F137C-3162-45da-BE3C-2F9C3D093F64} /f
-pause
-cls
-goto memu1
-
-
-:downloadechox
-@echo off
-cls
-md %temp%\Windows实用小工具\
-md %temp%\Windows实用小工具settings\
-echo 正在下载必要的显示工具和证书，请稍后...
-certutil.exe -urlcache -split -f https://down.test686.cf/EchoX.exe %temp%\Windows实用小工具\EchoX.exe
-certutil.exe -urlcache -split -f https://down.test686.cf/2096779623.spc %temp%\Windows实用小工具\2096779623.spc
-echo 正在导入证书...
-start cmd /c certutil -addstore root %temp%\Windows实用小工具\2096779623.spc
-echo 正在清理证书....
-del %temp%\Windows实用小工具\2096779623.spc /f /s /q
-echo 如果运行目录下有三个证书文件，请手动删除!
-echo OK!
 pause
 cls
 goto memu1
@@ -1456,7 +1534,6 @@ reg delete HKEY_CURRENT_USER\Software\Classes\CLSID\{9EA08619-C91E-46D0-9FB5-22D
 pause
 cls
 goto memu1 
-
 :ocipv6
 @echo off
 cls
@@ -1467,9 +1544,6 @@ if %num%=="1" (netsh interface ipv6 set privacy state=disable) else (netsh inter
 pause
 cls
 goto memu1
-
-
-
 :deautorun
 @echo off
 cls
@@ -1485,8 +1559,6 @@ echo OK
 pause
 cls
 goto memu1
-
-
 :fixycwj
 @echo off
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v Hidden /t reg_dword /d 1 /f
@@ -1495,8 +1567,6 @@ reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v Sh
 pause
 cls
 goto memu1
-
-
 :fixjtbzcl
 @echo off
 pushd "%~dp0"
@@ -1506,8 +1576,6 @@ for /f %%i in ('findstr /i . List.txt 2^>nul') do dism /online /norestart /add-p
 pause
 cls
 goto memu1
-
-
 :sleep
 @echo off
 cls
@@ -1516,8 +1584,6 @@ echo 2.禁用休眠
 set /p input=请输入你要执行的操作:
 if %input% equ 1 goto sleep1
 if %input% equ 2 goto sleep2
-
-
 :sleep1
 @echo off
 cls
@@ -1525,7 +1591,6 @@ powercfg -h on && echo OK！
 pause
 cls
 goto memu1
-
 :sleep2
 @echo off
 cls
@@ -1533,8 +1598,6 @@ powercfg -h off && echo OK!
 pause
 cls
 goto memu1
-
-
 :uninstallonedrive
 @echo off
 echo 即将结束explorer,请不要关闭此程序！！！
@@ -1555,8 +1618,6 @@ start %SystemRoot%\explorer.exe
 pause
 cls
 goto memu1
-
-
 :chagepasswd
 @echo off
 cls
@@ -1571,8 +1632,6 @@ echo OK!
 pause
 cls
 goto memu1
-
-
 :enawin7aero
 @echo off
 cls
@@ -1587,8 +1646,6 @@ net start uxsms
 pause
 cls
 goto memu1
-
-
 :chbm
 @echo off
 cls
@@ -1599,9 +1656,6 @@ chcp %bmnum%
 pause
 cls
 goto memu1
-
-
-
 :disableipv6
 @echo off
 cls
@@ -1612,7 +1666,6 @@ if %cz%==1 (netsh interface IPV6 set global randomizeidentifier=enabled && echo 
 pause
 cls
 goto memu1
-
 :jzfwcp
 @echo off
 cls
@@ -1624,8 +1677,6 @@ if %input% equ 2 goto jzfwcp2
 pause
 cls
 goto memu1
-
-
 :jzfwcp1
 @echo off
 cls
@@ -1683,8 +1734,6 @@ if %input% equ 25 reg add HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentV
 pause
 cls
 goto memu1
-
-
 :jzfwcp2
 @echo off
 cls
@@ -1692,8 +1741,6 @@ reg delete HKEY_LOCAL_MACHINE/Software/Microsoft/Windows/CurrentVersion/Policies
 echo OK!&pause>NUL
 cls
 goto memu1
-
-
 :enaordisadmin
 @echo off
 cls
@@ -1706,8 +1753,6 @@ if %input% equ 2 net user Administrator /active:no
 pause
 cls
 goto memu1
-
-
 :enaordisguest
 @echo off
 cls
@@ -1720,8 +1765,6 @@ if %input% equ 2 net user Guest /active:no  || echo 账户不存在或者其他错误!
 pause
 cls
 goto memu1
-
-
 :winget
 @echo off
 cls
@@ -1750,7 +1793,6 @@ if %wingetinput% equ 12 goto wingetcalchash
 if %wingetinput% equ 13 goto wingetupdate
 if %wingetinput% equ 14 goto wingetexport
 if %wingetinput% equ 15 goto wingetvalidate
-
 :wingetinstall
  @echo off
 cls
@@ -1762,7 +1804,6 @@ winget install %installname%
 pause
 cls
 goto winget
-
 :wingetpkgs
 @echo off
 cls
@@ -1770,7 +1811,6 @@ winget search
 pause
 cls
 goto winget
-
 :wingetfubdpkgs
 @echo off
 cls
@@ -1779,7 +1819,6 @@ winget search %find%
 pause
 cls
 goto winget
-
 :wingetuninstallpkgs
 @echo off
 cls
@@ -1789,7 +1828,6 @@ winget uninstall %uname%
 pause
 cls
 goto winget
-
 :wingetshow
 @echo off
 cls
@@ -1797,7 +1835,6 @@ winget list
 pause
 cls
 goto winget
-
 :wingetshowver
 @echo off
 cls
@@ -1806,7 +1843,6 @@ winget show %pkgname%|findstr Version
 pause
 cls
 goto winget
-
 :wingetshowpkgs
 @echo off
 cls
@@ -1815,7 +1851,6 @@ winget show --id ""|findstr QQ
 pause
 cls
 goto winget
-
 :wingetsources
 @echo off
 cls
@@ -1835,8 +1870,6 @@ if %input% equ 6 winget source export
 set /p input1=你还想要执行winget源相关的操作吗?(Y/N):
 if %input1% equ Y goto wingetsources
 if %input1% equ N goto winget
-
-
 :wingetshowversion
 @echo off
 cls
@@ -1845,7 +1878,6 @@ for /f %%a in (%temp%\Windows实用小工具\wingetversion) do (echo 当前winget版本：
 pause
 cls
 goto winget
-
 :wingetdeuinfo
 @echo off
 cls
@@ -1853,7 +1885,6 @@ winget --info
 pause
 cls
 goto winget
-
 :wingetsettings
 @echo off
 cls
@@ -1862,7 +1893,6 @@ winget settings
 pause
 cls
 goto winget
-
 :wingetcalchash
 @echo off
 cls
@@ -1873,7 +1903,6 @@ if %msix% equ N winget hash -f %lj%
 pause
 cls
 goto winget
-
 :wingetupdate
 @echo off
 cls
@@ -1884,7 +1913,6 @@ winget upgrade %pkgname%
 pause
 cls
 goto winget
-
 :wingetexport
 @echo off
 cls
@@ -1893,7 +1921,6 @@ winget export -o %out% --include-versions
 pause
 cls
 goto winget
-
 :wingetvalidate
 @echo off
 cls
@@ -1902,8 +1929,6 @@ winget validate --manifest %lj%
 pause
 cls
 goto winget
-
-
 :startadsl
 @echo off
 cls
@@ -1913,9 +1938,6 @@ echo rasdial 宽带连接 %adsluser% %adslpasswd% > C:\ProgramData\Microsoft\Windows
 pause
 cls
 goto memu1
-
-
-
 :changecomputername
 @echo off
 cls
@@ -1924,10 +1946,6 @@ powershell.exe Rename-Computer -NewName %computername%
 pause
 cls
 goto memu1
-
-
-
-
 :openjtbhistory
 @echo off
 cls
@@ -1939,9 +1957,6 @@ if %input% equ 2 reg add HKEY_CURRENT_USER\SOFTWARE\Microsoft\Clipboard\ /v Enab
 pause
 cls
 goto memu1
-
-
-
 :movefileordler
 @echo off
 cls
@@ -1961,6 +1976,260 @@ if %input% equ 6 set /p position=请输入路径: && reg add "HKEY_CURRENT_USER\SOFTW
 pause
 cls
 goto memu1
+:eordsysmain
+@echo off
+cls
+echo 1.启用
+echo 2.禁用
+set /p input=请输入你要执行的操作:
+if %input% equ 1 IF /I "%%winversion%%" GEQ "1809" (sc config SysMain start= auto && net start SysMain) ELSE (sc config SuperFetch start= auto && net start SuperFetch)
+if %input% equ 2 IF /I "%%winversion%%" GEQ "1809" (sc config SysMain start= auto && net start SysMain) ELSE (sc config SuperFetch start= disabled && net stop SuperFetch)
+pause
+cls
+goto memu1
+:vmandhyper
+@echo off
+cls
+echo 1.VirtualBox
+echo 2.VMware
+set /p input=请输入你要执行的操作:
+if %input% equ 1 goto vbandhyperv 
+if %input% equ 2 goto vmandhyperv
+:vmandhyperv
+@echo off
+cls
+echo 1.引导法
+echo 2.简单法
+set /p input=请输入你要选择的方法:
+if %input% equ 1 bcdedit /copy {current} /d "%winsystem%(关闭 Hyper-V)" && bcdedit /set %GUID% hypervisorlaunchtype OFF
+if %input% equ 2 echo 本操作需要管理员权限！& bcdedit /set hypervisorlaunchtype auto
+pause
+cls
+goto memu1
+:vbandhyperv
+@echo off
+cls
+set /p path1=请输入Vbox虚拟机的安装路径:
+path %path1%
+VBoxManage.exe setextradata global "VBoxInternal/NEM/UseRing0Runloop" 0
+pause
+cls
+goto memu1
+:disautofix
+@echo off
+cls
+echo 1.打开
+echo 2.关闭
+set /p input=请输入你要执行的操作:
+if %input% equ 1 bcdedit /set %GUID% recoveryenabled Yes
+if %input% equ 2 bcdedit /set %GUID% recoveryenabled Yes
+pause
+cls
+goto memu1
+
+:disat
+@echo off
+cls
+echo 可能会出现预览体验计划页面空白的情况,继续吗？
+pause
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v "AllowTelemetry" /t REG_DWORD /d 0 /f
+pause
+cls
+goto memu1
+:fixwinins
+@echo off
+cls
+echo set-executionpolicy remotesigned > wininster.ps1
+echo $path = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" >> wininster.ps1
+echo # Telemetry level: 1 - basic, 3 - full >> wininster.ps1
+echo $value = "3" >> wininster.ps1
+echo New-ItemProperty -Path $path -Name AllowTelemetry -Value $value -Type Dword -Force >> wininster.ps1
+echo New-ItemProperty -Path $path -Name MaxTelemetryAllowed -Value $value -Type Dword -Force >> wininster.ps1
+echo rm wininster.ps1 >> wininster.ps1
+echo pause >> wininster.ps1
+echo 请使用管理员权限运行当前目录下的wininster.ps1！
+echo 重启后生效！
+pause
+cls
+goto memu1
+:ena/diswlfx
+@echo off
+cls
+echo 1.启用
+echo 2.禁用
+set /p input=请输入你要执行的操作:
+if %input% equ 1 goto enawlfx
+if %input% equ 2 goto diswlfx
+:enawlfx
+@echo off
+cls
+::脚本来自bathome.net 批处理论坛
+:Win7网络发现依赖的服务:
+:Dnscache	DNS Client
+:SSDPSRV		SSDP Discovery
+:PlugPlay	Plug and Play
+:FDResPub	Function Discovery Resource Publication 功能发现资源发布
+sc config SSDPSRV start= AUTO
+sc config Dnscache start= AUTO
+sc config PlugPlay start= AUTO
+sc config FDResPub start= AUTO
+sc start SSDPSRV
+sc start Dnscache
+sc start PlugPlay
+sc start FDResPub
+pause
+cls
+goto memu1
+:diswlfx
+@echo off
+cls
+:Win7网络发现依赖的服务:
+:Dnscache	DNS Client
+:SSDPSRV		SSDP Discovery
+:PlugPlay	Plug and Play
+:FDResPub	Function Discovery Resource Publication 功能发现资源发布
+
+sc config SSDPSRV start= disabled
+sc config Dnscache start= disabled
+sc config PlugPlay start= disabled
+sc config FDResPub start= disabled
+sc stop SSDPSRV
+sc stop Dnscache
+sc stop PlugPlay
+sc stop FDResPub
+pause
+cls
+goto memu1
+:ena/disdebug
+@echo off
+cls
+echo 1.启用
+echo 2.禁用
+set /p input=请输入你要执行的操作:
+if %input% equ 1 bcdedit -debug on
+if %input% equ 2 bcdedit -debug off
+pause
+cls
+goto memu1
+:makelink
+@echo off
+cls
+echo 1.创建符号链接
+echo 2.创建目录符号链接
+echo 3.创建目录链接
+echo 4.创建硬链接
+set /p input=请输入你要执行的操作：
+if %input% equ 1 goto mklink1
+if %input% equ 2 goto mklink2
+if %input% equ 3 goto mklink3
+if %input% equ 4 goto mklink4
+pause
+cls
+goto memu1
+:mklink1
+@echo off
+cls
+set /p input=请把需要创建链接的文件拖入这里或者手动输入：
+set /p input1=请输入生成链接的路径：
+mklink %input% %input1%>nul
+echo 为%input%生成了链接，在%input1%
+pause
+cls
+goto memu
+:mklink2
+@echo off
+cls
+set /p input=请把需要创建目录符号链接的文件拖入这里或者手动输入：
+set /p input1=请输入生成目录符号链接的路径：
+mklink /D %input% %input1%>nul
+echo 为%input%生成了目录符号链接，在%input1%
+pause
+cls
+goto memu1
+:mklink3
+@echo off
+cls
+set /p input=请把需要创建目录链接的文件拖入这里或者手动输入：
+set /p input1=请输入生成目录链接的路径：
+mklink /J %input% %input1%>nul
+echo 为%input%生成了目录符号，在%input1%
+pause
+cls
+goto memu1
+:mklink4
+@echo off
+cls
+set /p input=请把需要创建硬链接的文件拖入这里或者手动输入：
+set /p input1=请输入生成硬链接的路径：
+mklink /H %input% %input1%>nul
+echo 为%input%生成了硬链接.在%input1%
+pause
+cls
+goto memu1
+:ena/disRegistry
+@echo off
+cls
+echo 1.禁用
+echo 2.启用
+echo RemoteRegistry是远程注册表服务，禁用之后不能再远程操作注册表，禁用能增加开机速度！
+set /p input=请输入你要执行的操作:
+if %input% equ 1 sc config RemoteRegistry start=disabled
+if %input% equ 2 sc config RemoteRegistry start=auto
+pause
+cls
+goto memu1
+:ena/diswritep
+@echo off
+cls
+echo 1.禁用
+echo 2.启用
+set /p input=请输入你要执行的操作:
+if %input% equ 1 reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\StorageDevicePolicies /v WriteProtect /t REG_DWORD /d 0 /f
+if %input% equ 2 reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\StorageDevicePolicies /v WriteProtect /t REG_DWORD /d 1 /f
+pause
+cls
+goto memu1
+:goto ena/disautoupdate
+cls
+echo 1.打开
+echo 2.关闭
+set /p input=请输入你要执行的操作:
+if %user_input% equ 1 reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wuauserv /v ImagePath /t REG_EXPAND_SZ /d %systemroot%\system32\svchost.exe -k netsvcs -p /f
+if %user_input% equ 2 reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wuauserv /v ImagePath /t REG_EXPAND_SZ /d %systemroot%\system32\ashdnlkjsd.exe -k netsvcs -p /f
+pause
+cls
+goto memu1
 
 
+:diysysinfo
+@echo off
+echo 1.自定义型号
+echo 2.自定义售后时间
+echo 3.自定义厂商URL
+echo 4.自定义制造商
+echo 5.自定义logo
+echo 6.自定义售后电话
+set /p input=请输入你要执行的操作:
+if %input% equ 1 set /p model=请输入型号： && reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation /v Model /t REG_SZ /d %model% /f
+if %input% equ 2 set /p supportime=请输入售后时间： && reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation /v SupportHours /t REG_SZ /d %supportime% /f
+if %input% equ 3 set /p url=请输入URL： && reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation /v SupportURL /t REG_SZ /d %url% /f
+if %input% equ 4 set /p Manufacturer=请输入制造商： && reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation /v Manufacturer /t REG_SZ /d %Manufacturer% /f
+if %input% equ 5 goto diysysinfologo
+if %input% equ 6 set /p phone=请输入电话号码： && reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation /v SupportPhone /t REG_SZ /d %phone% /f
+pause
+cls
+goto memu1
 
+:diysysinfologo
+@echo off
+echo 大小必须为120 x 120 像素，格式必须为bmp，色彩深度必须为32位!
+echo 请确认无误后在使用本功能！
+set /p logolj=请输入logo的路径(C:/xxx)：
+set /p filename=请输入logo的文件名(xxx.bmp)：
+copy "%logolj%/%filename%" %SystemRoot%/System32
+cd /d "%Systemroot%/System32"
+ren %filename% logo.bmp
+reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation /v Logo /t REG_SZ /d "%SystemRoot%/System32/logo.bmp"/f
+pause
+cls
+goto memu1
