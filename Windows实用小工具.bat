@@ -53,7 +53,7 @@ for /f %%a in (%Temp%\Windows实用小工具settings\deupage) do (if %%a==1 (goto mem
 IF EXIST "%temp%\Windows实用小工具\EchoX.exe" (cls) ELSE (goto downloadechox)
 goto memu
 :memu
-title Windows实用小工具 By 2096779623 v2.0.2.22
+title Windows实用小工具 By 2096779623 v2.0.2.22 本程序造成的一切后果由使用者承担，作者概不负责！
 cls
 @echo off
 for /f "tokens=4*" %%A in ('ver') do set ver=%%A
@@ -209,16 +209,22 @@ if %input%==n exit
 :memu1
 cls
 title Windows实用小工具 By 2096779623 v2.0.2.22
+::获取用户SID
 for /f "tokens=*" %%a in ('REG QUERY "HKEY_USERS" /s /v USERNAME ^| find /i "Volatile Environment"') do (
     for /f "tokens=*" %%1 in ('REG QUERY "%%a" /v USERNAME ^| find /i "%username%"') do (
     ::echo %%1
     SET "SID=%%a"
     )
 )
-::取出SID
 for /f "tokens=1-4,* delims=\" %%i in ('echo %SID%') do (
 SET "SID=%%j"
 )
+::获取GUID
+bcdedit /enum|findstr resumeobject > GUID.txt && for /f "skip=1 tokens=2" %%A in (GUID.txt) do set GUID=%%A 
+::删除临时文件
+del /f /s /q GUID.txt
+cls
+::获取版本号
 for /f "tokens=4*" %%A in ('ver') do set ver=%%A
 IF "%ver%" GEQ "5.1.*]" (echo 检测到当前是XP系统,大部分功能不可用!)
 IF "%ver%" GEQ "6.*]" (echo 检测到当前是Win7或Vista系统,部分功能不可用!)
@@ -227,6 +233,7 @@ for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\Curren
 for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ProductName"') do echo 当前系统:%%A %%B 版本:%winversion% %PROCESSOR_ARCHITECTURE%
 echo 程序运行目录:%CD%
 echo 当前时间及日期:%date:~0,4%年%date:~5,2%月%date:~8,2%日%time:~0,2%点%time:~3,2%分
+::判断网络状态
 ping -n 1 www.baidu.com>nul 2>nul&&echo 当前网络状态:已联网||echo 当前网络状态:未联网
 echo 当前用户名:%username%
 echo 输入"cleartool"即可清除下载的组件
@@ -250,7 +257,7 @@ echo 112.文件/文件夹选项                       132.删除windows资源管理器上方的酷
 echo 113.修改按下电源按钮时"无操作"            133.打开/关闭临时IPV6地址                     153.修改此电脑上方六个文件夹的位置
 echo 114.添加按住Ctrl,再按两次ScrollLock键蓝屏 134.预防autorun病毒(U盘)                      154.启用/禁用SuperFetch/Sysmain(Win10)
 echo 115.修复开始菜单无法打开                  135.修复在文件夹选项中无法显示隐藏文件        155.虚拟机与hyper-V共存
-echo 116.强制更新组策略                        136.修复win10家庭版没有组策略
+echo 116.强制更新组策略                        136.修复win10家庭版没有组策略                 156.打开/关闭自动修复(win10)
 echo 117.添加一个桌面右键菜单                  137.移除SkyDrivePro
 echo 118.公司网络和互联网同时访问              138.启用/禁用休眠
 echo 119.给右键菜单添加图标	                  139.卸载OneDrive
@@ -313,6 +320,7 @@ if %user_input% equ 152 goto openjtbhistory
 if %user_input% equ 153 goto movefileordler
 if %user_input% equ 154 goto eordsysmain
 if %user_input% equ 155 goto vmandhyper
+if %user_input% equ 156 goto disautofix
 if %user_input% equ about goto about
 if %user_input% equ cleartool goto clean
 if %user_input% equ back goto memu
@@ -2004,7 +2012,7 @@ cls
 echo 1.引导法
 echo 2.简单法
 set /p input=请输入你要选择的方法:
-if %input% equ 1 bcdedit /enum|findstr resumeobject > GUID.txt && for /f "skip=1 tokens=2" %A in (1.txt) do set GUID=%A bcdedit /copy {current} /d "%winsystem%(关闭 Hyper-V)" && bcdedit /set %GUID% hypervisorlaunchtype OFF
+if %input% equ 1 bcdedit /copy {current} /d "%winsystem%(关闭 Hyper-V)" && bcdedit /set %GUID% hypervisorlaunchtype OFF
 if %input% equ 2 echo 本操作需要管理员权限！& bcdedit /set hypervisorlaunchtype auto
 pause
 cls
@@ -2016,6 +2024,20 @@ cls
 set /p path1=请输入Vbox虚拟机的安装路径:
 path %path1%
 VBoxManage.exe setextradata global "VBoxInternal/NEM/UseRing0Runloop" 0
+pause
+cls
+goto memu1
+
+
+
+:disautofix
+@echo off
+cls
+echo 1.打开
+echo 2.关闭
+set /p input=请输入你要执行的操作:
+if %input% equ 1 bcdedit /set %GUID% recoveryenabled Yes
+if %input% equ 2 bcdedit /set %GUID% recoveryenabled Yes
 pause
 cls
 goto memu1
