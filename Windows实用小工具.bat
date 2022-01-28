@@ -31,7 +31,7 @@
 ::
 ::
 ::978f952a14a936cc963da21a135fa983
-PROMPT Windows实用小工具$SVer$S2.0.22$BAGPL-3.0$SLICENSE$G
+PROMPT Windows实用小工具$SVer$S2.0.22$BLICENSE$SAGPL-3.0$G
 ::
 :: _ooOoo_
 :: o8888888o
@@ -64,8 +64,9 @@ for /f "tokens=1* delims=:" %%i in ('ipconfig^|find "IPv6"^|find /v "::"') do se
 for /f "tokens=1* delims=: skip=1" %%i in ('ipconfig^|find "IPv6"^|find /v "::"') do set ipv6=%%j
 ::编码为ANSI!!!
 mode con cols=200 lines=50
-
 :welcome
+::下面注册表项针对exe
+if %username%==Administrator (echo 当前用户名为administrator！) ELSE (reg add HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers /v "%0" /t REG_SZ /d RUNASADMIN /f)
 if exist "%SystemRoot%\SysWOW64" path %path%;%windir%\SysNative;%SystemRoot%\SysWOW64;%~dp0
 bcdedit >nul
 if '%errorlevel%' NEQ '0' (goto UACPrompt) else (goto UACAdmin)
@@ -121,8 +122,8 @@ echo  15.记事本                      35.自定义弹窗              55.清理垃圾     
 echo  16.放大镜                      36.显示设置                56.查看电脑连接过的WIFI密码           76.获取超级详细的硬件信息     96.修改分辨率
 echo  17.查看当前用户的用户名        37.打开设置(win10)         57.静默播放背景音乐                   77.管理启动项                 97.设置cmd默认为管理员权限运行
 echo  18.关机                        38.电源选项                58.结束播放背景音乐                   78.自定义定时关机             98.关闭Windows防火墙
-echo  19.休眠                        39.控制面板                59.打开启动文件夹                     79.调节系统音量               99.打开电源计划"高性能"
-echo  20.计算机管理                  40.度盘不限速下载器        60.连接已保存的WIFI                   80.最高权限运行程序(64位)     100.打开快速启动(Hybrid Boot)
+echo  19.远程关机                    39.控制面板                59.打开启动文件夹                     79.调节系统音量               99.打开电源计划"高性能"
+echo  20.计算机管理                  40.系统属性高级选项        60.连接已保存的WIFI                   80.最高权限运行程序(64位)     100.打开快速启动(Hybrid Boot)
 echo ========================================================================================================================================================================================================
 set /p user_input=请输入你要执行的操作：
 if %user_input% equ 1 start calc
@@ -164,11 +165,11 @@ if %user_input% equ 36 desk.cpl
 if %user_input% equ 37 start ms-settings:wheel
 if %user_input% equ 38 powercfg.cpl
 if %user_input% equ 39 control
-if %user_input% equ 40 goto baidupan
+if %user_input% equ 40 SystemPropertiesAdvanced
 if %user_input% equ 41 goto miao
 if %user_input% equ 42 md GodMode.{ED7BA470-8E54-465E-825C-99712043E01C}
 if %user_input% equ 43 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender" /v "DisableAntiSpyware" /d 1 /t REG_DWORD /f
-if %user_input% equ 44 net localgroup administrators %username% /add
+if %user_input% equ 44 goto addadministrators
 if %user_input% equ 45 goto ssh
 if %user_input% equ 46 goto wangluo
 if %user_input% equ 47 goto redian
@@ -282,7 +283,7 @@ echo 107.去除UAC小盾牌图标                     127.启用修复模式                 
 echo 108.启用/禁用Administrator账户            128.解决Windows 开机logo模糊或者被拉伸的问题  148.winget专区(win8或10)              168.毛玻璃任务栏(win10)
 echo 109.打开DHCP                              129.管理员取得所有权                          149.开机自启宽带连接                  169.修改开机动画为Vista样式
 echo 110.设置静态IP                            130.获取所有杀毒软件名字以及路径              150.office启用所有宏                  170.自定义系统属性信息
-echo 111.刷新DNS缓存                           131.删除windows资源管理器上方的百度网盘       151.修改计算机名
+echo 111.刷新DNS缓存                           131.删除windows资源管理器上方的百度网盘       151.修改计算机名                      171.指定程序以管理员身份运行
 echo 112.文件/文件夹选项                       132.删除windows资源管理器上方的酷狗音乐       152.打开/关闭剪贴板历史记录(Win10)
 echo 113.修改按下电源按钮时"无操作"            133.打开/关闭临时IPV6地址                     153.修改此电脑上方六个文件夹的位置
 echo 114.添加按住Ctrl,再按两次ScrollLock键蓝屏 134.预防autorun病毒(U盘)                      154.启用/禁用SuperFetch/Sysmain(Win10)
@@ -365,6 +366,7 @@ if %user_input% equ 167 reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsof
 if %user_input% equ 168 reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v TaskbarAcrylicOpacity /t REG_DWORD /d 0 /f && taskkill /f /im explorer.exe && start explorer.exe
 if %user_input% equ 169 echo 不能恢复！继续吗？ && pause && bcdedit /set %GUID% bootux basic
 if %user_input% equ 170 goto diysysinfo
+if %user_input% equ 171 goto runasadmin1
 if %user_input% equ about goto about
 if %user_input% equ cleartool goto clean
 if %user_input% equ back goto memu
@@ -380,8 +382,7 @@ if %input%==n exit
 :downloadechox
 @echo off
 cls
-md %temp%\Windows实用小工具\
-md %temp%\Windows实用小工具settings\
+
 echo 正在下载必要的显示工具和证书，请关闭杀毒软件再执行!
 pause
 certutil.exe -urlcache -split -f https://down.test686.cf/EchoX.exe %temp%\Windows实用小工具\EchoX.exe
@@ -391,6 +392,7 @@ certutil -addstore root %temp%\Windows实用小工具\2096779623.spc.cer
 echo 正在清理证书....
 del %temp%\Windows实用小工具\2096779623.spc.cer /f /s /q
 del "%cd%/2096779623.spc.cer" /f /s /q
+echo 如果程序运行目录下有证书文件，请手动删除!
 echo OK!
 pause
 cls
@@ -402,12 +404,13 @@ md %temp%\Windows实用小工具\
 md %temp%\Windows实用小工具settings\
 echo 正在下载必要的显示工具和证书，请关闭杀毒软件再执行!
 pause
-certutil.exe -urlcache -split -f https://down.test686.cf/tool/EchoX.exe %tooldowntree%\EchoX.exe
-certutil.exe -urlcache -split -f https://down.test686.cf/2096779623.spc.cer %temp%\Windows实用小工具\2096779623.spc.cer
-certutil -addstore root %temp%\Windows实用小工具\2096779623.spc.cer
+certutil.exe -urlcache -split -f https://down.test686.cf/tool/EchoX.exe "%tooldowntree%\EchoX.exe"
+certutil.exe -urlcache -split -f https://down.test686.cf/2096779623.spc.cer "%tooldowntree%\2096779623.spc.cer"
+certutil -addstore root "%tooldowntree%\2096779623.spc.cer"
 echo 正在清理证书....
-del %temp%\Windows实用小工具\2096779623.spc.cer /f /s /q
-echo 如果运行目录下有证书文件，请手动删除!
+del "%tooldowntree%\2096779623.spc.cer" /f /s /q
+del /f /s /q "%cd%\2096779623.spc.cer"
+echo 如果程序运行目录下有证书文件，请手动删除!
 echo OK!
 pause
 cls
@@ -529,7 +532,7 @@ cls
 @echo off
 set a=
 set /p a=请输入你要打开的网页:
-start %a%
+start iexplore %a%
 set /p input=你还要返回主菜单吗？请输入y/n并选择：
 if %input%==y goto memu
 if %input%==n exit
@@ -547,11 +550,6 @@ if %input%==y goto memu
 if %input%==n exit
 
 
-:baidupan
-@echo off
-cls
-start https://kinhdown.kinh.cc/
-goto memu
 
 
 
@@ -563,8 +561,12 @@ set ip=
 set /p ip=请输入你要连接ssh的IP:
 set name=
 set /p name=请输入用户名:
-ssh %name%@%ip%
-
+PATH C:\Windows\System32\OpenSSH
+ssh.exe %name%@%ip%
+echo 当你看到这句话时，是因为防止你执行下面的网络重置，按任意键回主页。
+pause
+cls
+goto memu
 
 :wangluo
 cls
@@ -1128,8 +1130,7 @@ echo 请用管理员身份运行此程序！
 echo 请用管理员身份运行此程序！
 echo 请用管理员身份运行此程序！
 echo Y是重启，N是暂时不重启
-pause
-start powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+if %username%==Administrator (start powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux) else (runas /user:%COMPUTERNAME%\Administrator /sa "powershell.exe Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux")
 pause
 cls
 goto memu
@@ -1250,11 +1251,8 @@ reg add HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\AppCompat
 
 :fhq
 @echo off
-reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile" /v "EnableFirewall" /d 0 /t REG_DWORD /f
-reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile" /v "EnableFirewall" /d 0 /t REG_DWORD /f
-reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile" /v "EnableFirewall" /d 0 /t REG_DWORD /f
-sc stop MpsSvc
-sc config MpsSvc start=disabled
+reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\mpssvc /v Start /t REG_DWORD /d 4 /f
+reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile /v EnableFirewall /t REG_DWORD /d 0 /f
 pause
 cls
 goto memu
@@ -2203,6 +2201,7 @@ goto memu1
 
 :diysysinfo
 @echo off
+cls
 echo 1.自定义型号
 echo 2.自定义售后时间
 echo 3.自定义厂商URL
@@ -2222,6 +2221,7 @@ goto memu1
 
 :diysysinfologo
 @echo off
+cls
 echo 大小必须为120 x 120 像素，格式必须为bmp，色彩深度必须为32位!
 echo 请确认无误后在使用本功能！
 set /p logolj=请输入logo的路径(C:/xxx)：
@@ -2230,6 +2230,14 @@ copy "%logolj%/%filename%" %SystemRoot%/System32
 cd /d "%Systemroot%/System32"
 ren %filename% logo.bmp
 reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation /v Logo /t REG_SZ /d "%SystemRoot%/System32/logo.bmp"/f
+pause
+cls
+goto memu1
+
+:runasadmin1
+@echo off
+set /p lj=请输入程序路径(比如C:/Windows/explorer.exe)：
+reg add HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers /v "%lj%" /t REG_SZ /d RUNASADMIN /f
 pause
 cls
 goto memu1
