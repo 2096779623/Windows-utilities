@@ -431,14 +431,12 @@ title Windows实用小工具 By 2096779623 设置页面 本页面为实验性功能！
 cls
 echo 1.设置默认主页
 echo 2.设置下载目录
-echo 3.显示/隐藏启动logo
 echo 输入reset恢复默认设置
 echo 输入memu返回主页
 echo 后续会开放更多功能！
 set /p num=请输入你要执行的操作对应的数字:
 if %num% equ 1 goto settingdeupage
 if %num% equ 2 goto changesave
-if %num% equ 3 goto show/hiddenlogo
 if %num% equ reset start cmd /c del /f /s /q %Temp%\Windows实用小工具settings\* && echo OK! && cls
 if %num% equ memu goto memu
 :settingdeupage
@@ -465,13 +463,6 @@ cls
 goto settings
 
 
-:show/hiddenlogo
-cls
-echo 1.显示
-echo 2.隐藏
-set /p input=请输入你要执行的操作：
-if %input% equ 1 echo showlogo > %Temp%\Windows实用小工具settings\logo && echo OK! && goto settings
-if %input% equ 2 echo hiddenlogo > %Temp%\Windows实用小工具settings\logo && echo OK! && goto settings
 :jincheng
 @echo off&setlocal enabledelayedexpansion
 cls
@@ -521,7 +512,7 @@ echo ██████╔╝ ╚████╔╝      █████╔╝██║██╔██║╚██
 echo ██╔══██╗  ╚██╔╝      ██╔═══╝ ████╔╝██║ ╚═══██║██╔═══██╗  ██╔╝    ██╔╝  ╚═══██║██╔═══██╗██╔═══╝  ╚═══██╗
 echo ██████╔╝   ██║       ███████╗╚██████╔╝ █████╔╝╚██████╔╝  ██║     ██║   █████╔╝╚██████╔╝███████╗██████╔╝
 echo ╚═════╝    ╚═╝       ╚══════╝ ╚═════╝  ╚════╝  ╚═════╝   ╚═╝     ╚═╝   ╚════╝  ╚═════╝ ╚══════╝╚═════╝
-%temp%\Windows实用小工具\EchoX.exe -c 04 "本脚本受Apache 2.0协议的保护！详情请看https://www.apache.org/licenses/LICENSE-2.0"
+%temp%\Windows实用小工具\EchoX.exe -c 04 "本脚本受GNU Affero General Public License v3.0协议的保护！详情请看https://www.gnu.org/licenses/agpl-3.0.txt"
 echo github源代码:github.com/2096779623/Windows-Utilities/
 echo QQ：2096779623
 pause                                                             
