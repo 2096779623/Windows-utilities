@@ -226,7 +226,7 @@ if %user_input% equ 97 goto UACcmd
 if %user_input% equ 98 goto fhq
 if %user_input% equ 99 powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
 if %user_input% equ 100 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System" /v "HiberbootEnabled" /d 1 /t REG_DWORD /f
-if %user_input% equ about goto github
+if %user_input% equ about goto about
 if %user_input% equ setting goto setting
 if %user_input% equ cleartool goto clean
 if %user_input% equ next goto memu1
@@ -582,7 +582,7 @@ echo 输入3,启用热点
 echo 输入4,关闭热点
 echo 输入5,关闭热点模块
 set /p user_input=请输入你要执行的操作：
-if %user_input% equ 1 netsh wlan show drivers
+if %user_input% equ 1 netsh wlan show drivers|findstr 支持的承载网络
 if %user_input% equ 2 goto peizhi
 if %user_input% equ 3 netsh wlan start hostednetwork
 if %user_input% equ 4 netsh wlan stop hostednetwork
