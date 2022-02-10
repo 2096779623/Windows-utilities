@@ -113,7 +113,7 @@ echo  6.powershell                   26.磁盘清理                46.网络重置     
 echo  7.显示Windows版本信息          27.画图                    47.开热点                             67.查看当前处理器架构         87.删除此电脑最上面的文件夹
 echo  8.关闭UAC                      28.启用或关闭Windows功能   48.修改IE浏览器的主页                 68.蓝牙                       88.恢复此电脑最上面的文件夹
 echo  9.查看系统信息                 29.服务                    49.扫雷(win7)                         69.设备管理器                 89.去除快捷方式小箭头
-echo  10.远程连接                    30.滑动关机（win10）       50.星球大战(这是一个彩蛋)             70.设置默认程序               90.恢复快捷方式小箭头
+echo  10.远程连接                    30.滑动关机（win10）       50.星球大战(彩蛋)                     70.设置默认程序               90.恢复快捷方式小箭头
 echo  11.打开任务管理器              31.打开当前账户的文件夹    51.修改时间及日期                     71.网络和共享中心             91.查看BIOS版本
 echo  12.显示IP信息                  32.结束进程                52.用messenger(Msg)发送消息           72.微信多开                   92.修复linux子系统出现0x8007019e
 echo  13.一键激活Windows(不一定有效) 33.定时关机                53.共享文件夹管理器                   73.下载文件                   93.合并.ts格式的视频
@@ -261,7 +261,7 @@ IF "%ver%" GEQ "5.1.*]" (echo 检测到当前是XP系统,大部分功能不可用!)
 IF "%ver%" GEQ "6.*]" (echo 检测到当前是Win7或Vista系统,部分功能不可用!)
 IF "%ver%" GEQ "10.0.2*]" (echo 检测到当前是Win11系统,部分功能可能不兼容!)
 for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ReleaseId"') do set winversion=%%A
-for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ProductName"') do echo 当前系统:%%A %%B 版本:%winversion%   架构：%PROCESSOR_ARCHITECTURE%
+for /f "tokens=3*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v "ProductName"') do (set winsystem=%%A && echo 当前系统:%%A %%B 版本:%winversion%   架构：%PROCESSOR_ARCHITECTURE%)
 echo 程序运行目录:%CD%
 echo 当前时间及日期:%date:~0,4%年%date:~5,2%月%date:~8,2%日%time:~0,2%点%time:~3,2%分
 ::判断网络状态
@@ -703,47 +703,46 @@ del /f /s /q "%userprofile%\Local Settings\Temp\*.*"
 del /f /s /q "%userprofile%\recent\*.*" 
 del /f /s /q "D:\Local Settings\Temporary Internet Files\*.*" 
 del /f /s /q "D:\Local Settings\Temp\*.*" 
-defrag %systemdrive% -b '优化预读信息 
-: 清理垃圾文件，速度由电脑文件大小而定。在没看到结尾信息时 
-: 请勿关闭本窗口。 
-: 正在清除系统垃圾文件，请稍后...... 
-: 删除补丁备份目录 
+:: 清理垃圾文件，速度由电脑文件大小而定。在没看到结尾信息时 
+:: 请勿关闭本窗口。 
+:: 正在清除系统垃圾文件，请稍后...... 
+:: 删除补丁备份目录 
 RD %windir%\$hf_mig$ /Q /S 
-: 把补丁卸载文件夹的名字保存成2950800.txt 
-dir %windir%\$NtUninstall* /a:d /b >%windir%\2950800.txt 
-: 从2950800.txt中读取文件夹列表并且删除文件夹 
-for /f %%i in (%windir%\2950800.txt) do rd %windir%\%%i /s /q 
-: 删除2950800.txt 
-del %windir%\2950800.txt /f /q 
-: 删除补丁安装记录内容（下面的del /f /s /q %systemdrive%\*.log已经包含删除此类文件） 
+:: 把补丁卸载文件夹的名字保存成temp.txt 
+dir %windir%\$NtUninstall* /a:d /b >%windir%\temp.txt 
+:: 从temp.txt中读取文件夹列表并且删除文件夹 
+for /f %%i in (%windir%\temp.txt) do rd %windir%\%%i /s /q 
+:: 删除temp.txt 
+del %windir%\temp.txt /f /q 
+:: 删除补丁安装记录内容（下面的del /f /s /q %systemdrive%\*.log已经包含删除此类文件） 
 del %windir%\KB*.log /f /q 
-: 删除系统盘目录下临时文件 
+:: 删除系统盘目录下临时文件 
 del /f /s /q %systemdrive%\*.tmp 
-: 删除系统盘目录下临时文件 
+:: 删除系统盘目录下临时文件 
 del /f /s /q %systemdrive%\*._mp 
-: 删除系统盘目录下日志文件 
+:: 删除系统盘目录下日志文件 
 del /f /s /q %systemdrive%\*.log 
-: 删除系统盘目录下GID文件(属于临时文件，具体作用不详) 
+:: 删除系统盘目录下GID文件(属于临时文件，具体作用不详) 
 del /f /s /q %systemdrive%\*.gid 
-: 删除系统目录下scandisk（磁盘扫描）留下的无用文件 
+:: 删除系统目录下scandisk（磁盘扫描）留下的无用文件 
 del /f /s /q %systemdrive%\*.chk 
-: 删除系统目录下old文件 
+:: 删除系统目录下old文件 
 del /f /s /q %systemdrive%\*.old 
-: 删除回收站的无用文件 
+:: 删除回收站的无用文件 
 del /f /s /q %systemdrive%\recycled\*.* 
-: 删除系统目录下备份文件 
+:: 删除系统目录下备份文件 
 del /f /s /q %windir%\*.bak 
-: 删除应用程序临时文件 
+:: 删除应用程序临时文件 
 del /f /s /q %windir%\prefetch\*.* 
-: 删除系统维护等操作产生的临时文件 
+:: 删除系统维护等操作产生的临时文件 
 rd /s /q %windir%\temp & md %windir%\temp 
-: 删除当前用户的COOKIE（IE） 
+:: 删除当前用户的COOKIE（IE） 
 del /f /q %userprofile%\cookies\*.* 
-: 删除internet临时文件 
+:: 删除internet临时文件 
 del /f /s /q "%userprofile%\local settings\temporary internet files\*.*" 
-: 删除当前用户日常操作临时文件 
+:: 删除当前用户日常操作临时文件 
 del /f /s /q "%userprofile%\local settings\temp\*.*" 
-: 删除访问记录（开始菜单中的文档里面的东西） 
+:: 删除访问记录（开始菜单中的文档里面的东西） 
 del /f /s /q "%userprofile%\recent\*.*" 
 del /f /s /q %systemdrive%\*.tmp
 del /f /s /q %systemdrive%\*._mp
@@ -760,9 +759,12 @@ del /f /q %userprofile%\recent\*.*
 del /f /s /q "%userprofile%\Local Settings\Temporary Internet Files\*.*"
 del /f /s /q "%userprofile%\Local Settings\Temp\*.*"
 del /f /s /q "%userprofile%\recent\*.*"
-echo 清理完成
+::碎片整理
+defrag /C /H /M
+echo 清理完成,请重启此工具!
+pause
 cls
-goto memu
+exit
 
 
 
@@ -1769,7 +1771,7 @@ echo 11.设置winget 12.计算哈希值     13.升级软件   14.导出安装程序列表 15.验证清
 set /p wingetinput=请输入你要执行的操作:
 if %wingetinput% equ 1 goto wingetinstall
 if %wingetinput% equ 2 goto wingetpkgs
-if %wingetinput% equ 3 goto wingetfindpkgs
+if %wingetinput% equ 3 goto wingetfubdpkgs
 if %wingetinput% equ 4 goto wingetuninstallpkgs
 if %wingetinput% equ 5 goto wingetshow
 if %wingetinput% equ 6 goto wingetshowver
