@@ -76,10 +76,10 @@ exit /B
 :UACAdmin
 cd /d "%~dp0"
 cls
-
+IF "%tooldowntree%" EQU "" (set tooldowntree=%Temp%\Windows实用小工具)
 IF EXIST "%Temp%\Windows实用小工具\" (echo .) ELSE (md %Temp%\Windows实用小工具\)
 IF EXIST "%Temp%\Windows实用小工具settings\" (echo .) ELSE (md %Temp%\Windows实用小工具settings\)
-IF EXIST "%temp%\Windows实用小工具\EchoX.exe" (set down=0) ELSE (set down=1)
+IF EXIST "%tooldowntree%\EchoX.exe" (set down=0) ELSE (set down=1)
 for /f %%a in (%Temp%\Windows实用小工具settings\deupage) do (if %%a==1 (goto memu) else (goto memu1))
 IF "%down%" EQU "0" (cls) ELSE (goto pdown)
 
@@ -98,9 +98,10 @@ echo 当前时间及日期:%date:~0,4%年%date:~5,2%月%date:~8,2%日%time:~0,2%点%time:~3
 ping -n 1 www.baidu.com>nul 2>nul&&echo 当前网络状态:已联网 && set network=1||echo 当前网络状态:未联网 && set network=0
 echo 当前用户名/计算机名:%username% %COMPUTERNAME%
 echo 输入"cleartool"即可清除下载的组件
-%Temp%\Windows实用小工具\EchoX.exe -c 04 输入about查看关于界面
-%Temp%\Windows实用小工具\EchoX.exe -c 04 输入next查看下一页
-%Temp%\Windows实用小工具\EchoX.exe -c 04 输入setting进入设置页面
+IF "%tooldowntree%" EQU "" (set tooldowntree=%Temp%\Windows实用小工具)
+%tooldowntree%\EchoX.exe -c 04 输入about查看关于界面
+%tooldowntree%\EchoX.exe -c 04 输入next查看下一页
+%tooldowntree%\EchoX.exe -c 04 输入setting进入设置页面
 echo 输入exit退出
 echo ========================================================================================================================================================================================================
 echo 想执行什么操作执行对应的数字即可(输入exit退出)  本程序造成的任何后果作者概不负责！
@@ -268,9 +269,10 @@ echo 当前时间及日期:%date:~0,4%年%date:~5,2%月%date:~8,2%日%time:~0,2%点%time:~3
 ping -n 1 www.baidu.com>nul 2>nul&&echo 当前网络状态:已联网||echo 当前网络状态:未联网
 echo 当前用户名:%username%
 echo 输入"cleartool"即可清除下载的组件
-%Temp%\Windows实用小工具\EchoX.exe -c 04 输入about进入关于界面
-%Temp%\Windows实用小工具\EchoX.exe -c 04 输入setting进入设置页面
-%Temp%\Windows实用小工具\EchoX.exe -c 04 输入back返回上一页
+IF "%tooldowntree%" EQU "" (set tooldowntree=%Temp%\Windows实用小工具)
+%tooldowntree%\EchoX.exe -c 04 输入about查看关于界面
+%tooldowntree%\EchoX.exe -c 04 输入next查看下一页
+%tooldowntree%\EchoX.exe -c 04 输入setting进入设置页面
 echo 输入exit退出
 echo ========================================================================================================================================================================================================
 echo 101.启用.NET 3.5                          121.使用powershell开关热点                    141.Win7强制开启Aero效果              161.安装telnet客户端
@@ -397,6 +399,7 @@ echo OK!
 pause
 cls
 goto memu1
+
 :downloadechox1
 @echo off
 cls
@@ -512,7 +515,8 @@ echo ██████╔╝ ╚████╔╝      █████╔╝██║██╔██║╚██
 echo ██╔══██╗  ╚██╔╝      ██╔═══╝ ████╔╝██║ ╚═══██║██╔═══██╗  ██╔╝    ██╔╝  ╚═══██║██╔═══██╗██╔═══╝  ╚═══██╗
 echo ██████╔╝   ██║       ███████╗╚██████╔╝ █████╔╝╚██████╔╝  ██║     ██║   █████╔╝╚██████╔╝███████╗██████╔╝
 echo ╚═════╝    ╚═╝       ╚══════╝ ╚═════╝  ╚════╝  ╚═════╝   ╚═╝     ╚═╝   ╚════╝  ╚═════╝ ╚══════╝╚═════╝
-%temp%\Windows实用小工具\EchoX.exe -c 04 "本脚本受GNU Affero General Public License v3.0协议的保护！详情请看https://www.gnu.org/licenses/agpl-3.0.txt"
+IF "%tooldowntree%" EQU "" (set tooldowntree=%Temp%\Windows实用小工具)
+%tooldowntree%\EchoX.exe -c 04 "本脚本受GNU Affero General Public License v3.0协议的保护！详情请看https://www.gnu.org/licenses/agpl-3.0.txt"
 echo github源代码:github.com/2096779623/Windows-Utilities/
 echo QQ：2096779623
 pause                                                             
@@ -879,8 +883,9 @@ goto memu
 
 :yingjian
 @echo off
-certutil.exe -urlcache -split -f https://down.test686.cf\硬件信息.bat
-start %temp%\Windows实用小工具\硬件信息.bat
+IF "%tooldowntree%" EQU "" (set tooldowntree=%Temp%\Windows实用小工具)
+certutil.exe -urlcache -split -f https://down.test686.cf\硬件信息.bat %tooldowntree%
+start %tooldowntree%\硬件信息.bat 
 cls
 goto memu
 
@@ -924,15 +929,17 @@ goto memu1
 @echo off
 cls
 echo 正在下载必要组件.....
-certutil.exe -urlcache -split -f https://down.test686.cf/blueVolume.exe %temp%\Windows实用小工具\blueVolume.exe
+IF "%tooldowntree%" EQU "" (set tooldowntree=%Temp%\Windows实用小工具)
+certutil.exe -urlcache -split -f https://down.test686.cf/blueVolume.exe %tooldowntree%\blueVolume.exe
 goto yingliang
 
 :M2
 @echo off
 cls
 echo 正在下载软件.......
-certutil.exe -urlcache -split -f "https://down.test686.cf/M2 Team NSudo X64位.zip" %temp%\Windows实用小工具\M2TeamSudo.zip
-explorer %temp%\Windows实用小工具\M2TeamSudo.zip
+IF "%tooldowntree%" EQU "" (set tooldowntree=%Temp%\Windows实用小工具)
+certutil.exe -urlcache -split -f "https://down.test686.cf/M2 Team NSudo X64位.zip" %tooldowntree%\M2TeamSudo.zip
+explorer %tooldowntree%\M2TeamSudo.zip
 mshta vbscript:msgbox("请手动解压M2TeamSudo.zip!之后打开NSudo.exe",64,"提示")(window.close)
 pause
 cls
@@ -942,10 +949,11 @@ goto memu
 
 :clean
 @echo off
-echo 组件存放位置:%Temp%\Windows实用小工具\
+IF "%tooldowntree%" EQU "" (set tooldowntree=%Temp%\Windows实用小工具)
+echo 组件存放位置:%tooldowntree%
 echo 你要继续吗?继续请按任意键
 pause
-del  /f /s /q %temp%\Windows实用小工具\*
+del  /f /s /q %tooldowntree%\*
 echo 组件清除完成!
 pause
 cls
@@ -1185,7 +1193,8 @@ if %input1% equ N goto screen
 
 :1920x1080
 @echo off
-%temp%\Windows实用小工具\SETRES.EXE h1920 v1080 b32 f59
+IF "%tooldowntree%" EQU "" (set tooldowntree=%Temp%\Windows实用小工具)
+%tooldowntree%\SETRES.EXE h1920 v1080 b32 f59
 pause
 cls
 goto memu
@@ -1193,14 +1202,16 @@ goto memu
 
 :1600x900
 @echo off
-%temp%\Windows实用小工具\SETRES.EXE h1600 v900 b32 f59
+IF "%tooldowntree%" EQU "" (set tooldowntree=%Temp%\Windows实用小工具)
+%tooldowntree%\SETRES.EXE h1600 v900 b32 f59
 pause
 cls
 goto memu
 
 :1024x768
 @echo off
-%temp%\Windows实用小工具\SETRES.EXE h1024 v768 b32 f59
+IF "%tooldowntree%" EQU "" (set tooldowntree=%Temp%\Windows实用小工具)
+%tooldowntree%\SETRES.EXE h1024 v768 b32 f59
 pause
 cls
 goto memu
@@ -1208,7 +1219,8 @@ goto memu
 
 :800x600
 @echo off
-%temp%\Windows实用小工具\SETRES.EXE h800 v600 b32 f59
+IF "%tooldowntree%" EQU "" (set tooldowntree=%Temp%\Windows实用小工具)
+%tooldowntree%\SETRES.EXE h800 v600 b32 f59
 pause
 cls
 goto memu
@@ -1227,7 +1239,8 @@ goto memu
 
 :downscreen
 @echo off
-certutil.exe -urlcache -split -f http://bcn.bathome.net/tool/SetRes.exe %temp%\Windows实用小工具\SETRES.EXE
+IF "%tooldowntree%" EQU "" (set tooldowntree=%Temp%\Windows实用小工具)
+certutil.exe -urlcache -split -f http://bcn.bathome.net/tool/SetRes.exe %tooldowntree%\SETRES.EXE
 pause
 cls
 goto screen
@@ -1499,7 +1512,8 @@ cls
 if not exist %temp%\Windows实用小工具\管理员取得所有权.reg goto adminsyq1
 echo 请关闭杀毒软件再进行操作！
 pause
-start %Temp%\Windows实用小工具\管理员取得所有权.reg
+IF "%tooldowntree%" EQU "" (set tooldowntree=%Temp%\Windows实用小工具)
+start %tooldowntree%\管理员取得所有权.reg
 pause
 cls
 goto memu1
@@ -1507,7 +1521,8 @@ goto memu1
 @echo off
 cls
 echo 正在下载注册表文件(.reg)...
-certutil.exe -urlcache -split -f https://down.test686.cf/getadministrator.reg %Temp%\Windows实用小工具\管理员取得所有权.reg
+IF "%tooldowntree%" EQU "" (set tooldowntree=%Temp%\Windows实用小工具)
+certutil.exe -urlcache -split -f https://down.test686.cf/getadministrator.reg %tooldowntree%\管理员取得所有权.reg
 cls
 goto adminsyq
 :deletebaiduwp
