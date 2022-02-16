@@ -124,7 +124,7 @@ echo  16.·Å´ó¾µ                      36.ÏÔÊ¾ÉèÖÃ                56.²é¿´µçÄÔÁ¬½Ó¹
 echo  17.²é¿´µ±Ç°ÓÃ»§µÄÓÃ»§Ãû        37.´ò¿ªÉèÖÃ(win10)         57.¾²Ä¬²¥·Å±³¾°ÒôÀÖ                   77.¹ÜÀíÆô¶¯Ïî                 97.ÉèÖÃcmdÄ¬ÈÏÎª¹ÜÀíÔ±È¨ÏŞÔËĞĞ
 echo  18.¹Ø»ú                        38.µçÔ´Ñ¡Ïî                58.½áÊø²¥·Å±³¾°ÒôÀÖ                   78.×Ô¶¨Òå¶¨Ê±¹Ø»ú             98.¹Ø±ÕWindows·À»ğÇ½
 echo  19.Ô¶³Ì¹Ø»ú                    39.¿ØÖÆÃæ°å                59.´ò¿ªÆô¶¯ÎÄ¼ş¼Ğ                     79.µ÷½ÚÏµÍ³ÒôÁ¿               99.´ò¿ªµçÔ´¼Æ»®"¸ßĞÔÄÜ"
-echo  20.¼ÆËã»ú¹ÜÀí                  40.ÏµÍ³ÊôĞÔ¸ß¼¶Ñ¡Ïî        60.Á¬½ÓÒÑ±£´æµÄWIFI                   80.×î¸ßÈ¨ÏŞÔËĞĞ³ÌĞò(64Î»)     100.´ò¿ª¿ìËÙÆô¶¯(Hybrid Boot)
+echo  20.¼ÆËã»ú¹ÜÀí                  40.ÏµÍ³ÊôĞÔ¸ß¼¶Ñ¡Ïî        60.Á¬½ÓÒÑ±£´æÃÜÂëµÄWIFI               80.×î¸ßÈ¨ÏŞÔËĞĞ³ÌĞò(64Î»)     100.´ò¿ª¿ìËÙÆô¶¯(Hybrid Boot)
 echo ========================================================================================================================================================================================================
 set /p user_input=ÇëÊäÈëÄãÒªÖ´ĞĞµÄ²Ù×÷£º
 if %user_input% equ 1 start calc
@@ -293,7 +293,7 @@ echo 115.ĞŞ¸´¿ªÊ¼²Ëµ¥ÎŞ·¨´ò¿ª                  135.ĞŞ¸´ÔÚÎÄ¼ş¼ĞÑ¡ÏîÖĞÎŞ·¨ÏÔÊ¾Òş²
 echo 116.Ç¿ÖÆ¸üĞÂ×é²ßÂÔ                        136.ĞŞ¸´win10¼ÒÍ¥°æÃ»ÓĞ×é²ßÂÔ                 156.´ò¿ª/¹Ø±Õ×Ô¶¯ĞŞ¸´(win10)
 echo 117.Ìí¼ÓÒ»¸ö×ÀÃæÓÒ¼ü²Ëµ¥                  137.ÒÆ³ıSkyDrivePro                           157.½ûÓÃÒ£²âºÍÊı¾İÊÕ¼¯(win10)
 echo 118.¹«Ë¾ÍøÂçºÍ»¥ÁªÍøÍ¬Ê±·ÃÎÊ              138.ÆôÓÃ/½ûÓÃĞİÃß                             158.ĞŞ¸´Ô¤ÀÀÌåÑé¼Æ»®
-echo 119.¸øÓÒ¼ü²Ëµ¥Ìí¼ÓÍ¼±ê	                  139.Ğ¶ÔØOneDrive                              159.ÆôÓÃ/½ûÓÃÍøÂç·¢ÏÖ(win7)
+echo 119.¸øÓÒ¼ü²Ëµ¥Ìí¼ÓÍ¼±ê	                   139.Ğ¶ÔØOneDrive                              159.ÆôÓÃ/½ûÓÃÍøÂç·¢ÏÖ(win7)
 echo 120.²åÈëUÅÌ×Ô¶¯´ò¿ªWin×ÊÔ´¹ÜÀíÆ÷(Win10)   140.ĞŞ¸ÄµÇÂ¼ÃÜÂë                              160.ÆôÓÃ»ò½ûÓÃÏµÍ³µÄÄÚºËµ÷ÊÔ
 echo ========================================================================================================================================================================================================
 set /p user_input=ÇëÊäÈëÄãÒªÖ´ĞĞµÄ²Ù×÷£º
@@ -782,7 +782,7 @@ echo µ±Ç°µçÄÔÁ¬½Ó¹ıµÄwifiÓĞ£º
 netsh wlan show profiles | findstr ËùÓĞÓÃ»§ÅäÖÃÎÄ¼ş
 echo ¹Ø¼üÄÚÈİºóÃæµÄ¾ÍÊÇÃÜÂë£¡
 set /p wifi_name=ÇëÊäÈëÄãÒª²éÑ¯µÄwifiÃû³Æ:
-netsh wlan show profile name="%wifi_name%" key=clear
+netsh wlan show profile name="%wifi_name%" key=clear | findstr ¹Ø¼üÄÚÈİ
 echo.
 set /p input=Äã»¹Ïë²éÑ¯ÆäËûwifiÂğ?y/nÇëÊäÈë²¢Ñ¡Ôñ£º
 cls
@@ -813,6 +813,7 @@ goto memu
 :lianjie
 @echo off
 cls
+netsh wlan show profiles | findstr ËùÓĞÓÃ»§ÅäÖÃÎÄ¼ş
 set wifi1name=
 set /p wifi1name=ÇëÊäÈëWIFIÃû×Ö:
 echo ÕıÔÚÁ¬½Ó.......
@@ -837,7 +838,7 @@ goto memu
 @echo off
 cls
 net start wlansvc
-netsh wlan show networks mode=bssid > WIFIÏêÏ¸ĞÅÏ¢.txt
+netsh wlan show networks mode=bssid
 start WIFIÏêÏ¸ĞÅÏ¢.txt
 goto memu
 
@@ -847,12 +848,7 @@ goto memu
 cls
 set ljname=
 set /p ljname=ÇëÊäÈë±£´æÂ·¾¶:
-copy "%userprofile%\AppData\Roaming\Microsoft\Windows\Themes\CachedFiles\CachedImage*.jpg" "%ljname%\*.jpg" /y
-md ×ÀÃæ±ÚÖ½
-cd %ljname%\×ÀÃæ±ÚÖ½
-ren CachedImage_*.jpg ×ÀÃæ±ÚÖ½.jpg
-start %ljname%\×ÀÃæ±ÚÖ½\×ÀÃæ±ÚÖ½.jpg
-echo ÕÕÆ¬Â·¾¶Îª:%ljname%\×ÀÃæ±ÚÖ½.jpg
+copy "%userprofile%\AppData\Roaming\Microsoft\Windows\Themes\CachedFiles\CachedImage*.jpg" "%ljname%\" /y
 pause
 cls
 goto memu
