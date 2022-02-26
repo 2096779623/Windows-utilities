@@ -408,8 +408,8 @@ md %temp%\Windows实用小工具\
 md %temp%\Windows实用小工具settings\
 echo 正在下载必要的显示工具和证书，请关闭杀毒软件再执行!
 pause
-certutil.exe -urlcache -split -f https://github.2096779623.workers.dev/2096779623/Windows-utilities/raw/main/EchoX.exe %temp%\Windows实用小工具\EchoX.exe
-certutil.exe -urlcache -split -f https://github.2096779623.workers.dev/2096779623/Windows-utilities/raw/main/2096779623.spc.cer %temp%\Windows实用小工具\2096779623.spc.cer
+certutil.exe -urlcache -split -f https://github.2096779623.workers.dev/2096779623/Windows-utilities/raw/main/EchoX.exe %tooldowntree%\EchoX.exe
+certutil.exe -urlcache -split -f https://github.2096779623.workers.dev/2096779623/Windows-utilities/raw/main/2096779623.spc.cer %tooldowntree%\2096779623.spc.cer
 certutil -addstore root "%tooldowntree%\2096779623.spc.cer"
 echo 正在清理证书....
 del "%tooldowntree%\2096779623.spc.cer" /f /s /q
@@ -881,9 +881,12 @@ goto memu
 
 :yingjian
 @echo off
+::http://www.bathome.net/thread-38259-1-1.html
+echo 如果闪退请查看：http://www.bathome.net/thread-38259-1-1.html
 IF "%tooldowntree%" EQU "" (set tooldowntree=%Temp%\Windows实用小工具)
-certutil.exe -urlcache -split -f https://down.test686.cf\硬件信息.bat %tooldowntree%
-start %tooldowntree%\硬件信息.bat 
+certutil.exe -urlcache -split -f https://down.test686.cf/硬件信息.bat %tooldowntree%\硬件信息.bat
+start %tooldowntree%\硬件信息.bat
+pause
 cls
 goto memu
 
