@@ -899,7 +899,7 @@ echo 1.win10
 echo 2.win7及以下
 set nb=
 set /p nb=请输入数字:
-if %nb%==1 start taskmgr
+if %nb%==1 start taskmgr /7 /Startup
 if %nb%==2 start msconfig /4
 cls
 goto memu
