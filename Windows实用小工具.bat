@@ -77,8 +77,8 @@ exit /B
 cd /d "%~dp0"
 cls
 IF "%tooldowntree%" EQU "" (set tooldowntree=%Temp%\Windows实用小工具)
-IF EXIST "%Temp%\Windows实用小工具\" (echo .) ELSE (md %Temp%\Windows实用小工具\)
-IF EXIST "%Temp%\Windows实用小工具settings\" (echo .) ELSE (md %Temp%\Windows实用小工具settings\)
+IF EXIST "%Temp%\Windows实用小工具\" (echo .) ELSE (md %Temp%\Windows实用小工具\>nul)
+IF EXIST "%Temp%\Windows实用小工具settings\" (echo .) ELSE (md %Temp%\Windows实用小工具settings\>nul)
 IF EXIST "%tooldowntree%\EchoX.exe" (set down=0) ELSE (set down=1)
 for /f %%a in (%Temp%\Windows实用小工具settings\deupage) do (if %%a==1 (goto memu) else (goto memu1))
 IF "%down%" EQU "0" (cls) ELSE (goto pdown)
@@ -194,7 +194,7 @@ if %user_input% equ 64 goto zhuomian
 if %user_input% equ 65 echo 当前计算机名称为:%COMPUTERNAME%
 if %user_input% equ 66 echo 当前处理器核心为:%NUMBER_OF_PROCESSORS%
 if %user_input% equ 67 echo 当前处理器架构为:%PROCESSOR_ARCHITECTURE%
-if %user_input% equ 68 ms-settings:bluetooth
+if %user_input% equ 68 start ms-settings:bluetooth
 if %user_input% equ 69 devmgmt.msc
 if %user_input% equ 70 explorer.exe shell:::{17cd9488-1228-4b2f-88ce-4298e93e0966}
 if %user_input% equ 71 explorer.exe shell:::{8E908FC9-BECC-40f6-915B-F4CA0E70D03D}
@@ -388,10 +388,10 @@ cls
 
 echo 正在下载必要的显示工具和证书，请关闭杀毒软件再执行!
 pause
-certutil.exe -urlcache -split -f https://down.test686.cf/EchoX.exe %temp%\Windows实用小工具\EchoX.exe
-certutil.exe -urlcache -split -f https://down.test686.cf/2096779623.spc.cer %temp%\Windows实用小工具\2096779623.spc.cer
+certutil.exe -urlcache -split -f https://github.2096779623.workers.dev/2096779623/Windows-utilities/raw/main/EchoX.exe %temp%\Windows实用小工具\EchoX.exe
+certutil.exe -urlcache -split -f https://github.2096779623.workers.dev/2096779623/Windows-utilities/raw/main/2096779623.spc.cer %temp%\Windows实用小工具\2096779623.spc.cer
 echo 正在导入证书...请点击"是"
-certutil -addstore root %temp%\Windows实用小工具\2096779623.spc.cer
+certutil -addstore root %temp%\Windows实用小工具\2096779623.spc.cer>nul
 echo 正在清理证书....
 del %temp%\Windows实用小工具\2096779623.spc.cer /f /s /q
 del "%cd%/2096779623.spc.cer" /f /s /q
@@ -408,8 +408,8 @@ md %temp%\Windows实用小工具\
 md %temp%\Windows实用小工具settings\
 echo 正在下载必要的显示工具和证书，请关闭杀毒软件再执行!
 pause
-certutil.exe -urlcache -split -f https://down.test686.cf/tool/EchoX.exe "%tooldowntree%\EchoX.exe"
-certutil.exe -urlcache -split -f https://down.test686.cf/2096779623.spc.cer "%tooldowntree%\2096779623.spc.cer"
+certutil.exe -urlcache -split -f https://github.2096779623.workers.dev/2096779623/Windows-utilities/raw/main/EchoX.exe %temp%\Windows实用小工具\EchoX.exe
+certutil.exe -urlcache -split -f https://github.2096779623.workers.dev/2096779623/Windows-utilities/raw/main/2096779623.spc.cer %temp%\Windows实用小工具\2096779623.spc.cer
 certutil -addstore root "%tooldowntree%\2096779623.spc.cer"
 echo 正在清理证书....
 del "%tooldowntree%\2096779623.spc.cer" /f /s /q
@@ -859,9 +859,10 @@ goto memu
 cls
 set wclj=
 set /p wclj=请输入微信(WeChat.exe)所在路径:
-start %wclj%
-start %wclj%
+start "" "%wclj%"
+start "" "%wclj%"
 pause
+cls
 goto memu
 
 
