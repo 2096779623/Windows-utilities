@@ -124,7 +124,7 @@ echo  16.·Å´ó¾µ                      36.ÏÔÊ¾ÉèÖÃ                56.²é¿´µçÄÔÁ¬½Ó¹
 echo  17.²é¿´µ±Ç°ÓÃ»§µÄÓÃ»§Ãû        37.´ò¿ªÉèÖÃ(win10)         57.¾²Ä¬²¥·Å±³¾°ÒôÀÖ                   77.¹ÜÀíÆô¶¯Ïî                 97.ÉèÖÃcmdÄ¬ÈÏÎª¹ÜÀíÔ±È¨ÏÞÔËÐÐ
 echo  18.¹Ø»ú                        38.µçÔ´Ñ¡Ïî                58.½áÊø²¥·Å±³¾°ÒôÀÖ                   78.×Ô¶¨Òå¶¨Ê±¹Ø»ú             98.¹Ø±ÕWindows·À»ðÇ½
 echo  19.Ô¶³Ì¹Ø»ú                    39.¿ØÖÆÃæ°å                59.´ò¿ªÆô¶¯ÎÄ¼þ¼Ð                     79.µ÷½ÚÏµÍ³ÒôÁ¿               99.´ò¿ªµçÔ´¼Æ»®"¸ßÐÔÄÜ"
-echo  20.¼ÆËã»ú¹ÜÀí                  40.ÏµÍ³ÊôÐÔ¸ß¼¶Ñ¡Ïî        60.Á¬½ÓÒÑ±£´æÃÜÂëµÄWIFI               80.×î¸ßÈ¨ÏÞÔËÐÐ³ÌÐò(64Î»)     100.´ò¿ª¿ìËÙÆô¶¯(Hybrid Boot)
+echo  20.¼ÆËã»ú¹ÜÀí                  40.ÏµÍ³ÊôÐÔ¸ß¼¶Ñ¡Ïî        60.Á¬½ÓÒÑ±£´æÃÜÂëµÄWIFI               80.×î¸ßÈ¨ÏÞÔËÐÐ³ÌÐò           100.´ò¿ª¿ìËÙÆô¶¯(Hybrid Boot)
 echo ========================================================================================================================================================================================================
 set /p user_input=ÇëÊäÈëÄãÒªÖ´ÐÐµÄ²Ù×÷£º
 if %user_input% equ 1 start calc
@@ -196,7 +196,7 @@ if %user_input% equ 66 echo µ±Ç°´¦ÀíÆ÷ºËÐÄÎª:%NUMBER_OF_PROCESSORS%
 if %user_input% equ 67 echo µ±Ç°´¦ÀíÆ÷¼Ü¹¹Îª:%PROCESSOR_ARCHITECTURE%
 if %user_input% equ 68 start ms-settings:bluetooth
 if %user_input% equ 69 devmgmt.msc
-if %user_input% equ 70 explorer.exe shell:::{17cd9488-1228-4b2f-88ce-4298e93e0966}
+if %user_input% equ 70 ComputerDefaults.exe
 if %user_input% equ 71 explorer.exe shell:::{8E908FC9-BECC-40f6-915B-F4CA0E70D03D}
 if %user_input% equ 72 goto duokai
 if %user_input% equ 73 goto download
@@ -912,7 +912,9 @@ set /p miaoshu1=ÇëÊäÈëÃëÊý:
 set nr=
 set /p nr=ÇëÊäÈë¹Ø»úÄÚÈÝ:
 shutdown -s -t %miaoshu1% -c "%nr%"
-
+pause
+cls
+goto memu
 
 
 :yingliang
@@ -937,10 +939,7 @@ goto yingliang
 :M2
 @echo off
 cls
-echo ÕýÔÚÏÂÔØÈí¼þ.......
-IF "%tooldowntree%" EQU "" (set tooldowntree=%Temp%\WindowsÊµÓÃÐ¡¹¤¾ß)
-certutil.exe -urlcache -split -f "https://down.test686.cf/M2 Team NSudo X64Î».zip" %tooldowntree%\M2TeamSudo.zip
-explorer %tooldowntree%\M2TeamSudo.zip
+start https://github.com/M2Team/NSudo/releases/download/8.2/NSudo_8.2_All_Components.zip
 mshta vbscript:msgbox("ÇëÊÖ¶¯½âÑ¹M2TeamSudo.zip!Ö®ºó´ò¿ªNSudo.exe",64,"ÌáÊ¾")(window.close)
 pause
 cls
@@ -1105,10 +1104,11 @@ reg delete HKCR\lnkfile /v IsShortcut /f
 reg delete HKCR\piffile /v IsShortcut /f
 reg delete HKCR\InternetShortcut /v IsShortcut /f
 taskkill /im explorer.exe /f
-start explorer.exe
+explorer
 pause
 cls
 goto memu
+
 :hflink
 @echo off
 reg add HKCR\lnkfile /v IsShortcut /f
@@ -1116,7 +1116,9 @@ reg add HKCR\piffile /v IsShortcut /f
 reg add HKCR\InternetShortcut /v IsShortcut /f
 taskkill /im explorer.exe /f
 start explorer.exe
-
+pause
+cls
+goto memu
 
 :showBIOS
 @echo off
@@ -1142,9 +1144,9 @@ goto memu
 :ts
 @echo off
 set lj=
-set /p lj=ÇëÊäÈëtsÎÄ¼þµÄÂ·¾¶:
+set /p lj=ÇëÊäÈëtsÎÄ¼þ¼ÐµÄÂ·¾¶:
 set filename=ÇëÊäÈëºÏ²¢Ö®ºóµÄÎÄ¼þÃû³Æ(*.ts):
-copy /b %lj%*.ts %filename%
+copy /b %lj%/*.ts %filename%
 pause
 cls
 goto memu
@@ -1152,7 +1154,7 @@ goto memu
 
 :autorun
 @echo off
-echo
+cls
 reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoDriveTypeAutoRun /t REG_DWORD /d 00000095 /f
 reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoDriveTypeAutoRun /t REG_DWORD /d 00000095 /f
 reg add HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\cdrom /v Autorun /t REG_DWORD /d 00000001 /f
@@ -1168,8 +1170,10 @@ set name=
 set /p name=ÇëÊäÈëÏÔÊ¾Ãû³Æ:
 set cx=
 set /p cx=ÇëÊäÈë³ÌÐòÂ·¾¶:
-reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\ /v %name% /t REG_SZ /d %cx% /f
-
+reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\ /v %name% /t REG_SZ /d "%cx%" /f
+pause
+cls
+goto memu
 :screen
 cls
 echo 1.1920x1080(32Î»É«,59FPS)
@@ -1252,8 +1256,10 @@ goto screen
 @echo off
 echo ±¾²Ù×÷ÐèÒªÒÔ¹ÜÀíÔ±Éí·ÝÔËÐÐ´Ë³ÌÐò£¡
 pause
-reg add HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers /v c:\windows\system32\cmd.exe /t REG_SZ /d RUNASADMIN /f
-
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v c:\windows\system32\cmd.exe /t REG_SZ /d RUNASADMIN /f
+pause
+cls
+goto memu
 
 
 :fhq
@@ -2245,6 +2251,7 @@ goto memu1
 
 :runasadmin1
 @echo off
+cls
 set /p lj=ÇëÊäÈë³ÌÐòÂ·¾¶(±ÈÈçC:/Windows/explorer.exe)£º
 reg add HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers /v "%lj%" /t REG_SZ /d RUNASADMIN /f
 pause
@@ -2253,6 +2260,7 @@ goto memu1
 
 :fixnetlang
 @echo off
+cls
 ::https://zhidao.baidu.com/question/1903201117856737740.html
 reg query "HKCU\Software\Classes\Local Settings\MuiCache" > a
 for /f %A in (a) do reg add "%A\AAF68885" /v "@C:\WINDOWS\system32\NetworkExplorer.dll,-1" /t REG_SZ /d ÍøÂç /f
@@ -2260,3 +2268,4 @@ del /f /s /q a
 pause
 cls
 goto memu1
+
