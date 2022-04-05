@@ -288,12 +288,12 @@ echo 110.设置静态IP                            130.获取所有杀毒软件名字以及路径 
 echo 111.刷新DNS缓存                           131.删除windows资源管理器上方的百度网盘       151.修改计算机名                      171.指定程序以管理员身份运行
 echo 112.文件/文件夹选项                       132.删除windows资源管理器上方的酷狗音乐       152.打开/关闭剪贴板历史记录(Win10)    172.修复网络图标变成英文(win10)
 echo 113.修改按下电源按钮时"无操作"            133.打开/关闭临时IPV6地址                     153.修改此电脑上方六个文件夹的位置    173.去除桌面右下角水印(win11)
-echo 114.添加按住Ctrl,再按两次ScrollLock键蓝屏 134.预防autorun病毒(U盘)                      154.启用/禁用SuperFetch/Sysmain(Win10)
+echo 114.添加按住Ctrl,再按两次ScrollLock键蓝屏 134.预防autorun病毒(U盘)                      154.启用/禁用SuperFetch/Sysmain(Win10)174.阻止IE强跳edge
 echo 115.修复开始菜单无法打开                  135.修复在文件夹选项中无法显示隐藏文件        155.虚拟机与hyper-V共存
 echo 116.强制更新组策略                        136.修复win10家庭版没有组策略                 156.打开/关闭自动修复(win10)
 echo 117.添加一个桌面右键菜单                  137.移除SkyDrivePro                           157.禁用遥测和数据收集(win10)
 echo 118.公司网络和互联网同时访问              138.启用/禁用休眠                             158.修复预览体验计划
-echo 119.给右键菜单添加图标	                   139.卸载OneDrive                              159.启用/禁用网络发现(win7)
+echo 119.给右键菜单添加图标	                  139.卸载OneDrive                              159.启用/禁用网络发现(win7)
 echo 120.插入U盘自动打开Win资源管理器(Win10)   140.修改登录密码                              160.启用或禁用系统的内核调试
 echo ========================================================================================================================================================================================================
 set /p user_input=请输入你要执行的操作：
@@ -371,6 +371,7 @@ if %user_input% equ 170 goto diysysinfo
 if %user_input% equ 171 goto runasadmin1
 if %user_input% equ 172 goto fixnetlang
 if %user_input% equ 173 reg add "HKEY_CURRENT_USER\Control Panel\UnsupportedHardwareNotificationCache" /v SV2 /t REG_DWORD /d 0 /f
+if %user_input% equ 174 reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Enable Browser Extensions" /t REG_SZ /d no /f
 if %user_input% equ about goto about
 if %user_input% equ cleartool goto clean
 if %user_input% equ back goto memu
