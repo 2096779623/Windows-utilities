@@ -253,7 +253,7 @@ SET "SID=%%j"
 ::获取GUID
 bcdedit /enum|findstr resumeobject > GUID.txt && for /f "skip=1 tokens=2" %%A in (GUID.txt) do set GUID=%%A 
 ::删除临时文件
-@del /f /s /q GUID.txt
+del /f /s /q GUID.txt>nul
 cls
 title Windows实用小工具 By 2096779623 v2.0.2.22 本程序造成的一切后果由使用者承担，作者概不负责！Protected By AGPL-3.0 Open Source Agreement！
 ::获取版本号
@@ -290,7 +290,7 @@ echo 112.文件/文件夹选项                       132.删除windows资源管理器上方的酷
 echo 113.修改按下电源按钮时"无操作"            133.打开/关闭临时IPV6地址                     153.修改此电脑上方六个文件夹的位置    173.去除桌面右下角水印(win11)
 echo 114.添加按住Ctrl,再按两次ScrollLock键蓝屏 134.预防autorun病毒(U盘)                      154.启用/禁用SuperFetch/Sysmain(Win10)174.阻止IE强跳edge
 echo 115.修复开始菜单无法打开                  135.修复在文件夹选项中无法显示隐藏文件        155.虚拟机与hyper-V共存               175.查看文件哈希
-echo 116.强制更新组策略                        136.修复win10家庭版没有组策略                 156.打开/关闭自动修复(win10)
+echo 116.强制更新组策略                        136.修复win10家庭版没有组策略                 156.打开/关闭自动修复(win10)          176.开启防火墙ICMP
 echo 117.添加一个桌面右键菜单                  137.移除SkyDrivePro                           157.禁用遥测和数据收集(win10)
 echo 118.公司网络和互联网同时访问              138.启用/禁用休眠                             158.修复预览体验计划
 echo 119.给右键菜单添加图标	                  139.卸载OneDrive                              159.启用/禁用网络发现(win7)
@@ -373,6 +373,7 @@ if %user_input% equ 172 goto fixnetlang
 if %user_input% equ 173 reg add "HKEY_CURRENT_USER\Control Panel\UnsupportedHardwareNotificationCache" /v SV2 /t REG_DWORD /d 0 /f
 if %user_input% equ 174 reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Enable Browser Extensions" /t REG_SZ /d no /f
 if %user_input% equ 175 goto hash
+if %user_input% equ 176 netsh firewall set icmpsetting type=all mode=enable
 if %user_input% equ about goto about
 if %user_input% equ cleartool goto clean
 if %user_input% equ back goto memu
