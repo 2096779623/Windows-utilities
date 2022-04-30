@@ -291,7 +291,7 @@ echo 113.修改按下电源按钮时"无操作"            133.打开/关闭临时IPV6地址        
 echo 114.添加按住Ctrl,再按两次ScrollLock键蓝屏 134.预防autorun病毒(U盘)                      154.启用/禁用SuperFetch/Sysmain(Win10)174.阻止IE强跳edge
 echo 115.修复开始菜单无法打开                  135.修复在文件夹选项中无法显示隐藏文件        155.虚拟机与hyper-V共存               175.查看文件哈希
 echo 116.强制更新组策略                        136.修复win10家庭版没有组策略                 156.打开/关闭自动修复(win10)          176.开启防火墙ICMP
-echo 117.添加一个桌面右键菜单                  137.移除SkyDrivePro                           157.禁用遥测和数据收集(win10)
+echo 117.添加一个桌面右键菜单                  137.移除SkyDrivePro                           157.禁用遥测和数据收集(win10)         177.网络疑难解答
 echo 118.公司网络和互联网同时访问              138.启用/禁用休眠                             158.修复预览体验计划
 echo 119.给右键菜单添加图标	                  139.卸载OneDrive                              159.启用/禁用网络发现(win7)
 echo 120.插入U盘自动打开Win资源管理器(Win10)   140.修改登录密码                              160.启用或禁用系统的内核调试
@@ -374,6 +374,7 @@ if %user_input% equ 173 reg add "HKEY_CURRENT_USER\Control Panel\UnsupportedHard
 if %user_input% equ 174 reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Internet Explorer\Main" /v "Enable Browser Extensions" /t REG_SZ /d no /f
 if %user_input% equ 175 goto hash
 if %user_input% equ 176 netsh firewall set icmpsetting type=all mode=enable
+if %user_input% equ 177 msdt.exe  -skip TRUE -id NetworkDiagnosticsNetworkAdapter -ep NetworkDiagnosticsPNI'
 if %user_input% equ about goto about
 if %user_input% equ cleartool goto clean
 if %user_input% equ back goto memu
@@ -1817,10 +1818,9 @@ if %wingetinput% equ 15 goto wingetvalidate
  @echo off
 cls
 set /p installname=请输入软件名称:
-set /p prolj=是否要指定路径安装软件?(Y/N):
-if %propj% equ Y set /p lj=请输入路径: && winget install %installname% -l %lj%
-if %propj% equ N echo.
-winget install %installname%
+set /p prolj=是否要指定路径安装软件?(y/n):
+if %propj% equ y set /p lj=请输入路径: && winget install %installname% -l %lj%
+if %propj% equ n winget install %installname%
 pause
 cls
 goto winget
