@@ -293,7 +293,7 @@ echo 115.ÐÞ¸´¿ªÊ¼²Ëµ¥ÎÞ·¨´ò¿ª                  135.ÐÞ¸´ÔÚÎÄ¼þ¼ÐÑ¡ÏîÖÐÎÞ·¨ÏÔÊ¾Òþ²
 echo 116.Ç¿ÖÆ¸üÐÂ×é²ßÂÔ                        136.ÐÞ¸´win10¼ÒÍ¥°æÃ»ÓÐ×é²ßÂÔ                 156.´ò¿ª/¹Ø±Õ×Ô¶¯ÐÞ¸´(win10)          176.¿ªÆô·À»ðÇ½ICMP
 echo 117.Ìí¼ÓÒ»¸ö×ÀÃæÓÒ¼ü²Ëµ¥                  137.ÒÆ³ýSkyDrivePro                           157.½ûÓÃÒ£²âºÍÊý¾ÝÊÕ¼¯(win10)         177.ÍøÂçÒÉÄÑ½â´ð
 echo 118.¹«Ë¾ÍøÂçºÍ»¥ÁªÍøÍ¬Ê±·ÃÎÊ              138.ÆôÓÃ/½ûÓÃÐÝÃß                             158.ÐÞ¸´Ô¤ÀÀÌåÑé¼Æ»®                  178.ÉùÒôÎÊÌâÒÉÄÑ½â´ð
-echo 119.¸øÓÒ¼ü²Ëµ¥Ìí¼ÓÍ¼±ê	                  139.Ð¶ÔØOneDrive                              159.ÆôÓÃ/½ûÓÃÍøÂç·¢ÏÖ(win7)            
+echo 119.¸øÓÒ¼ü²Ëµ¥Ìí¼ÓÍ¼±ê	                  139.Ð¶ÔØOneDrive                              159.ÆôÓÃ/½ûÓÃÍøÂç·¢ÏÖ(win7)            179.´ò¿ª/¹Ø±ÕSÄ£Ê½(win10+)
 echo 120.²åÈëUÅÌ×Ô¶¯´ò¿ªWin×ÊÔ´¹ÜÀíÆ÷(Win10)   140.ÐÞ¸ÄµÇÂ¼ÃÜÂë                              160.ÆôÓÃ»ò½ûÓÃÏµÍ³µÄÄÚºËµ÷ÊÔ
 echo ========================================================================================================================================================================================================
 set /p user_input=ÇëÊäÈëÄãÒªÖ´ÐÐµÄ²Ù×÷£º
@@ -334,7 +334,7 @@ if %user_input% equ 133 goto ocipv6
 if %user_input% equ 134 goto deautorun
 if %user_input% equ 135 goto fixycwj
 if %user_input% equ 136 goto fixjtbzcl
-if %user_input% equ 137 reg delete "HKEY_CLASSES_ROOT\AllFilesystemObjects\shell\SPFS.ContextMenu" /f && taskkill /im explorer.exe /f && start %SystemRoot%\explorer.exe
+if %user_input% equ 137 reg delete "HKEY_CLASSES_ROOT\AllFilesystemObjects\shell\SPFS.Contextmenu" /f && taskkill /im explorer.exe /f && start %SystemRoot%\explorer.exe
 if %user_input% equ 138 goto sleep
 if %user_input% equ 139 goto uninstallonedrive
 if %user_input% equ 140 goto chagepasswd
@@ -375,7 +375,8 @@ if %user_input% equ 174 reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Internet E
 if %user_input% equ 175 goto hash
 if %user_input% equ 176 netsh firewall set icmpsetting type=all mode=enable
 if %user_input% equ 177 msdt.exe  -skip TRUE -id NetworkDiagnosticsNetworkAdapter -ep NetworkDiagnosticsPNI'
-if %user_input% equ 178 msdt.exe -id AudioPlaybackDiagnostic -skip true -ep SndVolTrayMenu'
+if %user_input% equ 178 msdt.exe -id AudioPlaybackDiagnostic -skip true -ep SndVolTraymenu'
+if %user_input% equ 179 goto smode
 if %user_input% equ about goto about
 if %user_input% equ cleartool goto clean
 if %user_input% equ back goto memu
@@ -1450,8 +1451,8 @@ echo  2.ÖØÆô¿ªÊ¼²Ëµ¥µÄ½ø³Ì
 echo  3.ÈÃsfcÐÞ¸´¿ªÊ¼²Ëµ¥
 set /p %user_input%=ÇëÊäÈëÄãÒªÖ´ÐÐµÄ²Ù×÷:
 if %user_input% equ 1 taskkill /im explorer.exe /f && start explorer.exe
-if %user_input% equ 2 taskkill /im StartMenuExperienceHost.exe /f && start C:\Windows\SystemApps\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy/StartMenuExperienceHost.exe
-if %user_input% equ 3 sfc /scanfile=??C:\Windows\SystemApps\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\StartMenuExperienceHost.exe
+if %user_input% equ 2 taskkill /im StartmenuExperienceHost.exe /f && start C:\Windows\SystemApps\Microsoft.Windows.StartmemuExperienceHost_cw5n1h2txyewy/StartmenuExperienceHost.exe
+if %user_input% equ 3 sfc /scanfile=??C:\Windows\SystemApps\Microsoft.Windows.StartmemuExperienceHost_cw5n1h2txyewy\StartmenuExperienceHost.exe
 set /p input=Äã»¹ÏëÖ´ÐÐ´Ë²Ù×÷Âð£¿ÇëÊäÈëy/n²¢Ñ¡Ôñ£º
 if %input%==y goto fixstartmenu
 if %input%==n goto memu1
@@ -1955,7 +1956,7 @@ goto winget
 cls
 set /p adsluser=ÇëÊäÈë¿í´øÕËºÅ:
 set /p adslpasswd=ÇëÊäÈëÁ¬½ÓÃÜÂë:
-echo rasdial ¿í´øÁ¬½Ó %adsluser% %adslpasswd% > C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\¿í´øÁ¬½Ó.bat && echo Æô¶¯ÏîÒÑÌí¼Óµ½:C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\
+echo rasdial ¿í´øÁ¬½Ó %adsluser% %adslpasswd% > "C:\ProgramData\Microsoft\Windows\Start menu\Programs\StartUp\¿í´øÁ¬½Ó.bat" && echo Æô¶¯ÏîÒÑÌí¼Óµ½:C:\ProgramData\Microsoft\Windows\Start menu\Programs\StartUp\
 pause
 cls
 goto memu1
@@ -2299,4 +2300,15 @@ echo SHA384£º%SHA384%
 echo SHA512£º%SHA512%
 pause
 cls
-goto menu1
+goto memu1
+
+:smode
+cls
+echo 1.¹Ø±Õ
+echo 2.´ò¿ª
+set /p input=ÇëÊäÈëÄãÒªÖ´ÐÐµÄ²Ù×÷£º
+if %input% equ 1 reg add "HKEY_Local_Machine\System\CurrentControlSet\Control\CI\Policy" /v SkuPolicyRequired /t REG_DWORD /d 1 /f && reg add "HKEY_Local_Machine\System\CurrentControlSet\Control\CI\Policy" /v WindowsLockdownTrialMode /t REG_DWORD /d 1 /f
+if %input% equ 2 reg add "HKEY_Local_Machine\System\CurrentControlSet\Control\CI\Policy" /v SkuPolicyRequired /t REG_DWORD /d 0 /f && reg add "HKEY_Local_Machine\System\CurrentControlSet\Control\CI\Policy" /v WindowsLockdownTrialMode /t REG_DWORD /d 0 /f
+pause
+cls
+goto memu1
