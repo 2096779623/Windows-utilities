@@ -2307,8 +2307,8 @@ cls
 echo 1.关闭
 echo 2.打开
 set /p input=请输入你要执行的操作：
-if %input% equ 1 reg add "HKEY_Local_Machine\System\CurrentControlSet\Control\CI\Policy" /v SkuPolicyRequired /t REG_DWORD /d 1 /f && reg add "HKEY_Local_Machine\System\CurrentControlSet\Control\CI\Policy" /v WindowsLockdownTrialMode /t REG_DWORD /d 1 /f
-if %input% equ 2 reg add "HKEY_Local_Machine\System\CurrentControlSet\Control\CI\Policy" /v SkuPolicyRequired /t REG_DWORD /d 0 /f && reg add "HKEY_Local_Machine\System\CurrentControlSet\Control\CI\Policy" /v WindowsLockdownTrialMode /t REG_DWORD /d 0 /f
+if %input% equ 1 reg add "HKEY_Local_Machine\System\CurrentControlSet\Control\CI\Policy" /v SkuPolicyRequired /t REG_DWORD /d 0 /f
+if %input% equ 2 reg add "HKEY_Local_Machine\System\CurrentControlSet\Control\CI\Policy" /v SkuPolicyRequired /t REG_DWORD /d 1 /f
 pause
 cls
 goto memu1
