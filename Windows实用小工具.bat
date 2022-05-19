@@ -524,9 +524,8 @@ echo ®Ä®Ä®X®T®T®Ä®Ä®[  ®^®Ä®Ä®X®a      ®Ä®Ä®X®T®T®T®a ®Ä®Ä®Ä®Ä®X®a®Ä®Ä®U ®^®T®T®
 echo ®Ä®Ä®Ä®Ä®Ä®Ä®X®a   ®Ä®Ä®U       ®Ä®Ä®Ä®Ä®Ä®Ä®Ä®[®^®Ä®Ä®Ä®Ä®Ä®Ä®X®a ®Ä®Ä®Ä®Ä®Ä®X®a®^®Ä®Ä®Ä®Ä®Ä®Ä®X®a  ®Ä®Ä®U     ®Ä®Ä®U   ®Ä®Ä®Ä®Ä®Ä®X®a®^®Ä®Ä®Ä®Ä®Ä®Ä®X®a®Ä®Ä®Ä®Ä®Ä®Ä®Ä®[®Ä®Ä®Ä®Ä®Ä®Ä®X®a
 echo ®^®T®T®T®T®T®a    ®^®T®a       ®^®T®T®T®T®T®T®a ®^®T®T®T®T®T®a  ®^®T®T®T®T®a  ®^®T®T®T®T®T®a   ®^®T®a     ®^®T®a   ®^®T®T®T®T®a  ®^®T®T®T®T®T®a ®^®T®T®T®T®T®T®a®^®T®T®T®T®T®a
 IF "%tooldowntree%" EQU "" (set tooldowntree=%Temp%\Windows µ”√–°π§æﬂ)
-%tooldowntree%\EchoX.exe -c 04 "±æΩ≈±æ ‹GNU Affero General Public License v3.0–≠“Èµƒ±£ª§£°œÍ«È«Îø¥https://www.gnu.org/licenses/agpl-3.0.txt"
-echo github‘¥¥˙¬Î:github.com/2096779623/Windows-Utilities/
-echo QQ£∫2096779623
+%tooldowntree%\EchoX.exe -c 04 "¥ÀΩ≈±æ ‹GNU Affero General Public License v3.0–≠“Èµƒ±£ª§£∫https://www.gnu.org/licenses/agpl-3.0.txt"
+echo ø™‘¥µÿ÷∑:github.com/2096779623/Windows-Utilities/
 pause                                                             
 cls
 goto memu                                                                                  
