@@ -227,7 +227,7 @@ if %user_input% equ 98 goto fhq
 if %user_input% equ 99 powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
 if %user_input% equ 100 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System" /v "HiberbootEnabled" /d 1 /t REG_DWORD /f
 if %user_input% equ about goto about
-if %user_input% equ setting goto setting
+if %user_input% equ setting goto settings
 if %user_input% equ cleartool goto clean
 if %user_input% equ next goto memu1
 if %user_input% equ exit exit
@@ -379,7 +379,7 @@ if %user_input% equ 179 goto smode
 if %user_input% equ about goto about
 if %user_input% equ cleartool goto clean
 if %user_input% equ back goto memu
-if %user_input% equ setting goto setting
+if %user_input% equ setting goto settings
 if %user_input% equ exit exit
 set /p input=你还想进行其他操作吗？请输入y/n并选择：
 cls
@@ -412,17 +412,9 @@ cls
 goto memu1
 
 
-:setting
-@echo off
-cls
-title Windows实用小工具 By 2096779623 v2.0.22  设置验证页面 当前页面是实验性功能,有诸多不确定因素！
-echo 当前页面是实验性功能,有诸多不确定因素！
-set /p settingpasswd=请输入安全密码进入设置页面:
-IF /I "%settingpasswd%" EQU "2096779623" (echo 正在进入设置页面... && goto settings) ELSE (echo 密码错误！ && pause && goto setting)
-
 :settings
 @echo off
-title Windows实用小工具 By 2096779623 设置页面 本页面为实验性功能！
+title Windows实用小工具 By 2096779623 设置页面 为实验性功能！
 cls
 echo 1.设置默认主页
 echo 2.设置下载目录
