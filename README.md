@@ -15,4 +15,22 @@
 
 
 
-![image](https://user-images.githubusercontent.com/57583560/171786952-54ef1803-f504-4db8-8f77-dc1d256a99ed.png)
+
+
+
+# 校验教程
+
+~~这个百度一下就知道了~~
+
+
+首先下载[gpg4win](https://files.gpg4win.org/gpg4win-4.0.2.exe)，然后按正常方式安装。  
+
+右键Windows-Utilities.v2.0.2.22.exe，按下图操作
+
+![image](https://user-images.githubusercontent.com/57583560/171788378-2dde1dbc-8927-437d-b0f8-6cb2ba4db010.png)
+
+出现这个就没问题
+
+
+![image](https://user-images.githubusercontent.com/57583560/171788437-ce8110d4-57f5-4974-bde4-86566ab2148a.png)
+
