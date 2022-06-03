@@ -58,15 +58,14 @@ PROMPT Windows实用小工具$SVer$S2.0.22$BLICENSE$SAGPL-3.0$G
 
 
 @echo off
-title Windows实用小工具 By 2096779623 v2.0.2.22 本程序造成的一切后果由使用者承担，作者概不负责！Protected By AGPL-3.0 Open Source Agreement！
+title Windows实用小工具 By 2096779623 v2.0.2.22 本程序造成的一切后果由使用者承担，作者概不负责！Protected By AGPL-3.0 LICENSE！
 color 07
+cd /d "%~dp0"
 for /f "tokens=1* delims=:" %%i in ('ipconfig^|find "IPv6"^|find /v "::"') do set ipv6=%%j
 for /f "tokens=1* delims=: skip=1" %%i in ('ipconfig^|find "IPv6"^|find /v "::"') do set ipv6=%%j
 ::编码为ANSI!!!
 mode con cols=200 lines=50
 :welcome
-::下面注册表项针对exe
-if %username%==Administrator (cls) ELSE (reg add HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers /v "%0" /t REG_SZ /d RUNASADMIN /f)
 if exist "%SystemRoot%\SysWOW64" path %path%;%windir%\SysNative;%SystemRoot%\SysWOW64;%~dp0
 bcdedit >nul
 if '%errorlevel%' NEQ '0' (goto UACPrompt) else (goto UACAdmin)
@@ -86,7 +85,7 @@ IF "%down%" EQU "0" (cls) ELSE (goto pdown)
 :memu
 cls
 @echo off
-title Windows实用小工具 By 2096779623 v2.0.2.22 本程序造成的一切后果由使用者承担，作者概不负责！Protected By AGPL-3.0 Open Source Agreement！
+title Windows实用小工具 By 2096779623 v2.0.2.22 本程序造成的一切后果由使用者承担，作者概不负责！Protected By AGPL-3.0 LICENSE！
 for /f "tokens=4*" %%A in ('ver') do set ver=%%A
 IF "%ver%" GEQ "5.1.*]" (echo 检测到当前是XP系统,大部分功能不可用!)
 IF "%ver%" GEQ "6.*]" (echo 检测到当前是Win7或Vista系统,部分功能不可用!)
@@ -255,7 +254,7 @@ bcdedit /enum|findstr resumeobject > GUID.txt && for /f "skip=1 tokens=2" %%A in
 ::删除临时文件
 del /f /s /q GUID.txt>nul
 cls
-title Windows实用小工具 By 2096779623 v2.0.2.22 本程序造成的一切后果由使用者承担，作者概不负责！Protected By AGPL-3.0 Open Source Agreement！
+title Windows实用小工具 By 2096779623 v2.0.2.22 本程序造成的一切后果由使用者承担，作者概不负责！Protected By AGPL-3.0 LICENSE！
 ::获取版本号
 for /f "tokens=4*" %%A in ('ver') do set ver=%%A
 IF "%ver%" GEQ "5.1.*]" (echo 检测到当前是XP系统,大部分功能不可用!)
@@ -393,16 +392,9 @@ if %input%==n exit
 @echo off
 cls
 
-echo 正在下载必要的显示工具和证书，请关闭杀毒软件再执行!
+echo 正在下载必要的显示工具，请关闭杀毒软件再执行!
 pause
-certutil.exe -urlcache -split -f https://raw.githubfast.workers.dev/2096779623/Windows-utilities/main/EchoX.exe %temp%\Windows实用小工具\EchoX.exe
-certutil.exe -urlcache -split -f https://raw.githubfast.workers.dev/2096779623/Windows-utilities/main/2096779623.spc.cer %temp%\Windows实用小工具\2096779623.spc.cer
-echo 正在导入证书...请点击"是"
-certutil -addstore root %temp%\Windows实用小工具\2096779623.spc.cer>nul
-echo 正在清理证书....
-del %temp%\Windows实用小工具\2096779623.spc.cer /f /s /q
-del "%cd%/2096779623.spc.cer" /f /s /q
-echo 如果程序运行目录下有证书文件，请手动删除!
+certutil.exe -urlcache -split -f https://raw.fastgit.org/2096779623/Windows-utilities/main/EchoX.exe %temp%\Windows实用小工具\EchoX.exe
 echo OK!
 pause
 cls
@@ -411,17 +403,9 @@ goto memu1
 :downloadechox1
 @echo off
 cls
-md %temp%\Windows实用小工具\
-md %temp%\Windows实用小工具settings\
-echo 正在下载必要的显示工具和证书，请关闭杀毒软件再执行!
+echo 正在下载必要的显示工具，请关闭杀毒软件再执行!
 pause
-certutil.exe -urlcache -split -f https://raw.githubfast.workers.dev/2096779623/Windows-utilities/main/EchoX.exe %tooldowntree%\EchoX.exe
-certutil.exe -urlcache -split -f https://raw.githubfast.workers.dev/2096779623/Windows-utilities/main/2096779623.spc.cer %tooldowntree%\2096779623.spc.cer
-certutil -addstore root "%tooldowntree%\2096779623.spc.cer"
-echo 正在清理证书....
-del "%tooldowntree%\2096779623.spc.cer" /f /s /q
-del /f /s /q "%cd%\2096779623.spc.cer"
-echo 如果程序运行目录下有证书文件，请手动删除!
+certutil.exe -urlcache -split -f https://raw.fastgit.org/2096779623/Windows-utilities/main/EchoX.exe %tooldowntree%\Windows实用小工具\EchoX.exe
 echo OK!
 pause
 cls
