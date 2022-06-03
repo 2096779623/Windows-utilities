@@ -14,13 +14,5 @@
 
 
 
-本程序为中文
-
-
-
-
-**设置密码为:2096779623**
-
-
 
 ![image](https://user-images.githubusercontent.com/57583560/171786952-54ef1803-f504-4db8-8f77-dc1d256a99ed.png)
