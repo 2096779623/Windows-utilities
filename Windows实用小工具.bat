@@ -1,4 +1,3 @@
-
 PROMPT Windows实用小工具$SVer$S2.0.22$BLICENSE$SAGPL-3.0$G
 ::
 :: _ooOoo_
