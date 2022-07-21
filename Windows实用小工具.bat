@@ -1,5 +1,3 @@
-
-
 PROMPT Windows实用小工具$SVer$S2.0.22$BLICENSE$SAGPL-3.0$G
 ::
 :: _ooOoo_
@@ -34,15 +32,6 @@ for /f "tokens=1* delims=:" %%i in ('ipconfig^|find "IPv6"^|find /v "::"') do se
 for /f "tokens=1* delims=: skip=1" %%i in ('ipconfig^|find "IPv6"^|find /v "::"') do set ipv6=%%j
 ::编码为ANSI!!!
 mode con cols=200 lines=50
-:welcome
-if exist "%SystemRoot%\SysWOW64" path %path%;%windir%\SysNative;%SystemRoot%\SysWOW64;%~dp0
-bcdedit >nul
-if '%errorlevel%' NEQ '0' (goto UACPrompt) else (goto UACAdmin)
-:UACPrompt
-%1 start "" mshta vbscript:createobject("shell.application").shellexecute("""%~0""","::",,"runas",1)(window.close)&exit
-exit /B
-:UACAdmin
-cd /d "%~dp0"
 cls
 IF "%tooldowntree%" EQU "" (set tooldowntree=%Temp%\Windows实用小工具)
 IF EXIST "%Temp%\Windows实用小工具\" (echo .) ELSE (md %Temp%\Windows实用小工具\>nul)
@@ -261,8 +250,8 @@ echo 115.修复开始菜单无法打开                  135.修复在文件夹�
 echo 116.强制更新组策略                        136.修复win10家庭版没有组策略                 156.打开/关闭自动修复(win10)          176.开启防火墙ICMP
 echo 117.添加一个桌面右键菜单                  137.移除SkyDrivePro                           157.禁用遥测和数据收集(win10)         177.网络疑难解答
 echo 118.公司网络和互联网同时访问              138.启用/禁用休眠                             158.修复预览体验计划                  178.声音问题疑难解答
-echo 119.给右键菜单添加图标	                  139.卸载OneDrive                              159.启用/禁用网络发现(win7)            179.打开/关闭S模式(win10+)
-echo 120.插入U盘自动打开Win资源管理器(Win10)   140.修改登录密码                              160.启用或禁用系统的内核调试
+echo 119.给右键菜单添加图标	                  139.卸载OneDrive                              159.启用/禁用网络发现(win7)           179.打开/关闭S模式(win10+)
+echo 120.插入U盘自动打开Win资源管理器(Win10)   140.修改登录密码                              160.启用或禁用系统的内核调试	      180.启用/恢复旧版右键菜单(win11)
 echo ========================================================================================================================================================================================================
 set /p user_input=请输入你要执行的操作：
 if %user_input% equ 101 goto .NET3.5
@@ -345,6 +334,7 @@ if %user_input% equ 176 netsh firewall set icmpsetting type=all mode=enable
 if %user_input% equ 177 msdt.exe  -skip TRUE -id NetworkDiagnosticsNetworkAdapter -ep NetworkDiagnosticsPNI'
 if %user_input% equ 178 msdt.exe -id AudioPlaybackDiagnostic -skip true -ep SndVolTraymenu'
 if %user_input% equ 179 goto smode
+if %user_input% equ 180 goto win11yjcd
 if %user_input% equ about goto about
 if %user_input% equ cleartool goto clean
 if %user_input% equ back goto memu
@@ -2253,6 +2243,17 @@ echo 2.打开
 set /p input=请输入你要执行的操作：
 if %input% equ 1 reg add "HKEY_Local_Machine\System\CurrentControlSet\Control\CI\Policy" /v SkuPolicyRequired /t REG_DWORD /d 0 /f
 if %input% equ 2 reg add "HKEY_Local_Machine\System\CurrentControlSet\Control\CI\Policy" /v SkuPolicyRequired /t REG_DWORD /d 1 /f
+pause
+cls
+goto memu1
+
+:win11yjcd
+cls
+echo 1.使用旧版右键菜单
+echo 2.恢复新版右键菜单
+set /p input=请输入你要执行的操作：
+if %input% equ 1 reg add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /ve /t REG_SZ /f && taskkill /f /im explorer.exe && start explorer.exe
+if %input% equ 2 reg delete "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" /f && taskkill /f /im explorer.exe && start explorer.exe
 pause
 cls
 goto memu1
