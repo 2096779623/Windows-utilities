@@ -232,7 +232,7 @@ IF "%tooldowntree%" EQU "" (set tooldowntree=%Temp%\Windows实用小工具)
 %tooldowntree%\EchoX.exe -c 04 输入setting进入设置页面
 echo 输入exit退出
 echo ========================================================================================================================================================================================================
-echo 101.启用.NET 3.5                          121.使用powershell开关热点                    141.Win7强制开启Aero效果              161.安装telnet客户端
+echo 101.启用.NET 3.5                          121.使用powershell开关热点                    141.Win7强制开启Aero效果              161.安装telnet客户端                 181.卸载edge浏览器(win10)
 echo 102.禁止一联网就打开浏览器                122.修复键盘映射                              142.修改系统默认编码                  162.创建符号链接
 echo 103.启用无GUI引导(开机隐藏winlogo)        123.修复QQ登录蓝屏                            143.启用/禁用IPV6                     163.启用/禁用RemoteRegistry
 echo 104.关闭SmartScreen应用筛选器             124.清除IE收藏夹                              144.允许/禁止访问某个磁盘             164.启用/禁用U盘写保护
@@ -335,6 +335,7 @@ if %user_input% equ 177 msdt.exe  -skip TRUE -id NetworkDiagnosticsNetworkAdapte
 if %user_input% equ 178 msdt.exe -id AudioPlaybackDiagnostic -skip true -ep SndVolTraymenu'
 if %user_input% equ 179 goto smode
 if %user_input% equ 180 goto win11yjcd
+if %user_input% equ 181 goto unedge
 if %user_input% equ about goto about
 if %user_input% equ cleartool goto clean
 if %user_input% equ back goto memu
@@ -364,7 +365,7 @@ goto memu1
 cls
 echo 正在下载必要的显示工具，请关闭杀毒软件再执行!
 pause
-certutil.exe -urlcache -split -f https://raw.fastgit.org/2096779623/Windows-utilities/main/EchoX.exe %tooldowntree%\Windows实用小工具\EchoX.exe
+mshta http://bathome.net/s/hta/index.html Tools.get('echox')
 echo OK!
 pause
 cls
@@ -1396,7 +1397,7 @@ set name=
 set /p name=请输入右键菜单显示的名字:
 set lj=
 set /p lj=请输入程序路径:
-reg add HKEY_CLASSES_ROOT\Directory\Background\shell\%name% /f && reg add HKEY_CLASSES_ROOT\Directory\Background\shell\%name%\ /ve /t REG_SZ /d %name% /f && reg add HKEY_CLASSES_ROOT\Directory\Background\shell\%name%\command\ /ve /t REG_SZ /d %lj% /f
+reg add HKEY_CLASSES_ROOT\Directory\Background\shell\%name% /f && reg add HKEY_CLASSES_ROOT\Directory\Background\shell\%name%\ /ve /t REG_SZ /d %name% /f && reg add HKEY_CLASSES_ROOT\Directory\Background\shell\%name%\command\ /ve /t REG_SZ /d "%lj%" /f
 pause
 cls
 goto memu1
@@ -2254,6 +2255,27 @@ echo 2.恢复新版右键菜单
 set /p input=请输入你要执行的操作：
 if %input% equ 1 reg add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /ve /t REG_SZ /f && taskkill /f /im explorer.exe && start explorer.exe
 if %input% equ 2 reg delete "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" /f && taskkill /f /im explorer.exe && start explorer.exe
+pause
+cls
+goto memu1
+
+:unedge
+cls
+echo 1.第一种方法(适用于新版edge)
+echo 2.第二种方法
+set /p input=请输入你要执行的操作：
+if %input% equ 1 for /f "tokens=2*" %%A in ('reg query "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Microsoft Edge" /v "UninstallString"') do %%B && del /f /s /q %PROGRAMFILES(X86)%\Microsoft\Edge*
+if %input% equ 2 goto unedge2
+pause
+cls
+goto memu1
+
+:unedge2
+cls
+powershell get-appxpackage Microsoft.MicrosoftEdge|findstr PackageFamilyName > install.txt
+for /f "tokens=3*" %%A in (install.txt) do set packagename=%%A
+powershell remove-appxpackage %packagename%
+del /f /s /q install.txt
 pause
 cls
 goto memu1
