@@ -11,26 +11,3 @@
 
 
 [![agpl](https://camo.githubusercontent.com/473b62766b498e4f2b008ada39f1d56fb3183649f24447866e25d958ac3fd79a/68747470733a2f2f7777772e676e752e6f72672f67726170686963732f6167706c76332d3135357835312e706e67)](https://www.gnu.org/licenses/agpl-3.0.txt)  
-
-
-
-
-
-
-
-# 校验教程
-
-~~这个百度一下就知道了~~
-
-
-首先下载[gpg4win](https://files.gpg4win.org/gpg4win-4.0.2.exe)，然后按正常方式安装。  
-
-右键Windows-Utilities.v2.0.2.22.exe，按下图操作
-
-![image](https://user-images.githubusercontent.com/57583560/171788378-2dde1dbc-8927-437d-b0f8-6cb2ba4db010.png)
-
-出现这个就没问题
-
-
-![image](https://user-images.githubusercontent.com/57583560/171788437-ce8110d4-57f5-4974-bde4-86566ab2148a.png)
-
