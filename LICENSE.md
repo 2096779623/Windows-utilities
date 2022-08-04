@@ -1,3 +1,4 @@
+除特别声明之外，均采用AGPL-3.0许可证。
 
 <!-- saved from url=(0046)https://www.chinasona.org/gnu/agpl-3.0-cn.html -->
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
