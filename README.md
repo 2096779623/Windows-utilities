@@ -9,5 +9,7 @@
 
 [![GitHub license](https://img.shields.io/badge/license-AGPL%203.0-brightgreen)](https://github.com/2096779623/Windows-utilities/blob/main/LICENSE)  [![Batch](https://img.shields.io/badge/Batch-100%25-brightgreen)](https://baike.baidu.com/item/%E6%89%B9%E5%A4%84%E7%90%86/1448600)
 
+# LICENSE
+除特别声明之外，均采用AGPL-3.0许可证。
 
 [![agpl](https://camo.githubusercontent.com/473b62766b498e4f2b008ada39f1d56fb3183649f24447866e25d958ac3fd79a/68747470733a2f2f7777772e676e752e6f72672f67726170686963732f6167706c76332d3135357835312e706e67)](https://www.gnu.org/licenses/agpl-3.0.txt)  
