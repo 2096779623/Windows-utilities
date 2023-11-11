@@ -71,7 +71,7 @@ cls
 IF "%tooldowntree%" EQU "" (set tooldowntree=%Temp%\Windows实用小工具)
 IF EXIST "%Temp%\Windows实用小工具\" (echo .) ELSE (md %Temp%\Windows实用小工具\>nul)
 IF EXIST "%Temp%\Windows实用小工具settings\" (echo .) ELSE (md %Temp%\Windows实用小工具settings\>nul)
-IF EXIST "%SystemRoot%\System32\EchoX.exe" (set down=0) ELSE (set down=1)
+IF EXIST "%CD%\EchoX.exe" (set down=0) ELSE (set down=1)
 for /f %%a in (%Temp%\Windows实用小工具settings\deupage) do (if %%a==1 (goto memu) else (goto memu1))
 IF "%down%" EQU "0" (cls) ELSE (goto pdown)
 
@@ -389,7 +389,7 @@ cls
 
 echo 正在下载必要的显示工具，请关闭杀毒软件再执行!
 pause
-certutil.exe -urlcache -split -f https://raw.fastgit.org/2096779623/Windows-utilities/main/EchoX.exe %temp%\Windows实用小工具\EchoX.exe
+certutil.exe -urlcache -split -f https://raw.fastgit.org/2096779623/Windows-utilities/main/EchoX.exe %CD%\EchoX.exe
 echo OK!
 pause
 cls
